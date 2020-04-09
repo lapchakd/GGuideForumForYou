@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    # 'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -124,3 +125,5 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'assets'),
     os.path.join(BASE_DIR, 'images'),
 ]
+
+LOGOUT_REDIRECT_URL = '/'
