@@ -4,7 +4,7 @@
     padding: 10px;
 	}
     body {
-      background-image: url(../images/Fon.png);
+      background-image: url(/static/Fon.png);
       background-repeat: repeat;
 	  -webkit-background-size:cover;
 	  background-size:cover;
