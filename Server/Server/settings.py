@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY =os.environ.get('SECRET_KEY')
-SECRET_KEY = 'v7w9i5b96mv-l#vj*#$0r@&3gb7f9t@-c$9@th&wo^r*o!rb0@'
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    # 'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -124,3 +125,5 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'assets'),
     os.path.join(BASE_DIR, 'images'),
 ]
+
+LOGOUT_REDIRECT_URL = '/'
