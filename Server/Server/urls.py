@@ -19,10 +19,10 @@ from GGuide import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index),
+    path('', views.index, name='index'),
+    path('registration/', views.registration),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
