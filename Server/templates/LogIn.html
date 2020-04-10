@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <link rel="stylesheet" href="/static/styles3.css">
 </head>
 <body>
 <form method="post">{% csrf_token %}
     <h1>Login</h1>
-    <label for="username">Your name: </label>
-    <input id="username" type="text" name="username" maxlength="10" >
-    <label for="password">Your password: </label>
-    <input id="password" type="password" name="password" maxlength="22" >
-    <input type="submit" value="submit">
+    <label for="username">Your name: </label><br>
+    <input  placeholder="Your name" id="username" type="text" name="username" maxlength="10" ><br>
+    <label for="password">Your password: </label><br>
+    <input placeholder="Your password" id="password" type="password" name="password" maxlength="22" ><br>
+    <input id="button" type="submit" value="Login">
 
   </form>
 </body>
