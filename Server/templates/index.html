@@ -15,11 +15,13 @@
               <li><a href="#">Portfolio</a></li>
               <li><a href="#">Services</a></li>
               <li><a href="#">Contact</a></li>
+
                 {% if user.is_authenticated %}
                     <li id="login-singup"><a href="{% url 'logout' %}">Logout</a></li>
 
                 {% else %}
-                    <li id="login-singup"><a href="registration">Sing up</a></li>
+                    <li class="login-singup"> <a  href="login">Login</a></li>
+                    <li class="login-singup"><a href="registration">Sing up</a></li>
                 {% endif %}
             </ul>
           </nav>
