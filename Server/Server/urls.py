@@ -25,8 +25,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('registration/', views.registration),
+    path('login/', views.log_in),
     path('logout/', LogoutView.as_view(),
          {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
+
 ]
 
 urlpatterns += staticfiles_urlpatterns()

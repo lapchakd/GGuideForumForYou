@@ -86,9 +86,9 @@
 	  color:#fff;
 	  font-size:25px;
 	}
-	#login-singup{
+	.login-singup{
 	    float: right;
 	}
-	#login-singup a:hover{
+	.login-singup a:hover{
 	    background: #00FFFF;
 	}
