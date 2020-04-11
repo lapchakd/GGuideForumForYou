@@ -26,6 +26,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('registration/', views.registration),
     path('login/', views.log_in),
+    path('Profile/', views.Profile),
     path('logout/', LogoutView.as_view(),
          {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
 
