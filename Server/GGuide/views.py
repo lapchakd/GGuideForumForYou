@@ -21,8 +21,9 @@ def registration(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
+            email = form.cleaned_data.get("email")
             raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
+            user = authenticate(username=username, password=raw_password,email=email)
             login(request, user)
             return redirect(success_url)
     else:
@@ -51,3 +52,7 @@ def log_in(request):
     else:
         form = Userlogin()
     return render(request, 'LogIn.html', {})
+
+
+def Profile(request):
+    return render(request, 'Profile.html', {})
