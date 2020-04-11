@@ -65,6 +65,7 @@
 	.menu-area a:hover {
 	  background: tomato;
 	  color: #fff;
+	  height: 19px;
 	}
 
 	.menu-area a:hover:after {
@@ -91,4 +92,49 @@
 	}
 	#login-singup a:hover{
 	    background: #00FFFF;
+	}
+	ul {
+	    display: block;
+	    margin: 0;
+	    padding: 0;
+	    list-style: none;
+	}
+	ul:after {
+	    display: block;
+	    content: ' ';
+	    clear: both;
+	    float: none;
+	}
+	ul.menu-area > li {
+	    position: relative;
+	}
+	ul.menu-area > li > a {
+	    display: block;
+	    padding: 10px;
+	    color: black;
+	    text-decoration: none;
+	}
+	ul.submenu {
+	    display: none;
+	    position: absolute;
+	    width: 120px;
+	    top: 37px;
+	    left: 0;
+	    background-color: white;
+	    border: 1px solid red;
+	}
+	ul.submenu > li {
+	    display: block;
+	}
+	ul.submenu > li > a {
+	    display: block;
+	    padding: 10px;
+	    color: black;
+	    text-decoration: none;
+	}
+	ul.submenu > li > a:hover {
+	    text-decoration: underline;
+	}
+	ul.menu-area > li:hover > ul.submenu {
+	    display: block;
 	}
