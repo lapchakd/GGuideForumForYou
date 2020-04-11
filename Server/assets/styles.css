@@ -87,12 +87,13 @@
 	  color:#fff;
 	  font-size:25px;
 	}
-	#login-singup{
+	.login-singup{
 	    float: right;
 	}
-	#login-singup a:hover{
+	.login-singup a:hover{
 	    background: #00FFFF;
 	}
+
 	ul {
 	    display: block;
 	    margin: 0;
@@ -138,3 +139,7 @@
 	ul.menu-area > li:hover > ul.submenu {
 	    display: block;
 	}
+
+	
+
+

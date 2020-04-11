@@ -8,16 +8,25 @@
 <body>
     <div class="menu-settings">
           <nav>
-               <div class="logo"><a href="index.html"><img src="/static/logo_GGuide.png" alt=""></a></div>
+               <div class="logo"><a href="{% url 'index' %}"><img src="/static/logo_GGuide.png" alt=""></a></div>
             <ul class="menu-area">
               <li><a href="#">Home</a></li>
               <li><a href="#">About</a></li>
               <li><a href="#">Portfolio</a></li>
               <li><a href="#">Services</a></li>
               <li><a href="#">Contact</a></li>
-              <li id="login-singup"><a href="#">Login/Sing Up</a></li>
+
+                {% if user.is_authenticated %}
+                    <li class="login-singup" ><a href="Profile">Profile</a></li>
+                {% else %}
+                    <li class="login-singup"> <a  href="login">Login</a></li>
+                    <li class="login-singup"><a href="registration">Sing up</a></li>
+                {% endif %}
             </ul>
           </nav>
 	</div>
+{% if user.is_authenticated %}
+  <p style="color:white">Logged as {{ user.username }}</p>
+{% endif %}
 </body>
 </html>

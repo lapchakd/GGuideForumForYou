@@ -1,0 +1,104 @@
+body{
+     background-image: url(/static/Fon.png);
+      background-repeat: repeat;
+	  -webkit-background-size:cover;
+	  background-size:cover;
+	  background-position:left, right;
+	  height: 90vh;
+
+}
+#content{
+    margin:0 auto;
+    background-color: floralwhite;
+    width: 65%;
+    height: 500px;
+    border-radius: 20px;
+
+}
+#foto{
+    border:3px solid black;
+    width: 150px;
+    height: 150px;
+    float: left;
+    margin:10px 10px;
+}
+#header{
+    text-align: center;
+    font:bold 15px tahoma;
+}
+#UserText{
+    background-color: #555555;
+    border:1px solid black;
+    margin:0 auto;
+    font:bold 20px tahoma;
+    width: 65%;
+    float: right;
+    margin-right:40px;
+    text-align: center;
+    border-radius: 20px;
+
+}
+input{
+    margin:10px;
+    padding: 10px;
+    width: 200px;
+}
+#button{
+    width: 300px;
+    height: 50px;
+    background-color: cornflowerblue;
+    border-radius: 20px;
+    font:bold 18px tahoma;
+    padding:4px;
+    transition: all 0.5s ease;
+    margin-top: 10px;
+    border:0;
+    margin-bottom: 5px;
+}
+#button:hover {
+    width: 300px;
+    height: 50px;
+    background-color: #1758a0;
+    border-radius: 20px;
+    font: bold 18px tahoma;
+    border: 2px solid #3f83e2;
+}
+#status{
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    margin:230px 0;
+    text-align: center;
+    border: 1px solid black;
+    margin-left:10px;
+    font: bold 13px tahoma;
+    background-color: #8d8b8c;
+}
+#foto > img {
+    width: 150px;
+    height: 150px;
+}
+#home{
+    margin:400px 0;
+}
+#home>img{
+    width:50px;
+    height:50px;
+}
+#fotoButton{
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    font:bold 13px tahoma;
+    transition: all 0.5s ease;
+    background-color: cornflowerblue;
+    border-radius: 20px;
+}
+#fotoButton:hover{
+    width: 100px;
+    height: 40px;
+    background-color: #1758a0;
+    border-radius: 20px;
+    font: bold 13px tahoma;
+    border: 2px solid #3f83e2;
+}
