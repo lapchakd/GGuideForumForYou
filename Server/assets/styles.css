@@ -61,6 +61,7 @@
 	  line-height: 30px;
 	  position: relative;
 	  z-index: 1;
+		transition: all 0.5s ease;
 	}
 	.menu-area a:hover {
 	  background: tomato;
@@ -122,7 +123,8 @@
 	    top: 37px;
 	    left: 0;
 	    background-color: white;
-	    border: 1px solid red;
+		padding: 3px;
+
 	}
 	ul.submenu > li {
 	    display: block;
@@ -133,9 +135,7 @@
 	    color: black;
 	    text-decoration: none;
 	}
-	ul.submenu > li > a:hover {
-	    text-decoration: underline;
-	}
+
 	ul.menu-area > li:hover > ul.submenu {
 	    display: block;
 	}
