@@ -29,6 +29,7 @@ urlpatterns = [
     path('Profile/', views.Profile),
     path('logout/', LogoutView.as_view(),
          {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
+    path('Doom/', views.Doom),
 
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

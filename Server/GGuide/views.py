@@ -75,3 +75,7 @@ def Profile(request):
         form = ProfileForm()
     ctx['form'] = form
     return render(request, 'Profile.html', ctx)
+
+
+def Doom(request):
+    return render(request, 'Doom.html', {})
