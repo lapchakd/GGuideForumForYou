@@ -128,3 +128,5 @@ STATICFILES_DIRS = [
 ]
 
 LOGOUT_REDIRECT_URL = '/'
+MEDIA_ROOT=os.path.join(BASE_DIR,'profile_images')
+MEDIA_URL = "/profile_images/"
