@@ -1,10 +1,12 @@
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django import forms
 from django.views.generic.edit import ModelFormMixin
 
-from GGuide.models import SignUpForm, Userlogin
+
+from GGuide.models import SignUpForm, Userlogin, ProfileForm, ProfileModel
 
 
 def index(request):
@@ -23,8 +25,10 @@ def registration(request):
             username = form.cleaned_data.get('username')
             email = form.cleaned_data.get("email")
             raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password,email=email)
+            user = authenticate(username=username, password=raw_password, email=email)
             login(request, user)
+            p = ProfileModel(img='default.png', user=user)
+            p.save()
             return redirect(success_url)
     else:
         form = SignUpForm()
@@ -43,6 +47,7 @@ def log_in(request):
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
+
             user = authenticate(username=username, password=password)
             if user:
                 login(request, user)
@@ -55,4 +60,18 @@ def log_in(request):
 
 
 def Profile(request):
-    return render(request, 'Profile.html', {})
+    ctx = {}
+    if request.method == "POST":
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+
+            user = request.user  # user
+            img = form.cleaned_data.get("Image") # user foto
+            user.profilemodel.img = img
+            user.profilemodel.save()
+
+            print(user.profilemodel.img) # test
+    else:
+        form = ProfileForm()
+    ctx['form'] = form
+    return render(request, 'Profile.html', ctx)
