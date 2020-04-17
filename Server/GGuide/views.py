@@ -56,3 +56,31 @@ def log_in(request):
 
 def Profile(request):
     return render(request, 'Profile.html', {})
+
+    ctx = {}
+    if request.method == "POST":
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+
+            user = request.user  # user
+            img = form.cleaned_data.get("Image") # user foto
+            user.profilemodel.img = img
+            user.profilemodel.save()
+
+            print(user.profilemodel.img) # test
+    else:
+        form = ProfileForm()
+    ctx['form'] = form
+    return render(request, 'Profile.html', ctx)
+
+
+def Doom(request):
+    return render(request, 'Doom.html', {})
+
+
+def CubeSlam(request):
+    return render(request, 'CubeSlam.html', {})
+
+
+def GridGarden(request):
+    return render(request, 'GridGarden.html', {})

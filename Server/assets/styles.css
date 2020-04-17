@@ -168,7 +168,24 @@
 		color: white;
 		margin-top: -40px;
 	}
+<<<<<<< Updated upstream
 
 	
 
 
+=======
+    .text-on-categories{
+	  margin-left: 375px;
+	  color: white;
+	  margin-top: -40px;
+	}
+	.doom{
+		margin: 10px auto;
+    }
+    .cubeslam{
+    	margin: 10px auto;
+    }
+    .gridgarden{
+    	margin: 10px auto;
+    }
+>>>>>>> Stashed changes
