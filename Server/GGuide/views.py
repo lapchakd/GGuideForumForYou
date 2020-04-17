@@ -57,10 +57,10 @@ def log_in(request):
                 return HttpResponse("Your account was inactive.")
     else:
         form = Userlogin()
-    return render(request, 'LogIn.html', {})
+    return render(request, 'log_in.html', {})
 
 
-def Profile(request):
+def profile_user(request):
     ctx = {}
     if request.method == "POST":
         form = ProfileForm(request.POST, request.FILES)
@@ -73,11 +73,11 @@ def Profile(request):
     else:
         form = ProfileForm()
     ctx['form'] = form
-    return render(request, 'Profile.html', ctx)
+    return render(request, 'profile.html', ctx)
 
 
-def Doom(request):
-    return render(request, 'Doom.html', {})
+def doom_views(request):
+    return render(request, 'doom.html', {})
 
 
 def change_info(request):
@@ -95,7 +95,7 @@ def change_info(request):
     else:
         form = PasswordChangeForm(request.user)
     ctx['form'] = form
-    return render(request, 'changePersonalInformation.html', ctx)
+    return render(request, 'change_personal_information.html', ctx)
 
 
 

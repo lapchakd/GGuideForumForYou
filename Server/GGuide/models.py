@@ -36,6 +36,4 @@ class ProfileModel(models.Model):
 
 
 class ProfileForm(forms.Form):
-        Image = forms.ImageField(help_text="Foto must be 150x150")
-
-
+    Image = forms.ImageField(help_text="Foto must be 150x150")
