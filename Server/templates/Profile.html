@@ -6,9 +6,6 @@
     <link rel="stylesheet" href="/static/profileStyles.css">
 </head>
 <body>
-
-
-
     <form id="content" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div id="foto"> <img  src="/profile_images/{{ user.profilemodel.img}}" alt=""></div>
@@ -22,8 +19,8 @@
         <input placeholder="{{ user.email }}" id="email" type="text" name="email" maxlength="22" ><br>
         <label for="password">Your password: </label><br>
         <input placeholder="*****" id="password" type="password" name="password" maxlength="22" ><br>
-        <input id="button" type="submit" value="Change personal information">
-    </div>
+            <a  id="button" href="{%   url 'changeinfo' %}"> Change Personal Information</a>
+        </div>
         <div id="status"><h2>Status</h2><p align="left">Rang:noob</p>
         <p align="left">Article created:0</p>
         <p align="left">Points:0</p>

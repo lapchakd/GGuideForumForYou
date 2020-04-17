@@ -26,10 +26,11 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('registration/', views.registration),
     path('login/', views.log_in),
-    path('Profile/', views.Profile),
+    path('Profile/', views.Profile, name='Profile'),
     path('logout/', LogoutView.as_view(),
          {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
     path('Doom/', views.Doom),
+    path('changeinfo/', views.change_info, name='changeinfo'),
 
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

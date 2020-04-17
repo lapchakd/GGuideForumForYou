@@ -1,11 +1,13 @@
-from django.contrib.auth import authenticate, login
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, update_session_auth_hash
 from django.contrib.auth.models import User
+
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django import forms
 from django.views.generic.edit import ModelFormMixin
 
-
+from django.contrib.auth.forms import PasswordChangeForm
 from GGuide.models import SignUpForm, Userlogin, ProfileForm, ProfileModel
 
 
@@ -47,7 +49,6 @@ def log_in(request):
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-
             user = authenticate(username=username, password=password)
             if user:
                 login(request, user)
@@ -64,12 +65,10 @@ def Profile(request):
     if request.method == "POST":
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
-
             user = request.user  # user
             img = form.cleaned_data.get("Image") # user foto
             user.profilemodel.img = img
             user.profilemodel.save()
-
             print(user.profilemodel.img) # test
     else:
         form = ProfileForm()
@@ -79,3 +78,24 @@ def Profile(request):
 
 def Doom(request):
     return render(request, 'Doom.html', {})
+
+
+def change_info(request):
+    ctx ={}
+    success_url = "/"
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect(success_url)
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordChangeForm(request.user)
+    ctx['form'] = form
+    return render(request, 'changePersonalInformation.html', ctx)
+
+
+

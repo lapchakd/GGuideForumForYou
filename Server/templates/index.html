@@ -48,7 +48,7 @@
                   </ul>
                 </li>
                 {% if user.is_authenticated %}
-                    <li class="login-singup" ><a href="Profile">Profile</a>
+                    <li class="login-singup" ><a href='{% url 'Profile' %}'>Profile</a>
                     <ul class="submenu">
                       <li><a href='Profile'>Информация</a></li>
                       <li><a href=#>Друзья</a></li>
