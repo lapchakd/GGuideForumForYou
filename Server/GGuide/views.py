@@ -80,6 +80,14 @@ def doom_views(request):
     return render(request, 'doom.html', {})
 
 
+def cube_slam_views(request):
+    return render(request, 'cube_slam.html', {})
+
+
+def grid_garden_views(request):
+    return render(request, 'grid_garden.html', {})
+
+
 def change_info(request):
     ctx ={}
     success_url = "/"
