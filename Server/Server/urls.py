@@ -29,7 +29,7 @@ urlpatterns = [
     path('profile/', views.profile_user, name='profile'),
     path('logout/', LogoutView.as_view(),
          {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
-    path('doom/', views.doom_views),
+    path('doom/', views.doom_views, name='doom'),
     path('changeinfo/', views.change_info, name='changeinfo'),
 
 ]
