@@ -1,0 +1,66 @@
+body {
+      background-image: url(/static/Fon.png);
+      background-repeat: repeat;
+	  -webkit-background-size:cover;
+      background-size:cover;
+      background-position: center center;
+      height: 100vh;
+      font:bold 18px tahoma;
+      font-family: sans-serif;
+      color: #24292e ;
+
+}
+ul{
+    list-style: none;
+}
+
+form{
+    text-align: center;
+    border-radius: 3px;
+    margin:0 auto ;
+    background-color: #ffffff;
+    width: 400px;
+    height:580px;
+    padding: 1px;
+}
+button{
+    width: 200px;
+    height: 50px;
+    background-color: #1082f5;
+    border-radius: 3px;
+    font: bold 18px tahoma;
+    border: 1px solid #1076eb;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: sans-serif;
+    transition: .2s;
+    font-size: 25px !important;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+button:hover {
+    width: 200px;
+    height: 50px;
+    font: bold 18px tahoma;
+    font-size: 25px !important;
+    color: #ffffff;
+    font-family: sans-serif;
+    background-color: #0f6fd6;
+    border-radius: 3px;
+
+
+
+}
+input {
+    width: 200px;
+    height: 20px;
+    border-radius: 4px;
+    font-size: 16px !important;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+    background-color: #fafbfc;
+}
+h3{
+    font: bold 22px tahoma;
+    font-family: sans-serif;
+    text-align: center;
+}

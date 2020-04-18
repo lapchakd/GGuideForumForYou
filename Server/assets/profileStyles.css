@@ -1,12 +1,12 @@
 body{
      background-image: url(/static/Fon.png);
-      background-repeat: repeat;
-	  -webkit-background-size:cover;
-	  background-size:cover;
-	  background-position:left, right;
-	  height: 90vh;
-    margin: 0;
-    padding: 0;
+     background-repeat: repeat;
+     -webkit-background-size:cover;
+     background-size:cover;
+     background-position:left, right;
+     height: 90vh;
+     margin: 0;
+     padding: 0;
 
 }
 #content{
@@ -33,11 +33,12 @@ body{
     border:1px solid black;
     margin:0 auto;
     font:bold 20px tahoma;
-    width: 60%;
+    width: 65%;
+    height: 380px;
     float: right;
     margin-right:40px;
     text-align: center;
-    border-radius: 20px;
+    border-radius: 4px;
 
 
 }
@@ -45,67 +46,79 @@ input{
     margin:10px;
     padding: 10px;
     width: 200px;
+    border-radius: 4px;
+    font-size: 15px !important;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+    background-color: #fafbfc;
 }
 #button{
     text-decoration: none;
-    width: 300px;
+    width: 400px;
     height: 50px;
-    background-color: cornflowerblue;
-    border-radius: 20px;
-    font:bold 18px tahoma;
-    padding:4px;
-    transition: all 0.5s ease;
-    margin-top: 10px;
-    border:0;
-    margin-bottom: 5px;
+    background-color: #1082f5;
+    border-radius: 3px;
+    font: bold 18px tahoma;
+    border: 1px solid #1076eb;
+    padding: 8px;
+    color: #ffffff;
+    font-family: sans-serif;
+    transition: .2s;
+    font-size: 25px !important;
 }
 #button:hover {
     width: 300px;
     height: 50px;
-    background-color: #1758a0;
-    border-radius: 20px;
+    background-color: #0f6fd6;
+    border-radius: 3px;
     font: bold 18px tahoma;
-    border: 2px solid #3f83e2;
+    color: #ffffff;
+    font-family: sans-serif;
 }
 #status{
     width: 200px;
     height: 200px;
     position: absolute;
-
     text-align: center;
-    border: 1px solid black;
-    margin-left:10px;
-    font: bold 13px tahoma;
     background-color: #8d8b8c;
     margin:275px 10px;
+    border: 2px solid black;
+    font: bold 16px tahoma;
+    border-radius: 3px;
 }
 #foto > img {
     width: 150px;
     height: 150px;
 }
 #home{
-    margin:500px 0px ;
+    margin:505px 20px ;
 }
 #home>img{
     width:50px;
     height:50px;
 }
 #fotoButton{
-    width: 100px;
+    width: 150px;
     height: 40px;
-    text-align: center;
-    font:bold 13px tahoma;
-    transition: all 0.5s ease;
-    background-color: cornflowerblue;
-    border-radius: 20px;
+    background-color: #1082f5;
+    border-radius: 3px;
+    font: bold 18px tahoma;
+    border: 1px solid #1076eb;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: sans-serif;
+    transition: .2s;
+    font-size: 25px !important;
+    margin:5px 0px;
+    padding: 5px;
 }
 #fotoButton:hover{
-    width: 100px;
+    width: 150px;
     height: 40px;
-    background-color: #1758a0;
-    border-radius: 20px;
-    font: bold 13px tahoma;
-    border: 2px solid #3f83e2;
+    background-color: #0f6fd6;
+    border-radius: 3px;
+    font: bold 18px tahoma;
+    color: #ffffff;
+    font-family: sans-serif;
 }
 
 #fotoText{
@@ -114,5 +127,9 @@ input{
     position: absolute;
     margin:150px 0;
     padding: 5px;
-
+}
+#id_Image{
+    margin:10px;
+    padding: 10px;
+    width: 200px;
 }
