@@ -180,45 +180,45 @@
     	margin: 10px auto;
     }
 	.text-on-categories{
-		color: #ff0000;
-		display: inline;
+	    color: #ff0000;
+	    display: inline;
 		text-align: left;
-		font-size: 25px;
-		font-family: "Arial Black", Gadget, sans-serif;
-		text-transform: uppercase;
-		background: linear-gradient(100deg, #ff0000 -35%, #000000);
-		-webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+	    font-size: 25px;
+	    font-family: "Arial Black", Gadget, sans-serif;
+	    text-transform: uppercase;
+	    background: linear-gradient(100deg, #ff0000 -35%, #000000);
+	    -webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
 	}
 	.categories-position{
-		display: table;
-		table-layout: auto;
-		position: relative;
-		border-collapse: separate;
-		border-spacing: 0;
-		list-style: none;
-		padding: 0;
-		margin-top: 16px;
+	    display: table;
+	    table-layout: auto;
+	    position: relative;
+	    border-collapse: separate;
+	    border-spacing: 0;
+	    list-style: none;
+	    padding: 0;
+	    margin-top: 16px;
 	}
 	.main-information{
-		display: table-cell;
+	    display: table-cell;
 		padding-right: 700px;
-		vertical-align: middle;
-		font-style: 15px;
+	    vertical-align: middle;
+	    font-style: 15px;
 	}
 	.image-near-information{
-		max-height: 75px;
-		max-width: 75px;
-		margin-right: 16px;
-		margin-left: 16px;
+	    max-height: 75px;
+	    max-width: 75px;
+	    margin-right: 16px;
+	    margin-left: 16px;
 	}
 	.text-style{
-		margin-left: auto;
-		font-style: 16px;
+	    margin-left: auto;
+	    font-style: 16px;
 	}
 	a{
-		text-decoration: none;
+	    text-decoration: none;
 	}
 	.href-categories{
-		font-size: 25px;
+	    font-size: 25px;
 	}
