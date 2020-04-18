@@ -5,14 +5,17 @@ body{
 	  background-size:cover;
 	  background-position:left, right;
 	  height: 90vh;
+      font:bold 18px tahoma;
+      font-family: sans-serif;
+      color: #24292e ;
 
 }
 #content{
     margin:0 auto;
-    background-color: floralwhite;
+    background-color: #FFFFFF;
     width: 65%;
     height: 500px;
-    border-radius: 20px;
+    border-radius: 4px;
 
 }
 #foto{
@@ -21,6 +24,7 @@ body{
     height: 150px;
     float: left;
     margin:10px 10px;
+     border-radius: 3px;
 }
 #header{
     text-align: center;
@@ -35,70 +39,85 @@ body{
     float: right;
     margin-right:40px;
     text-align: center;
-    border-radius: 20px;
+    border-radius: 4px;
 
 }
 input{
     margin:10px;
     padding: 10px;
     width: 200px;
+    border-radius: 4px;
+    font-size: 15px !important;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+    background-color: #fafbfc;
 }
 #button{
     width: 300px;
     height: 50px;
-    background-color: cornflowerblue;
-    border-radius: 20px;
-    font:bold 18px tahoma;
-    padding:4px;
-    transition: all 0.5s ease;
+    background-color: #1082f5;
+    border-radius: 3px;
+    font: bold 10px tahoma;
+    border: 1px solid #1076eb;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: sans-serif;
+    transition: .2s;
+    font-size: 20px !important;
     margin-top: 10px;
-    border:0;
     margin-bottom: 5px;
 }
 #button:hover {
     width: 300px;
     height: 50px;
-    background-color: #1758a0;
-    border-radius: 20px;
-    font: bold 18px tahoma;
-    border: 2px solid #3f83e2;
+    background-color: #0f6fd6;
+    border-radius: 3px;
+    font: bold 10px tahoma;
+    color: #ffffff;
+    font-family: sans-serif;
 }
 #status{
     width: 200px;
     height: 200px;
     position: absolute;
     margin:230px 0;
-    text-align: center;
-    border: 1px solid black;
+    border: 2px solid black;
     margin-left:10px;
-    font: bold 13px tahoma;
-    background-color: #8d8b8c;
+    font: bold 16px tahoma;
+    background-color: #ffffff;
+    border-radius: 3px;
 }
 #foto > img {
     width: 150px;
     height: 150px;
 }
 #home{
-    margin:400px 0;
+    margin:405px 20px 20px 20px;
 }
 #home>img{
     width:50px;
     height:50px;
 }
 #fotoButton{
-    width: 100px;
+    width: 150px;
     height: 40px;
-    text-align: center;
-    font:bold 13px tahoma;
-    transition: all 0.5s ease;
-    background-color: cornflowerblue;
-    border-radius: 20px;
+    background-color: #1082f5;
+    border-radius: 3px;
+    font: bold 18px tahoma;
+    border: 1px solid #1076eb;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: sans-serif;
+    transition: .2s;
+    font-size: 25px !important;
+    margin:5px 0px;
+    padding: 5px;
 }
 #fotoButton:hover{
-    width: 100px;
+    width: 150px;
     height: 40px;
-    background-color: #1758a0;
-    border-radius: 20px;
-    font: bold 13px tahoma;
-    border: 2px solid #3f83e2;
+    background-color: #0f6fd6;
+    border-radius: 3px;
+    font: bold 18px tahoma;
+    color: #ffffff;
+    font-family: sans-serif;
 }
