@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link rel="stylesheet" href="/static/profileStyles.css">
+</head>
+<body>
+    <form id="content" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div id="foto">
+            <img  src="/profile_images/{{ user.profilemodel.img}}" alt="">
+        </div>
+        <div id="fotoText">
+            {{ form.as_p }}
+            <input  id='fotoButton' type="submit" value="Submit">
+        </div>
+        <div id="header">
+            <h1>Your profile</h1>
+        </div>
+        <div id="UserText">
+            <label for="username">Your name: </label><br>
+            <input  placeholder="{{ user.username }}" id="username" type="text" name="username" maxlength="10" ><br>
+            <label for="email">Your email: </label><br>
+            <input placeholder="{{ user.email }}" id="email" type="text" name="email" maxlength="22" ><br>
+            <label for="password">Your password: </label><br>
+            <input placeholder="*****" id="password" type="password" name="password" maxlength="22" ><br>
+            <a  id="button" href="{%   url 'changeinfo' %}"> Change Personal Information</a>
+        </div>
+        <div id="status">
+            <h2>Status</h2>
+            <p align="left">Rang:noob</p>
+            <p align="left">Article created:0</p>
+            <p align="left">Points:0</p>
+        </div>
+        <div id="home">
+          <a href="/">
+            <img src="/static/home.png" alt="">
+          </a>
+        </div>
+    </form>
+</body>
+</html>
