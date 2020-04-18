@@ -1,5 +1,5 @@
-    .main {
-      border: 4px double black;
+	.main {
+	  border: 4px double black;
       background: #fc3;
       padding: 10px;
 	}
@@ -22,28 +22,27 @@
 	  padding-top: 10px;
 	}
 
-    nav {
+	nav {
 	  position: relative;
 	  width: calc(100% - 60px);
 	  margin: 0 auto;
 	  padding: 10px 0;
-	  background: #e9e9e9;
+	  background: #ffffff;
 	  z-index: 1;
 	  text-align: center;
 	  padding-right: 2%;
-	  border-radius: 20px;
+	  border-radius: 4px;
 	}
 
-    .logo {
-      width: 25px;
+	.logo {
+	  width: 25px;
 	  height: 25px;
 	  float: left;
-	  color: #fff;
-	  padding-left: 2%;
+	  color: #ffffff;
+	  padding-right: 2%;
 	  vertical-align: bottom;
 	  position: relative;
-	  top: 3px;
-	  left: 33px;
+	  left: 30px;
 	}
 
 	.menu-area li {
@@ -61,11 +60,11 @@
 	  line-height: 30px;
 	  position: relative;
 	  z-index: 1;
-	  transition: all 0.5s ease;
+		transition: all 0.5s ease;
 	}
 	.menu-area a:hover {
 	  background: tomato;
-	  color: #fff;
+	  color: #ffffff;
 	  height: 19px;
 	}
 
@@ -73,7 +72,8 @@
 	  transform: translateY(-50%) rotate(-35deg);
 	}
 
-	.link-area {
+	.link-area
+	{
 	  position:fixed;
 	  bottom:20px;
 	  left:20px;
@@ -81,91 +81,104 @@
 	  border-radius:40px;
 	  background:tomato;
 	}
-	.link-area a {
+	.link-area a
+	{
 	  text-decoration:none;
-	  color:#fff;
+	  color:#ffffff;
 	  font-size:25px;
 	}
-	.login-singup {
-	  float: right;
+	.login-singup{
+	    float: right;
 	}
-	.login-singup a:hover {
-	  background: #00FFFF;
+	.login-singup a:hover{
+	    background: #00FFFF;
 	}
 
 	ul {
-	  display: block;
-	  margin: 0;
-	  padding: 0;
-	  list-style: none;
+	    display: block;
+	    margin: 0;
+	    padding: 0;
+	    list-style: none;
 	}
 	ul:after {
-	  display: block;
-	  content: ' ';
-	  clear: both;
-	  float: none;
+	    display: block;
+	    content: ' ';
+	    clear: both;
+	    float: none;
 	}
 	ul.menu-area > li {
-	  position: relative;
+	    position: relative;
 	}
 	ul.menu-area > li > a {
-	  display: block;
-	  padding: 10px;
-	  color: black;
-	  text-decoration: none;
+	    display: block;
+	    padding: 10px;
+	    color: black;
+	    text-decoration: none;
 	}
 	ul.submenu {
-	  display: none;
-	  position: absolute;
-	  width: 120px;
-	  top: 37px;
-	  left: 0;
-	  background-color: white;
-	  padding: 3px;
+	    display: none;
+	    position: absolute;
+	    width: 120px;
+	    top: 37px;
+	    left: 0;
+	    background-color: #ffffff;
+		padding: 3px;
+
 	}
 	ul.submenu > li {
-	  display: block;
+	    display: block;
 	}
 	ul.submenu > li > a {
-	  display: block;
-	  padding: 10px;
-	  color: black;
-	  text-decoration: none;
+	    display: block;
+	    padding: 10px;
+	    color: black;
+	    text-decoration: none;
 	}
 
-    ul.menu-area > li:hover > ul.submenu {
-	  display: block;
+	ul.menu-area > li:hover > ul.submenu {
+	    display: block;
 	}
     .content{
-      width: 60%;
-	  background-color: #e9e9e9;
-	  border-radius: 20px;
-	  margin: 50px auto;
-	  height: 100%;
-	  opacity: 0.8;
-	  list-style: none;
-	  position: relative;
-	  padding: 20px;
-	  overflow: hidden;
-      padding-bottom: 1px;
-      display: flex;
-      justify-content: center;
-	  font-family: sans-serif;
+        width: 60%;
+		background-color: #ffffff;
+		border-radius: 4px;
+		margin: 50px auto;
+		height: 100%;
+		opacity: 0.9;
+		list-style: none;
+		position: relative;
+		padding: 20px;
+		overflow: hidden;
+    	padding-bottom: 1px;
+    	display: flex;
+    	justify-content: center;
+		font-family: sans-serif;
     }
-    footer{
-	  background-color: #e9e9e9;
-	  padding: 10px;
-	  margin: 0 auto;
-	  width: 1883px;
-	  left: 0;
-	  position: absolute;
+	footer{
+		background-color: #ffffff;
+		padding: 10px;
+		margin: 0 auto;
+		width: 1883px;
+		left: 0;
+		position: absolute;
 	}
+	.text-on-categories{
+		margin-left: 375px;
+		color: #ffffff;
+		margin-top: -40px;
+	}
+
     .text-on-categories{
 	  margin-left: 375px;
-	  color: white;
+	  color: #ffffff;
 	  margin-top: -40px;
 	}
 	.doom{
 		margin: 10px auto;
     }
-
+    .cubeslam{
+    	margin: 10px auto;
+    }
+    .gridgarden{
+    	margin: 10px auto;
+    }
