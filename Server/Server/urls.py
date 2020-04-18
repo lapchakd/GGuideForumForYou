@@ -30,6 +30,8 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(),
          {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
     path('doom/', views.doom_views, name='doom'),
+    path('cubeslam/', views.cubeslam_views, name='cubeslam'),
+    path('gridgarden/', views.gridgarden_views, name='gridgarden'),
     path('changeinfo/', views.change_info, name='changeinfo'),
 
 ]

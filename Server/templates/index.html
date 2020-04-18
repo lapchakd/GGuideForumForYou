@@ -42,12 +42,12 @@
               <li><a href=#>Игры</a>
                     <ul class="submenu">
                       <li><a href='doom'>Doom</a></li>
-                      <li><a href=#>Sudmenu 1</a></li>
-                      <li><a href=#>Sudmenu 1</a></li>
+                      <li><a href="{% url 'cubeslam' %}">CubeSlam</a></li>
+                      <li><a href="{% url 'gridgarden' %}">GridGarden</a></li>
                   </ul>
                 </li>
                 {% if user.is_authenticated %}
-                    <li class="login-singup" ><a href="{% url 'profile' %}">Profile</a>
+                    <li class="login-singup" ><a href="{% url 'profile' %}">Профиль</a>
                     <ul class="submenu">
                       <li><a href='profile'>Информация</a></li>
                       <li><a href=#>Друзья</a></li>
