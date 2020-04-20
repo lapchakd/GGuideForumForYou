@@ -1,7 +1,7 @@
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, update_session_auth_hash
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
-
+from django.contrib.auth import update_session_auth_hash
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django import forms
@@ -18,6 +18,14 @@ def index(request):
     return render(request, 'index.html', context=ctx)
 
 
+def game_views(request):
+    return render(request, 'game_index.html', {})
+
+
+def blog_views(request):
+    return render(request, 'blog.html', {})
+
+
 def registration(request):
     success_url = "/"
     if request.method == 'POST':
@@ -29,7 +37,7 @@ def registration(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password, email=email)
             login(request, user)
-            p = ProfileModel(img='default.png', user=user)
+            p = ProfileModel(img='default.jpg', user=user)
             p.save()
             return redirect(success_url)
     else:
@@ -76,10 +84,6 @@ def profile_user(request):
     return render(request, 'profile.html', ctx)
 
 
-def doom_views(request):
-    return render(request, 'doom.html', {})
-
-
 def change_info(request):
     ctx ={}
     success_url = "/"
@@ -95,7 +99,7 @@ def change_info(request):
     else:
         form = PasswordChangeForm(request.user)
     ctx['form'] = form
-    return render(request, 'change_personal_information.html', ctx)
+    return render(request, 'change_password.html', ctx)
 
 
 

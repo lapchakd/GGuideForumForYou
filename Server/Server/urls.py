@@ -24,14 +24,21 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
-    path('registration/', views.registration),
-    path('login/', views.log_in),
+    path('registration/', views.registration, name='registration'),
+    path('game/', views.game_views, name='game'),
+    path('blog/', views.blog_views, name='blog'),
+    path('login/', views.log_in, name='login'),
     path('profile/', views.profile_user, name='profile'),
     path('logout/', LogoutView.as_view(),
-         {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
-    path('doom/', views.doom_views, name='doom'),
+     {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
     path('changeinfo/', views.change_info, name='changeinfo'),
-
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += staticfiles_urlpatterns()
+
+
+# don't use
+
+
+
+
