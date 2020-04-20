@@ -31,7 +31,7 @@ urlpatterns = [
          {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
     path('doom/', views.doom_views, name='doom'),
     path('cube_slam/', views.cube_slam_views, name='cube_slam'),
-    path('grid_garden/', views.grid_garden_views, name='grid_garden'),
+    path('TowerDefense/', views.TowerDefense_views, name='TowerDefense'),
     path('changeinfo/', views.change_info, name='changeinfo'),
 
 ]
