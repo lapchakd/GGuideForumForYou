@@ -100,4 +100,6 @@ def change_info(request):
     return render(request, 'change_password.html', ctx)
 
 
+def friend_list(request):
+    return render(request, 'friend_list.html', {})
 
