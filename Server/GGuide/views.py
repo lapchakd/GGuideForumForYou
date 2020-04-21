@@ -1,12 +1,10 @@
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, update_session_auth_hash
 from django.contrib.auth.models import User
-from django.contrib.auth import update_session_auth_hash
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django import forms
 from django.views.generic.edit import ModelFormMixin
-
 from django.contrib.auth.forms import PasswordChangeForm
 from GGuide.models import SignUpForm, Userlogin, ProfileForm, ProfileModel
 

@@ -1,17 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Prfile</title>
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="zxx">
-<head>
-	<title>Game Warrior Template</title>
+	<title>Profile</title>
 	<meta charset="UTF-8">
-	<meta name="description" content="Game Warrior Template">
-	<meta name="keywords" content="warrior, game, creative, html">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Favicon -->
 	<link href="/static/favicon.ico" rel="shortcut icon"/>
@@ -43,7 +34,7 @@
 	<header class="header-section">
 		<div class="container">
 			<!-- logo -->
-			<a class="site-logo" href="index.html">
+			<a class="site-logo" href="{% url 'index' %}">
 				<img src="/static/logo.png" alt="">
 			</a>
 			 {% if user.is_authenticated %}
@@ -75,40 +66,39 @@
 
 
 	<!-- Page section -->
-	<section class="page-section recent-game-page spad">
-       <form method="post" class="comment-form"  enctype="multipart/form-data">
-          {% csrf_token %}
+<section class="page-section recent-game-page spad">
+    <form method="post" class="comment-form"  enctype="multipart/form-data">
+         {% csrf_token %}
          <div class="container" >
             {% csrf_token %}
              <h3 align="left">Your profile</h3>
-        <div id="foto">
+         <div id="foto">
             <img  src="/profile_images/{{ user.profilemodel.img}}" alt="There must be photo" title="200x200" >
-        </div>
-        <div id="fotoText">
+         </div>
+         <div id="fotoText">
             {{ form.as_p }}
             <button type="submit" class="site-btn btn-sm">Submit</button>
-        </div>
-        <div id="UserText">
+         </div>
+         <div id="UserText">
             <h3>Your personal information</h3>
              <p>Your username:<b>{{ user.username }}</b></p>
             <p>Your email:<b>{{ user.email }}</b></p>
             <a  id="button" href="{%   url 'changeinfo' %}"> Change password</a>
-        </div>
-        <div id="status">
+         </div>
+         <div id="status">
             <h2>Status</h2>
             <p align="left">Rang:noob</p>
             <p align="left">Article created:0</p>
             <p align="left">Points:0</p>
-        </div>
-
          </div>
-     </form>
-	</section>
+         </div>
+   </form>
+</section>
 	<!-- Page section end -->
 
 
 	<!-- Footer top section -->
-	<section class="footer-top-section">
+<section class="footer-top-section">
 		<div class="container">
 			<div class="footer-top-bg">
 				<img src="/static/footer-top-bg.png" alt="">
@@ -188,12 +178,12 @@
 				</div>
 			</div>
 		</div>
-	</section>
+</section>
 	<!-- Footer top section end -->
 
 
 	<!-- Footer section -->
-	<footer class="footer-section">
+<footer class="footer-section">
 		<div class="container">
 			<ul class="footer-menu">
 				<li><a href="{% url 'index' %}">Home</a></li>
@@ -203,11 +193,11 @@
                 <li><a href="#">Menu</a></li>
 			</ul>
 			<p class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script>     All rights reserved | GGuide Team | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 </p>
 		</div>
-	</footer>
+</footer>
 	<!-- Footer section end -->
 
 
@@ -217,7 +207,5 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="/static/owl.carousel.min.js"></script>
 	<script src="/static/jquery.marquee.min.js"></script>
 	<script src="/static/main.js"></script>
-    </body>
-
 </body>
 </html>

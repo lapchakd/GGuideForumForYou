@@ -1,10 +1,8 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="en">
 <head>
 	<title>Blog</title>
 	<meta charset="UTF-8">
-	<meta name="description" content="Game Warrior Template">
-	<meta name="keywords" content="warrior, game, creative, html">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Favicon -->   
 	<link href="/static/favicon.ico" rel="shortcut icon"/>
@@ -16,50 +14,50 @@
 	<link rel="stylesheet" href="/static/bootstrap.min.css"/>
 	<link rel="stylesheet" href="/static/font-awesome.min.css"/>
 	<link rel="stylesheet" href="/static/owl.carousel.css"/>
-	<link rel="stylesheet" href="/static/style.css"/>
-	<link rel="stylesheet" href="/static/animate.css"/>
+    <link rel="stylesheet" href="/static/style.css"/>
+    <link rel="stylesheet" href="/static/animate.css"/>
 
 
-	<!--[if lt IE 9]>
-	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	<![endif]-->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
 </head>
 <body>
-	<!-- Page Preloder -->
-	<div id="preloder">
-		<div class="loader"></div>
-	</div>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
 
-	<!-- Header section -->
-	<header class="header-section">
-		<div class="container">
-			<!-- logo -->
-			<a class="site-logo" href="index.html">
-				<img src="/static/logo.png" alt="">
-			</a>
-			 {% if user.is_authenticated %}
+    <!-- Header section -->
+    <header class="header-section">
+        <div class="container">
+            <!-- logo -->
+            <a class="site-logo" href="{% url 'index' %}">
+	            <img src="/static/logo.png" alt="">
+            </a>
+            {% if user.is_authenticated %}
             <div class="user-panel">
-				<a href="{% url 'profile' %}">Profile</a>/<a href="{%  url 'logout' %}">Logout</a>
-			</div>
+                <a href="{% url 'profile' %}">Profile</a>/<a href="{%  url 'logout' %}">Logout</a>
+            </div>
             {% else %}
-			<div class="user-panel">
-				<a href="{% url 'login' %}">Login</a>  /  <a href="{%  url 'registration' %}">Register</a>
-			</div>
+            <div class="user-panel">
+                <a href="{% url 'login' %}">Login</a>  /  <a href="{%  url 'registration' %}">Register</a>
+            </div>
             {% endif %}
-			<!-- responsive -->
-			<div class="nav-switch">
-				<i class="fa fa-bars"></i>
-			</div>
-			<!-- site menu -->
-			<nav class="main-menu">
-				<ul>
-					<li><a href="{% url 'index' %}">Home</a></li>
-				    <li><a href="{% url 'game' %}">Games</a></li>
-				    <li><a href="/blog">Blog</a></li>
-					<li><a href="#">Menu</a></li>
-					<li><a href="#">Menu</a></li>
+            <!-- responsive -->
+            <div class="nav-switch">
+                <i class="fa fa-bars"></i>
+            </div>
+            <!-- site menu -->
+            <nav class="main-menu">
+                <ul>
+                    <li><a href="{% url 'index' %}">Home</a></li>
+                    <li><a href="{% url 'game' %}">Games</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="#">Menu</a></li>
+                    <li><a href="#">Menu</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -430,7 +428,7 @@
                 <li><a href="#">Menu</a></li>
 			</ul>
 			<p class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script>     All rights reserved | GGuide Team | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 </p>
 		</div>
