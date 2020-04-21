@@ -37,7 +37,7 @@
 			<a class="site-logo" href="{% url 'index' %}">
 				<img src="/static/logo.png" alt="">
 			</a>
-			 {% if user.is_authenticated %}
+		    {% if user.is_authenticated %}
             <div class="user-panel">
 				<a href="{% url 'profile' %}">Profile</a>/<a href="{%  url 'logout' %}">Logout</a>
 			</div>
@@ -53,11 +53,11 @@
 			<!-- site menu -->
 			<nav class="main-menu">
 				<ul>
-					<li><a href="{% url 'index' %}">Home</a></li>
-				    <li><a href="{% url 'game' %}">Games</a></li>
+				    <li><a href="{% url 'index' %}">Home</a></li>
+                    <li><a href="{% url 'game' %}">Games</a></li>
 				    <li><a href="{% url 'blog' %}">Blog</a></li>
-					<li><a href="#">Menu</a></li>
-					<li><a href="#">Menu</a></li>
+				    <li><a href="#">Menu</a></li>
+				    <li><a href="#">Menu</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -69,7 +69,7 @@
 	<section class="page-section recent-game-page spad">
        <form method="post" class="comment-form" >
           {% csrf_token %}
-         <div class="container" >
+          <div class="container" >
             <h2>Sign up</h2>
             {% for field in form %}
              <p>
@@ -84,7 +84,7 @@
             </p>
             {% endfor %}
             <button type="submit" class="site-btn btn-sm">Sign up</button>
-         </div>
+          </div>
      </form>
 	</section>
 	<!-- Page section end -->
