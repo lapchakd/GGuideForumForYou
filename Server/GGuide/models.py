@@ -28,7 +28,7 @@ class Userlogin(forms.Form):
 
 
 class ProfileModel(models.Model):
-    img = models.ImageField()
+    img = models.ImageField(default='/profile_images/default.png')
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -36,4 +36,4 @@ class ProfileModel(models.Model):
 
 
 class ProfileForm(forms.Form):
-    Image = forms.ImageField()
+    Image = forms.ImageField(help_text="Foto must be 150x150")
