@@ -16,7 +16,18 @@ body {
 	-webkit-font-smoothing: antialiased;
 	font-smoothing: antialiased;
 }
-
+.site-btn:hover{
+	background-color: #ff9900;
+}
+.btn-sm:hover{
+	background-color: #ff9900;
+}
+.btn-sm{
+	transition: all 0.5s ease;
+}
+.site-btn{
+	transition: all 0.5s ease;
+}
 h1,
 h2,
 h3,
