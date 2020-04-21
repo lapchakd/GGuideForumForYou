@@ -125,6 +125,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'assets'),
     os.path.join(BASE_DIR, 'images'),
+    os.path.join(BASE_DIR, 'js'),
+    os.path.join(BASE_DIR, 'icon-fonts'),
+    os.path.join(BASE_DIR, 'fonts'),
 ]
 
 LOGOUT_REDIRECT_URL = '/'
