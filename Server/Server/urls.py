@@ -30,7 +30,7 @@ urlpatterns = [
     path('login/', views.log_in, name='login'),
     path('profile/', views.profile_user, name='profile'),
     path('logout/', LogoutView.as_view(),
-     {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
+         {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
     path('changeinfo/', views.change_info, name='changeinfo'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
