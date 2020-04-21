@@ -1,6 +1,6 @@
 /* =================================
 ------------------------------------
-  Game Warrior Template
+  GGuide
   Version: 1.0
  ------------------------------------ 
  ====================================*/
@@ -850,7 +850,8 @@ ol {
 .copyright {
 	float: left;
 	margin-bottom: 0;
-	font-weight: 500;
+	font-weight: 100;
+	font-size: 8pt;
 	color: #aeaeae;
 }
 
