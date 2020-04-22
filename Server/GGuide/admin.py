@@ -5,3 +5,4 @@ from .models import Article, ProfileModel
 # Register your models here.
 admin.site.register(Article)
 admin.site.register(ProfileModel)
+

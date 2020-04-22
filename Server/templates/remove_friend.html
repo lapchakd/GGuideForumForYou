@@ -66,29 +66,29 @@
     <div id="menu_list">
                <nav class="main-menu">
                 <ul>
-                    <li><a href="{% url 'add_friend' %}">Add Friend</a></li>
-                    <li><a href="{% url 'remove_friend' %}">Remove Friend</a></li>
-                    <li><a href="{% url 'profile' %}">Profile</a></li>
+                    <li><a href="{%  url 'friend' %}">Friend list</a></li>
                 </ul>
             </nav>
           </div>
 
     <!-- Page section -->
     <section class="page-section recent-game-page spad">
-        {% for friend in friends %}
-        <div class="user">
-            <img  src="/profile_images/{{ friend.profilemodel.img}}" alt="There must be photo" title="200x200" >
-            <p>Nickname:<b>{{ friend.username }}</b></p>
-            <p>Rang:<b>noob</b></p>
-            <p>Articles:<b>0</b></p>
-            <p>Email:<b>{{ friend.email }}</b></p>
-        </div>
-        {% endfor %}
+        <div id="container">
+         <form  method="post" class="comment-form">
+                             {% csrf_token %}
 
-
-
-
-
+                            <h4 class="comment-title">Remove friend</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" placeholder="Friend's name" name="username" id="username" maxlength="15"><br>
+                                    <input type="email" placeholder="Friend's email" name="email"  id="email" maxlength="22"><br>
+                                </div>
+                                <div class="col-lg-12">
+                                  <input class="site-btn btn-sm" type="submit" value="Remove friend">
+                                </div>
+                            </div>
+                        </form>
+                       </div>
     </section>
     <!-- Page section end -->
 
@@ -203,4 +203,3 @@
     <script src="/static/jquery.marquee.min.js"></script>
     <script src="/static/main.js"></script>
 </body>
-</html>

@@ -30,6 +30,8 @@ urlpatterns = [
     path('login/', views.log_in, name='login'),
     path('profile/', views.profile_user, name='profile'),
     path('friend/', views.friend_list, name='friend'),
+    path('add_friend/', views.add_friend, name='add_friend'),
+    path('remove_friend/', views.remove_friend, name='remove_friend'),
     path('logout/', LogoutView.as_view(),
          {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
     path('changeinfo/', views.change_info, name='changeinfo'),

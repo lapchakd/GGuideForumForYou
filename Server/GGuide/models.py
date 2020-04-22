@@ -30,6 +30,7 @@ class Userlogin(forms.Form):
 class ProfileModel(models.Model):
     img = models.ImageField()
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    friends = models.ManyToManyField(User, related_name='friend')
 
     def __str__(self):
         return f'{self.user}'
@@ -37,3 +38,10 @@ class ProfileModel(models.Model):
 
 class ProfileForm(forms.Form):
     Image = forms.ImageField()
+
+
+class FriendForm(forms.Form):
+    username = forms.CharField(label='username', max_length=10)
+    email = forms.CharField(label='email', max_length=22)
+
+
