@@ -6,8 +6,14 @@ from django.shortcuts import render, redirect
 from django import forms
 from django.views.generic.edit import ModelFormMixin
 from django.contrib.auth.forms import PasswordChangeForm
+from django.views.generic import CreateView
+from django.views.generic.edit import ModelFormMixin
+from django.forms.widgets import HiddenInput
 
 from GGuide.models import SignUpForm, Userlogin, ProfileForm, ProfileModel, FriendForm
+from GGuide.models import Article
+
+
 
 
 def index(request):
@@ -17,12 +23,38 @@ def index(request):
     return render(request, 'index.html', context=ctx)
 
 
+def articles(request):
+    ctx = {
+        'articles': Article.objects.all(),
+    }
+    return render(request, 'articles.html', context=ctx)
+
+
+class ArticleCreate(CreateView):
+    class Meta:
+        widgets = {
+            'author': HiddenInput(),
+        }
+
+    success_url = "/"
+    template_name = "create_article.html"
+    model = Article
+    fields = ['title', 'text']
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.author = self.request.user
+        self.object.save()
+        return super(ModelFormMixin, self).form_valid(form)
+
+
 def game_views(request):
     return render(request, 'game_index.html', {})
 
 
 def blog_views(request):
     return render(request, 'blog.html', {})
+
 
 
 def registration(request):

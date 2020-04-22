@@ -35,6 +35,8 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(),
          {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
     path('changeinfo/', views.change_info, name='changeinfo'),
+    path('articles/', views.articles, name="articles"),
+    path('articles/create/', views.ArticleCreate.as_view(), name="create_article"),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += staticfiles_urlpatterns()

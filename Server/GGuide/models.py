@@ -2,10 +2,11 @@ from django.db import models
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
 
 class Article(models.Model):
-    author = models.CharField(max_length=22)
+    author = models.ForeignKey(get_user_model(), on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=128)
     text = models.TextField()
 

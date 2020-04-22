@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Profile</title>
+    <title>Blog</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Favicon -->
@@ -9,6 +9,7 @@
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@600&display=swap" rel="stylesheet">
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/static/bootstrap.min.css"/>
@@ -16,12 +17,18 @@
     <link rel="stylesheet" href="/static/owl.carousel.css"/>
     <link rel="stylesheet" href="/static/style.css"/>
     <link rel="stylesheet" href="/static/animate.css"/>
-    <link rel="stylesheet" href="/static/profile.css"/>
+    <link rel="stylesheet" href="/static/articles.css">
+
+
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <!-- Toolbar -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 </head>
 <body>
@@ -39,7 +46,7 @@
             </a>
             {% if user.is_authenticated %}
             <div class="user-panel">
-                <a href="/profile">Profile</a>/<a href="{%  url 'logout' %}">Logout</a>
+                <a href="{% url 'profile' %}">Profile</a>/<a href="{%  url 'logout' %}">Logout</a>
             </div>
             {% else %}
             <div class="user-panel">
@@ -56,55 +63,42 @@
                     <li><a href="{% url 'index' %}">Home</a></li>
                     <li><a href="{% url 'game' %}">Games</a></li>
                     <li><a href="{% url 'blog' %}">Blog</a></li>
-                    <li><a href="{% url 'articles' %}">Articles</a></li>
+                    <li><a href="/articles">Articles</a></li>
                     <li><a href="#">Menu</a></li>
                 </ul>
             </nav>
         </div>
     </header>
     <!-- Header section end -->
-     <div id="menu_list">
-               <nav class="main-menu">
-                <ul>
-                    <li><a href="{% url 'friend' %}">Friends</a></li>
-                    <li><a href="#">Article</a></li>
-                    <li><a href="#">Help</a></li>
-                    <li><a href="#">Menu</a></li>
-                </ul>
-            </nav>
-          </div>
 
-    <!-- Page section -->
-    <section class="page-section recent-game-page spad">
 
-      <form method="post" class="comment-form"  enctype="multipart/form-data">
-         {% csrf_token %}
+    <!-- Latest news section -->
+    <div class="latest-news-section">
+        <div class="ln-title">Latest News</div>
+        <div class="news-ticker">
+            <div class="news-ticker-contant">
+                <div class="nt-item"><span class="new">new</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </div>
+                <div class="nt-item"><span class="strategy">strategy</span>Isum dolor sit amet, consectetur adipiscing elit. </div>
+                <div class="nt-item"><span class="racing">racing</span>Isum dolor sit amet, consectetur adipiscing elit. </div>
+            </div>
+        </div>
+    </div>
+    <!-- Latest news section end -->
 
-         <div class="container" >
-             <h3 align="left">Your profile</h3>
-         <div id="foto">
-            <img  src="/profile_images/{{ user.profilemodel.img}}" alt="There must be photo" title="200x200" >
-         </div>
-         <div id="fotoText">
-            {{ form.as_p }}
-            <button type="submit" class="site-btn btn-sm">Submit</button>
-         </div>
-         <div id="UserText">
-            <h3>Your personal information</h3>
-             <p>Your username:<b>{{ user.username }}</b></p>
-            <p>Your email:<b>{{ user.email }}</b></p>
-            <a  id="button" href="{%   url 'changeinfo' %}"> Change password</a>
-         </div>
-         <div id="status">
-            <h2>Status</h2>
-            <p align="left">Rang:noob</p>
-            <p align="left">Article created:0</p>
-            <p align="left">Points:0</p>
-         </div>
-         </div>
-     </form>
-    </section>
-    <!-- Page section end -->
+
+    <!-- Form article section -->
+    <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="row">
+                        <div class="col-md-6">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- Form article section end -->
 
 
     <!-- Footer top section -->
@@ -191,6 +185,7 @@
     </section>
     <!-- Footer top section end -->
 
+
     <!-- Footer section -->
     <footer class="footer-section">
         <div class="container">
@@ -202,9 +197,9 @@
                 <li><a href="#">Menu</a></li>
             </ul>
             <p class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-    Copyright &copy;<script>document.write(new Date().getFullYear());</script>     All rights reserved | GGuide Team | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-         </p>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script>     All rights reserved | GGuide Team | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+</p>
         </div>
     </footer>
     <!-- Footer section end -->
