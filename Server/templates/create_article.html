@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Change password</title>
+    <title>Blog</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Favicon -->
@@ -9,6 +9,7 @@
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@600&display=swap" rel="stylesheet">
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/static/bootstrap.min.css"/>
@@ -16,12 +17,18 @@
     <link rel="stylesheet" href="/static/owl.carousel.css"/>
     <link rel="stylesheet" href="/static/style.css"/>
     <link rel="stylesheet" href="/static/animate.css"/>
-    <link rel="stylesheet" href="/static/change_password.css"/>
+    <link rel="stylesheet" href="/static/create_article.css">
+
+
 
     <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <!-- Toolbar -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 </head>
 <body>
@@ -38,9 +45,9 @@
                 <img src="/static/logo.png" alt="">
             </a>
             {% if user.is_authenticated %}
-              <div class="user-panel">
+            <div class="user-panel">
                 <a href="{% url 'profile' %}">Profile</a>/<a href="{%  url 'logout' %}">Logout</a>
-              </div>
+            </div>
             {% else %}
             <div class="user-panel">
                 <a href="{% url 'login' %}">Login</a>  /  <a href="{%  url 'registration' %}">Register</a>
@@ -55,8 +62,8 @@
                 <ul>
                     <li><a href="{% url 'index' %}">Home</a></li>
                     <li><a href="{% url 'game' %}">Games</a></li>
-                    <li><a href="{% url 'blog' %}">Blog</a></li>
-                    <li><a href="{% url 'articles' %}">Articles</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="#">Menu</a></li>
                     <li><a href="#">Menu</a></li>
                 </ul>
             </nav>
@@ -65,25 +72,38 @@
     <!-- Header section end -->
 
 
-    <!-- Page section -->
-    <h3>Change Password</h3>
-    <section class="page-section recent-game-page spad">
-       <form method="post" class="comment-form"  enctype="multipart/form-data">
-         {% csrf_token %}
-         <div class="container">
-              {{ form }}
-              {% for field in form %}
-                  {% if field.errors %}
-                      {% for error in field.errors %}
-                             <p style="color: #ff0000">{{ error }}</p>
-                      {% endfor %}
-                  {% endif %}
-              {% endfor %}
-            <button type="submit" class="site-btn btn-sm">Change password</button>
-         </div>
-       </form>
-    </section>
-    <!-- Page section end -->
+    <!-- Latest news section -->
+    <div class="latest-news-section">
+        <div class="ln-title">Latest News</div>
+        <div class="news-ticker">
+            <div class="news-ticker-contant">
+                <div class="nt-item"><span class="new">new</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </div>
+                <div class="nt-item"><span class="strategy">strategy</span>Isum dolor sit amet, consectetur adipiscing elit. </div>
+                <div class="nt-item"><span class="racing">racing</span>Isum dolor sit amet, consectetur adipiscing elit. </div>
+            </div>
+        </div>
+    </div>
+    <!-- Latest news section end -->
+
+
+    <!-- Form article section -->
+    <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="row">
+                        <div class="col-md-6">
+                             <h2 class="p-title-value">Create an article</h2>
+                             <form method="post" class="form-create-article">{% csrf_token %}
+                                 <p><input type="text" name="title" maxlength="128" required="" id="id_title" placeholder="Title"></p>
+                                 <p><textarea name="text" cols="40" rows="10" required="" id="id_text"></textarea></p>
+                                 <input type="submit" value="Create" class="site-btn site-btn-create">
+                             </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- Form article section end -->
 
 
     <!-- Footer top section -->
@@ -177,8 +197,8 @@
             <ul class="footer-menu">
                 <li><a href="{% url 'index' %}">Home</a></li>
                 <li><a href="{% url 'game' %}">Games</a></li>
-                <li><a href="/blog">Blog</a></li>
-                <li><a href="#">Menu</a></li>
+                <li><a href="{% url 'blog' %}">Blog</a></li>
+                <li><a href="{% url 'articles' %}">Articles</a></li>
                 <li><a href="#">Menu</a></li>
             </ul>
             <p class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -196,5 +216,5 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script>     A
     <script src="/static/owl.carousel.min.js"></script>
     <script src="/static/jquery.marquee.min.js"></script>
     <script src="/static/main.js"></script>
-    </body>
+</body>
 </html>

@@ -1,0 +1,35 @@
+.site-btn-create{
+	margin-bottom: 35px;
+	float: left;
+}
+#id_title{
+    width: 313%;
+    padding: 4px;
+    box-sizing: border-box;
+    border: 2px solid #ffb320;
+    margin: 10px 5px;
+    height: 50px;
+    border-radius: 4px;
+    margin-top: 0px;
+    font-size: 30px;
+}
+textarea{
+    width: 313%;
+    box-sizing: border-box;
+    border: 2px solid #ffb320;
+    margin: 10px 5px;
+    border-radius: 4px;
+    resize: none;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow-x: auto;
+    min-height: 40px;
+}
+.p-title-value{
+    padding: 15px;
+    font-family: 'Baloo Bhaina 2', cursive;
+    font-size: 45px;
+}
+
