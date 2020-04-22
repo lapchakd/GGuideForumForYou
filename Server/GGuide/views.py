@@ -6,11 +6,14 @@ from django.shortcuts import render, redirect
 from django import forms
 from django.views.generic.edit import ModelFormMixin
 from django.contrib.auth.forms import PasswordChangeForm
-from GGuide.models import SignUpForm, Userlogin, ProfileForm, ProfileModel
-from GGuide.models import Article
 from django.views.generic import CreateView
 from django.views.generic.edit import ModelFormMixin
 from django.forms.widgets import HiddenInput
+
+from GGuide.models import SignUpForm, Userlogin, ProfileForm, ProfileModel, FriendForm
+from GGuide.models import Article
+
+
 
 
 def index(request):
@@ -67,6 +70,7 @@ def registration(request):
             login(request, user)
             p = ProfileModel(img='default.jpg', user=user)
             p.save()
+
             return redirect(success_url)
     else:
         form = SignUpForm()
@@ -130,4 +134,38 @@ def change_info(request):
     return render(request, 'change_password.html', ctx)
 
 
+def friend_list(request):
+    ctx = {}
+    ctx['friends']=request.user.profilemodel.friends.all()
 
+    return render(request, 'friend_list.html', ctx)
+
+
+def add_friend(request):
+    if request.method == 'POST':
+        form = FriendForm(request.POST)
+        if form.is_valid():
+            user = request.user
+            username = form.cleaned_data['username']
+            email = form.cleaned_data['email']
+            new_friend = User.objects.get(username=username, email=email)
+            user.profilemodel.friends.add(new_friend)
+            user.profilemodel.save()
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'add_friend.html', {})
+
+
+def remove_friend(request):
+    if request.method == 'POST':
+        form = FriendForm(request.POST)
+        if form.is_valid():
+            user = request.user
+            username = form.cleaned_data['username']
+            email = form.cleaned_data['email']
+            friend = User.objects.get(username=username, email=email)
+            user.profilemodel.friends.remove(friend)
+            user.profilemodel.save()
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'remove_friend.html', {})
