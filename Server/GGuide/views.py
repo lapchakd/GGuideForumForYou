@@ -44,15 +44,6 @@ class ArticleCreate(CreateView):
         self.object.save()
         return super(ModelFormMixin, self).form_valid(form)
 
-    def get_form_kwargs(self):
-        form_kwargs = super().get_form_kwargs()
-        # if not form_kwargs['instance']:
-        #     form_kwargs.setdefault('initial', {})['author'] = self.request.user
-        # else:
-        #     form_kwargs.setdefault('data', {})['author'] = self.request.user
-        #
-        return form_kwargs
-
 
 def game_views(request):
     return render(request, 'game_index.html', {})
