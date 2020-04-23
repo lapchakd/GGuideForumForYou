@@ -56,6 +56,9 @@ def blog_views(request):
     return render(request, 'blog.html', {})
 
 
+def Cube_Slam(request):
+    return render(request, 'Cube_Slam.html', {})
+
 
 def registration(request):
     success_url = "/"
