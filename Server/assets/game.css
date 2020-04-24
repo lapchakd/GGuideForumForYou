@@ -1,4 +1,27 @@
+.review-cover> img{
+    -webkit-filter: brightness(100%);
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
 
+}
 .review-cover{
     text-align: center;
+}
+.review-cover:hover > img{
+    -webkit-filter: brightness(40%);
+}
+.review-cover:hover > a{
+    -webkit-filter: brightness(100%);
+
+}
+.review-cover > a{
+    z-index: 1000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
 }
