@@ -64,6 +64,10 @@ def hexgl(request):
     return render(request, 'hexgl.html', {})
 
 
+def gridgarden(request):
+    return render(request, 'gridgarden.html', {})
+
+
 def registration(request):
     success_url = "/"
     if request.method == 'POST':
