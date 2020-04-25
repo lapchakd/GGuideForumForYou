@@ -585,7 +585,7 @@ ol {
 ------------------------*/
 
 .tournaments-section {
-	background-image: url("/static/pattern.png");
+	background-image: url("/static/images/pattern.png");
 	background-repeat: repeat;
 }
 
@@ -728,7 +728,7 @@ ol {
 ------------------------*/
 
 .footer-top-section {
-	background-image: url("/static/pattern.png");
+	background-image: url("/static/images/pattern.png");
 	background-repeat: repeat;
 	padding: 72px 0;
 }
