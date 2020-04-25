@@ -5,19 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Favicon -->
-    <link href="/static/favicon.ico" rel="shortcut icon"/>
+    <link href="/static/images/favicon.ico" rel="shortcut icon"/>
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@600&display=swap" rel="stylesheet">
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="/static/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/static/font-awesome.min.css"/>
-    <link rel="stylesheet" href="/static/owl.carousel.css"/>
-    <link rel="stylesheet" href="/static/style.css"/>
-    <link rel="stylesheet" href="/static/animate.css"/>
-    <link rel="stylesheet" href="/static/create_article.css">
+    <link rel="stylesheet" href="/static/assets/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/static/assets/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/assets/owl.carousel.css"/>
+    <link rel="stylesheet" href="/static/assets/style.css"/>
+    <link rel="stylesheet" href="/static/assets/animate.css"/>
+    <link rel="stylesheet" href="/static/assets/create_article.css">
 
 
 
@@ -42,7 +42,7 @@
         <div class="container">
             <!-- logo -->
             <a class="site-logo" href="{% url 'index' %}">
-                <img src="/static/logo.png" alt="">
+                <img src="/static/images/logo.png" alt="">
             </a>
             {% if user.is_authenticated %}
             <div class="user-panel">
@@ -110,12 +110,12 @@
     <section class="footer-top-section">
         <div class="container">
             <div class="footer-top-bg">
-                <img src="/static/footer-top-bg.png" alt="">
+                <img src="/static/images/footer-top-bg.png" alt="">
             </div>
             <div class="row">
                 <div class="col-lg-4">
                     <div class="footer-logo text-white">
-                        <img src="/static/footer-logo.png" alt="">
+                        <img src="/static/images/footer-logo.png" alt="">
                         <p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
                     </div>
                 </div>
@@ -124,7 +124,7 @@
                         <h4 class="fw-title">Latest Posts</h4>
                         <div class="latest-blog">
                             <div class="lb-item">
-                                <div class="lb-thumb set-bg" data-setbg="/static/latest-blog/1.jpg"></div>
+                                <div class="lb-thumb set-bg" data-setbg="/static/images/latest-blog/1.jpg"></div>
                                 <div class="lb-content">
                                     <div class="lb-date">June 21, 2018</div>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum </p>
@@ -132,7 +132,7 @@
                                 </div>
                             </div>
                             <div class="lb-item">
-                                <div class="lb-thumb set-bg" data-setbg="/static/latest-blog/2.jpg"></div>
+                                <div class="lb-thumb set-bg" data-setbg="/static/images/latest-blog/2.jpg"></div>
                                 <div class="lb-content">
                                     <div class="lb-date">June 21, 2018</div>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum </p>
@@ -140,7 +140,7 @@
                                 </div>
                             </div>
                             <div class="lb-item">
-                                <div class="lb-thumb set-bg" data-setbg="/static/latest-blog/3.jpg"></div>
+                                <div class="lb-thumb set-bg" data-setbg="/static/images/latest-blog/3.jpg"></div>
                                 <div class="lb-content">
                                     <div class="lb-date">June 21, 2018</div>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum </p>
@@ -155,28 +155,28 @@
                         <h4 class="fw-title">Top Comments</h4>
                         <div class="top-comment">
                             <div class="tc-item">
-                                <div class="tc-thumb set-bg" data-setbg="/static/authors/1.jpg"></div>
+                                <div class="tc-thumb set-bg" data-setbg="/static/images/authors/1.jpg"></div>
                                 <div class="tc-content">
                                     <p><a href="#">James Smith</a> <span>on</span>  Lorem ipsum dolor sit amet, co</p>
                                     <div class="tc-date">June 21, 2018</div>
                                 </div>
                             </div>
                             <div class="tc-item">
-                                <div class="tc-thumb set-bg" data-setbg="/static/authors/2.jpg"></div>
+                                <div class="tc-thumb set-bg" data-setbg="/static/images/authors/2.jpg"></div>
                                 <div class="tc-content">
                                     <p><a href="#">James Smith</a> <span>on</span>  Lorem ipsum dolor sit amet, co</p>
                                     <div class="tc-date">June 21, 2018</div>
                                 </div>
                             </div>
                             <div class="tc-item">
-                                <div class="tc-thumb set-bg" data-setbg="/static/authors/3.jpg"></div>
+                                <div class="tc-thumb set-bg" data-setbg="/static/images/authors/3.jpg"></div>
                                 <div class="tc-content">
                                     <p><a href="#">James Smith</a> <span>on</span>  Lorem ipsum dolor sit amet, co</p>
                                     <div class="tc-date">June 21, 2018</div>
                                 </div>
                             </div>
                             <div class="tc-item">
-                                <div class="tc-thumb set-bg" data-setbg="/static/authors/4.jpg"></div>
+                                <div class="tc-thumb set-bg" data-setbg="/static/images/authors/4.jpg"></div>
                                 <div class="tc-content">
                                     <p><a href="#">James Smith</a> <span>on</span>  Lorem ipsum dolor sit amet, co</p>
                                     <div class="tc-date">June 21, 2018</div>
@@ -211,10 +211,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script>     A
 
 
     <!--====== Javascripts & Jquery ======-->
-    <script src="/static/jquery-3.2.1.min.js"></script>
-    <script src="/static/bootstrap.min.js"></script>
-    <script src="/static/owl.carousel.min.js"></script>
-    <script src="/static/jquery.marquee.min.js"></script>
-    <script src="/static/main.js"></script>
+    <script src="/static/js/jquery-3.2.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/owl.carousel.min.js"></script>
+    <script src="/static/js/jquery.marquee.min.js"></script>
+    <script src="/static/js/main.js"></script>
 </body>
 </html>
