@@ -9,11 +9,11 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.views.generic import CreateView
 from django.views.generic.edit import ModelFormMixin
 from django.forms.widgets import HiddenInput
+from django.shortcuts import get_object_or_404
+
 
 from GGuide.models import SignUpForm, Userlogin, ProfileForm, ProfileModel, FriendForm
 from GGuide.models import Article
-
-
 
 
 def index(request):
@@ -27,7 +27,7 @@ def articles(request):
     ctx = {
         'articles': Article.objects.all(),
     }
-    return render(request, 'articles.html', context=ctx)
+    return render(request, 'articles/articles.html', context=ctx)
 
 
 class ArticleCreate(CreateView):
@@ -37,7 +37,7 @@ class ArticleCreate(CreateView):
         }
 
     success_url = "/"
-    template_name = "create_article.html"
+    template_name = "articles/create_article.html"
     model = Article
     fields = ['title', 'text']
 
@@ -46,6 +46,11 @@ class ArticleCreate(CreateView):
         self.object.author = self.request.user
         self.object.save()
         return super(ModelFormMixin, self).form_valid(form)
+
+
+def article_detail(request, slug):
+    article = get_object_or_404(Article, slug=slug)
+    return render(request, 'single-blog.html', {'article': article})
 
 
 def game_views(request):
@@ -62,6 +67,10 @@ def cube_slam(request):
 
 def hexgl(request):
     return render(request, 'hexgl.html', {})
+
+
+def gridgarden(request):
+    return render(request, 'gridgarden.html', {})
 
 
 def registration(request):

@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Games</title>
+    <title>Blog</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Favicon -->   
+    <!-- Favicon -->
     <link href="/static/images/favicon.ico" rel="shortcut icon"/>
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@600&display=swap" rel="stylesheet">
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/static/assets/bootstrap.min.css"/>
@@ -16,13 +17,18 @@
     <link rel="stylesheet" href="/static/assets/owl.carousel.css"/>
     <link rel="stylesheet" href="/static/assets/style.css"/>
     <link rel="stylesheet" href="/static/assets/animate.css"/>
-    <link rel="stylesheet" href="/static/assets/game.css"/>
+    <link rel="stylesheet" href="/static/assets/articles.css">
+
 
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <!-- Toolbar -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 </head>
 <body>
@@ -55,9 +61,9 @@
             <nav class="main-menu">
                 <ul>
                     <li><a href="{% url 'index' %}">Home</a></li>
-                    <li><a href="/game">Games</a></li>
+                    <li><a href="{% url 'game' %}">Games</a></li>
                     <li><a href="{% url 'blog' %}">Blog</a></li>
-                    <li><a href="{% url 'articles' %}">Articles</a></li>
+                    <li><a href="/articles">Articles</a></li>
                     <li><a href="#">Menu</a></li>
                 </ul>
             </nav>
@@ -80,83 +86,26 @@
     <!-- Latest news section end -->
 
 
-    <!-- Page section -->
-<section class="page-section review-page spad">
-        <div class="container">
+    <!-- Form article section -->
+    <div class="container">
             <div class="row">
-                <div class="col-md-6">
-                    <div class="review-item">
-                        <h4 align="center">CubeSlam</h4>
-                        <div class="review-cover set-bg ">{# зберігайте id #}
-                            <a href="{% url 'cube_slam' %}"class="site-btn btn-sm a1">Play</a>{# зберігайте class a1 #}
-                            <img  id="1" class='game' src="/static/images/games/CubeSlam.png" alt="">
-                            Cube Slam , это классическая игра в пинг-понг. Вам предоставляется возможность играть против друга, или против компьютера. Вы должны попытаться забить гол.
+                <div class="col-lg-8">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="article-detail">
+                                <div class="article">
+                                    <h2>{{ article.title }}</h2>
+                                    <p>{{ article.text }}</p>
+                                    <p>{{ article.author }}</p>
+                                    <p>{{ article.date }}</p>
+                                </div>
                             </div>
-                        <div class="review-text">                   
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="review-item">
-                        <h4 align="center">HexGL</h4>
-                        <div class="review-cover set-bg game">
-                            <a href="{% url 'hexgl' %}"class="site-btn btn-sm a2">Play</a>
-                            <img id="2" class="game" src="/static/images/games/HexGL.png" alt="">
-                            Вам нравится летать по городу? Управляй этим самолетом и лети по небоскребу в сторону города. Собирайте ускорение на своем пути и оставайтесь сосредоточенными, чтобы не упасть на край платформы.
-                            </div>
-                        <div class="review-text">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="review-item">
-                        <h4 align="center">GridGarden</h4>
-                        <div class="review-cover set-bg game">
-                            <a href="{% url 'gridgarden' %}"class="site-btn btn-sm a3">Play</a>
-                            <img id="3" class="game" src="/static/images/games/GridGarden.png" alt="">
-                            Grid Garden игра где вы должни писать свой собствений CSS код для того чтобы проходить многочиcленые уровни.
-                            </div>
-                        <div class="review-text">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="review-item">
-                        <h4 align="center"></h4>
-                        <div class="review-cover set-bg game">
-                            <a href="#"class="site-btn btn-sm a4">Play</a>
-                            <img id="4" class="game" src="/static/images/games/" alt="">
-                            </div>
-                        <div class="review-text">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-5">
-                    <div class="review-item">
-                        <h4 align="center"></h4>
-                        <div class="review-cover set-bg game">
-                            <a href="#"class="site-btn btn-sm a5">Play</a>
-                            <img id="5" class="game" src="/static/images/games/" alt="">
-                            </div>
-                        <div class="review-text">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="review-item">
-                        <h4 align="center"></h4>
-                        <div class="review-cover set-bg game">
-                            <a href="#"class="site-btn btn-sm a6">Play</a>
-                            <img id="6" class="game" src="/static/images/games/" alt="">
-                            </div>
-                        <div class="review-text">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section
-    <!-- Page section end -->
+    <!-- Form article section end -->
 
 
     <!-- Footer top section -->
@@ -243,14 +192,14 @@
     </section>
     <!-- Footer top section end -->
 
-    
+
     <!-- Footer section -->
     <footer class="footer-section">
         <div class="container">
             <ul class="footer-menu">
                 <li><a href="{% url 'index' %}">Home</a></li>
-                <li><a href="/game">Games</a></li>
-                <li><a href="{% url 'blog' %}">Blog</a></li>
+                <li><a href="{% url 'game' %}">Games</a></li>
+                <li><a href="/blog">Blog</a></li>
                 <li><a href="#">Menu</a></li>
                 <li><a href="#">Menu</a></li>
             </ul>
@@ -269,6 +218,5 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script>     A
     <script src="/static/js/owl.carousel.min.js"></script>
     <script src="/static/js/jquery.marquee.min.js"></script>
     <script src="/static/js/main.js"></script>
-    <script src="/static/js/game_views.js"></script>
 </body>
 </html>

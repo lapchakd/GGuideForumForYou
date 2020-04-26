@@ -39,6 +39,8 @@ urlpatterns = [
     path('articles/create/', views.ArticleCreate.as_view(), name="create_article"),
     path('cube_slam/', views.cube_slam, name="cube_slam"),
     path('hexgl/', views.hexgl, name="hexgl"),
+    path('gridgarden/', views.gridgarden, name="gridgarden"),
+    path('articles/<slug>/', views.article_detail, name='detail'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += staticfiles_urlpatterns()

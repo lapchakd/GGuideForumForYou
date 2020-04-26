@@ -96,7 +96,7 @@
                              <form method="post" class="form-create-article">{% csrf_token %}
                                  <p><input type="text" name="title" maxlength="128" required="" id="id_title" placeholder="Title"></p>
                                  <p><textarea name="text" cols="40" rows="10" required="" id="id_text"></textarea></p>
-                                 <input type="submit" value="Create" class="site-btn site-btn-create">
+                                 <a href="{{ article.get_absolute_url }}"><button type="submit" class="site-btn site-btn-create">Create</button></a>
                              </form>
                         </div>
                     </div>

@@ -1,4 +1,37 @@
 .btn-for-article{
-	margin: 15px auto;
+	margin: 10px 0px 10px 0px;
 	float: left;
+}
+.articles-content{
+	width: 100%;
+	overflow: hidden;
+	white-space: nowrap;
+}
+.image-on-block{
+	position: relative;
+	float: left;
+}
+.image-size{
+	height: 75px;
+	width: 75px;
+}
+.stroke-transfer{
+	margin: 25px 0px 25px 49px;
+}
+.article-title-block{
+	height: 75px;
+	margin-top: 16px;
+}
+.article-title{
+	margin-left: 20px;
+	vertical-align: middle;
+}
+.article-gray{
+	overflow: hidden;
+	white-space: nowrap;
+	width: 100%;
+	height: 94px;
+	background: #c9c7c7;
+	padding: 10px;
+	margin-bottom: 15px;
 }
