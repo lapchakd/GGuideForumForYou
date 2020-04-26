@@ -88,16 +88,29 @@
 
     <!-- Form article section -->
     <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="row">
-                        <div class="col-md-6">
-
-                        </div>
-                    </div>
+        <div class="row">
+                <div class="btn-for-article">
+                {% if user.is_authenticated %}
+                    <a href="{% url "create_article" %}" class="site-btn btn-for-article">Create an article</a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="site-btn btn-for-article">Create an article</a>
+                {% endif %}
                 </div>
-            </div>
+                {% if articles %}
+                    <h2 class="stroke-transfer">Articles:</h2>
+                        {% for article in articles %}
+                            <div class="article-gray">
+                                <div class="articles-content">
+                                    <div class="image-on-block" ><img src="/profile_images/{{ user.profilemodel.img }}" class="image-size" alt=""></div>
+                                    <div class="article-title-block"><h3><a href="{{ article.get_absolute_url }}" class="article-title">{{ article.title }}</a></h3></div>
+                                    <div class="articles-comments"></div>
+                                    <div class="article-date">{{ article.article_date }}</div>
+                                </div>
+                            </div>
+                           {% endfor %}
+                {% endif %}
         </div>
+    </div>
     <!-- Form article section end -->
 
 
