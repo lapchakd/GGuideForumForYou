@@ -38,6 +38,7 @@ urlpatterns = [
     path('articles/', views.articles, name="articles"),
     path('articles/create/', views.ArticleCreate.as_view(), name="create_article"),
     path('Cube_Slam/', views.Cube_Slam, name="Cube_Slam"),
+    path('articles/<slug>/', views.article_detail, name='detail'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += staticfiles_urlpatterns()
