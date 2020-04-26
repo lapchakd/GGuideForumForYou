@@ -61,3 +61,15 @@ class FriendForm(forms.Form):
     email = forms.CharField(label='email', max_length=22)
 
 
+# class CommentsForm(forms.Form):
+#     comment = models.CharField(label='text', max_length=250)
+
+
+class CommentsModel(models.Model):
+    user_img = models.ImageField()
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    article = models.ForeignKey(Article, on_delete=models.SET_NULL, null=True)
+    text = models.CharField(max_length=250)
+
+    def __str__(self):
+        return f'{self.user}'
