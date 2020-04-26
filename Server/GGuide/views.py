@@ -61,8 +61,16 @@ def blog_views(request):
     return render(request, 'blog.html', {})
 
 
-def Cube_Slam(request):
-    return render(request, 'Cube_Slam.html', {})
+def cube_slam(request):
+    return render(request, 'cube_slam.html', {})
+
+
+def hexgl(request):
+    return render(request, 'hexgl.html', {})
+
+
+def gridgarden(request):
+    return render(request, 'gridgarden.html', {})
 
 
 def registration(request):
