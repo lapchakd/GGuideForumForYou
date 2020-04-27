@@ -107,19 +107,19 @@
                                     <div class="cata new">racing</div>
                                 </div>
                                 {% if articles %}
-                                {% for article in articles %}
-                                <div class="rgi-content">
-                                    <h5><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h5>
-                                    <p>{{ article.snippet }}</p>
-                                    <a href="#" class="comment">3 Comments</a>
-                                    <div class="rgi-extra">
+                                    {% for article in articles %}
+                                    <div class="rgi-content">
+                                        <h5><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h5>
+                                        <p>{{ article.snippet }}</p>
+                                        <a href="#" class="comment">3 Comments</a>
+                                        <div class="rgi-extra">
                                         <div class="rgi-star"><img src="/static/images/icons/star.png" alt=""></div>
                                         <div class="rgi-heart"><img src="/static/images/icons/heart.png" alt=""></div>
                                     </div>
-                                </div>
-                                {% endfor %}
-                            {% endif %}
-                            </div>    
+                                    </div>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
                         </div>
                         <div class="col-md-6">
                             <div class="recent-game-item">
