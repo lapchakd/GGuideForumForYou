@@ -40,7 +40,7 @@
 			<a class="site-logo" href="index.html">
 				<img src="/static/images/logo.png" alt="">
 			</a>
-			 {% if user.is_authenticated %}
+            {% if user.is_authenticated %}
             <div class="user-panel">
                 <a href="/profile">Profile</a>/<a href="{%  url 'logout' %}">Logout</a>
             </div>
@@ -94,11 +94,11 @@
 							<div class="rgi-heart"><img src="/static/images/icons/heart.png" alt=""></div>
 						</div>
 					</div>
-					<div class="blog-content">
-						<h3>{{ article.title }}</h3>
-						<a href="" class="meta-comment">3 comment</a>
-                            <p>{{ article.text }}</p>
-					</div>
+                    <div class="blog-content">
+                          <h3>{{ article.title }}</h3>
+                          <a href="" class="meta-comment">3 comment</a>
+                          <p>{{ article.text }}</p>
+                    </div>
 					<div class="comment-warp">
 						<h4 class="comment-title">Top Coments</h4>
 						<ul class="comment-list">
