@@ -116,7 +116,7 @@
                                 {% endfor %}
 						</ul>
 					</div>
-                {% if user.is_authenticated %}
+            {% if user.is_authenticated %}
 					<div class="comment-form-warp">
                         <form  method="post" class="comment-form">
                              {% csrf_token %}
@@ -131,13 +131,13 @@
                             </div>
                         </form>
 					</div>
-                {% else %}
+            {% else %}
                     <div class="comment-form-warp">
                         <h4 class="comment-title">You need  authenticated</h4>
                         <a  class="site-btn btn-sm" href="{% url 'registration' %}">Registration</a> OR
                         <a  class="site-btn btn-sm" href="{% url 'login' %}">Login</a>
                         </div>
-                {% endif %}
+            {% endif %}
                 </div>
 				<!-- sidebar -->
 				<div class="col-lg-4 col-md-7 sidebar pt-5 pt-lg-0">
