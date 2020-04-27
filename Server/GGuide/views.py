@@ -60,8 +60,8 @@ def article_detail(request, slug):
         form = CommentsForm(request.POST)
         if form.is_valid():
             text = form.cleaned_data.get('comment')
-            coment_model = Comments(user=user, article=article, text=text)
-            coment_model.save()
+            comment_model = Comments(user=user, article=article, text=text)
+            comment_model.save()
 
     return render(request, 'single-blog.html', ctx)
 
