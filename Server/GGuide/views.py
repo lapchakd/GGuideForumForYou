@@ -58,7 +58,10 @@ def game_views(request):
 
 
 def blog_views(request):
-    return render(request, 'blog.html', {})
+    ctx = {
+        'articles': Article.objects.all(),
+    }
+    return render(request, 'blog.html', context=ctx)
 
 
 def cube_slam(request):

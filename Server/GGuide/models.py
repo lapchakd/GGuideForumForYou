@@ -22,6 +22,9 @@ class Article(models.Model):
         self.slug = slugify(self.title)
         super(Article, self).save(*args, **kwargs)
 
+    def snippet(self):
+        return self.text[:120] + '...'
+
     def get_absolute_url(self):
         return reverse('detail', args=[self.slug])
 
