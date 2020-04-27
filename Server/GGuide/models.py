@@ -24,7 +24,7 @@ class Article(models.Model):
 
     def snippet(self):
         return self.text[:120] + '...'
-
+    
     def get_absolute_url(self):
         return reverse('detail', args=[self.slug])
 
