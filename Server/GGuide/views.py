@@ -12,7 +12,7 @@ from django.forms.widgets import HiddenInput
 from django.shortcuts import get_object_or_404
 
 
-from GGuide.models import SignUpForm, Userlogin, ProfileForm, ProfileModel, FriendForm
+from GGuide.models import SignUpForm, Userlogin, ProfileForm, ProfileModel, FriendForm, CommentsForm, Comments
 from GGuide.models import Article
 
 
@@ -50,7 +50,20 @@ class ArticleCreate(CreateView):
 
 def article_detail(request, slug):
     article = get_object_or_404(Article, slug=slug)
-    return render(request, 'single-blog.html', {'article': article})
+    success_url = "/"
+    ctx = {
+        'article': article,
+        'comments': article.comments.all(),
+    }
+    user = request.user
+    if request.method == 'POST':
+        form = CommentsForm(request.POST)
+        if form.is_valid():
+            text = form.cleaned_data.get('comment')
+            coment_model = Comments(user=user, article=article, text=text)
+            coment_model.save()
+
+    return render(request, 'single-blog.html', ctx)
 
 
 def game_views(request):

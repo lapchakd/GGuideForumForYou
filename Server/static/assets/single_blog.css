@@ -1,0 +1,10 @@
+#comment {
+    width: 100%;
+}
+.comment-form-warp,.col-md-6{
+    margin:0 auto;
+    text-align: center;
+}
+.col-md-6{
+    width: 100%;
+}
