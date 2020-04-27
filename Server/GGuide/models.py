@@ -71,7 +71,7 @@ class FriendForm(forms.Form):
 class Comments(models.Model):
     user_img = models.ImageField()
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    article = models.ForeignKey(Article, on_delete=models.SET_NULL)
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
     text = models.CharField(max_length=250)
 
     def __str__(self):
