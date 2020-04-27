@@ -7,7 +7,7 @@ import django.utils.timezone
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('GGuide', '0023_auto_20200427_1719'),
+        ('GGuide', '0023_related_name_into_comments_for_article'),
     ]
 
     operations = [

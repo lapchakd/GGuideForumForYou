@@ -6,7 +6,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('GGuide', '0021_auto_20200427_1449'),
+        ('GGuide', '0021_comments_model'),
     ]
 
     operations = [
