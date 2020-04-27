@@ -7,5 +7,3 @@ from .models import Article, ProfileModel, Comments
 admin.site.register(Article)
 admin.site.register(ProfileModel)
 admin.site.register(Comments)
-
-
