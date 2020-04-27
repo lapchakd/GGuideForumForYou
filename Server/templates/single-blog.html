@@ -1,47 +1,54 @@
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
-	<title>Game Warrior Template</title>
-	<meta charset="UTF-8">
-	<meta name="description" content="Game Warrior Template">
-	<meta name="keywords" content="warrior, game, creative, html">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- Favicon -->   
-	<link href="/static/images/favicon.ico" rel="shortcut icon"/>
+    <title>Game Warrior Template</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Game Warrior Template">
+    <meta name="keywords" content="warrior, game, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon -->   
+    <link href="/static/images/favicon.ico" rel="shortcut icon"/>
 
-	<!-- Google Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
 
-	<!-- Stylesheets -->
-	<link rel="stylesheet" href="/static/assets/bootstrap.min.css"/>
-	<link rel="stylesheet" href="/static/assets/font-awesome.min.css"/>
-	<link rel="stylesheet" href="/static/assets/owl.carousel.css"/>
-	<link rel="stylesheet" href="/static/assets/style.css"/>
-	<link rel="stylesheet" href="/static/assets/animate.css"/>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/static/assets/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/static/assets/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/assets/owl.carousel.css"/>
+    <link rel="stylesheet" href="/static/assets/style.css"/>
+    <link rel="stylesheet" href="/static/assets/animate.css"/>
+    <link rel="stylesheet" href="/static/assets/single_blog.css"/>
 
 
-	<!--[if lt IE 9]>
-	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	<![endif]-->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
 </head>
 <body>
-	<!-- Page Preloder -->
-	<div id="preloder">
+    <!-- Page Preloder -->
+    <div id="preloder">
 		<div class="loader"></div>
-	</div>
+    </div>
 
-	<!-- Header section -->
-	<header class="header-section">
+    <!-- Header section -->
+    <header class="header-section">
 		<div class="container">
 			<!-- logo -->
 			<a class="site-logo" href="index.html">
 				<img src="/static/images/logo.png" alt="">
 			</a>
-			<div class="user-panel">
-				<a href="#">Login</a>  /  <a href="#">Register</a>
-			</div>
+            {% if user.is_authenticated %}
+            <div class="user-panel">
+                <a href="/profile">Profile</a>/<a href="{%  url 'logout' %}">Logout</a>
+            </div>
+            {% else %}
+            <div class="user-panel">
+                <a href="{% url 'login' %}">Login</a>  /  <a href="{%  url 'registration' %}">Register</a>
+            </div>
+            {% endif %}
 			<!-- responsive -->
 			<div class="nav-switch">
 				<i class="fa fa-bars"></i>
@@ -57,12 +64,12 @@
 				</ul>
 			</nav>
 		</div>
-	</header>
-	<!-- Header section end -->
+    </header>
+    <!-- Header section end -->
 
 
-	<!-- Latest news section -->
-	<div class="latest-news-section">
+    <!-- Latest news section -->
+    <div class="latest-news-section">
 		<div class="ln-title">Latest News</div>
 		<div class="news-ticker">
 			<div class="news-ticker-contant">
@@ -71,12 +78,12 @@
 				<div class="nt-item"><span class="racing">racing</span>Isum dolor sit amet, consectetur adipiscing elit. </div>
 			</div>
 		</div>
-	</div>
-	<!-- Latest news section end -->
+    </div>
+    <!-- Latest news section end -->
 
   
-	<!-- Page section -->
-	<section class="page-section single-blog-page spad">
+    <!-- Page section -->
+    <section class="page-section single-blog-page spad">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8">
@@ -87,63 +94,55 @@
 							<div class="rgi-heart"><img src="/static/images/icons/heart.png" alt=""></div>
 						</div>
 					</div>
-					<div class="blog-content">
-						<h3>{{ article.title }}</h3>
-						<a href="" class="meta-comment">3 comment</a>
-            <p>{{ article.text }}</p>
-					</div>
+                    <div class="blog-content">
+                          <h3>{{ article.title }}</h3>
+                          <a href="" class="meta-comment">3 comment</a>
+                          <p>{{ article.text }}</p>
+                    </div>
 					<div class="comment-warp">
 						<h4 class="comment-title">Top Coments</h4>
 						<ul class="comment-list">
-							<li>
-								<div class="comment">
-									<div class="comment-avator set-bg" data-setbg="/static/images/authors/1.jpg"></div>
-									<div class="comment-content">
-										<h5>James Smith <span>June 21, 2018</span></h5>
-										<p>Donec venenatis at eros sit amet aliquam. Donec vel orci efficitur, dictum nisl vitae, scelerisque nibh. Curabitur eget ipsum pulvinar nunc gravida interdum. </p>
-										<a href="" class="reply">Reply</a>
-									</div>
-								</div>
-							</li>
-							<li>
-								<div class="comment">
-									<div class="comment-avator set-bg" data-setbg="/static/images/authors/2.jpg"></div>
-									<div class="comment-content">
-										<h5>James Smith <span>June 21, 2018</span></h5>
-										<p>Donec venenatis at eros sit amet aliquam. Donec vel orci efficitur, dictum nisl vitae, scelerisque nibh. Curabitur eget ipsum pulvinar nunc gravida interdum. </p>
-										<a href="" class="reply">Reply</a>
-									</div>
-								</div>
-							</li>
+                             {% for comment in comments %}
+                                 <li>
+                                     <div class="comment">
+                                             <div class="comment-avator set-bg" data-setbg="/profile_images/{{ comment.user.profilemodel.img }}"></div>
+                                                    <div class="comment-content">
+                                                    <h5>{{ comment.user.username }} <span>{{ comment.comments_date }}</span></h5>
+                                                    <p>{{ comment.text }} </p>
+                                                    <a href="" class="reply">Reply</a>
+                                             </div>
+                                     </div>
+                                 </li>
+                             {% endfor %}
 						</ul>
 					</div>
+                 {% if user.is_authenticated %}
 					<div class="comment-form-warp">
-						<h4 class="comment-title">Leave Your Comment</h4>
-						<form class="comment-form">
-							<div class="row">
-								<div class="col-md-6">
-									<input type="text" placeholder="Name">
-								</div>
-								<div class="col-md-6">
-									<input type="email" placeholder="Email">
-								</div>
-								<div class="col-lg-12">
-									<input type="text" placeholder="Subject">
-									<textarea placeholder="Message"></textarea>
-									<button class="site-btn btn-sm">Send</button>
-								</div>
-							</div>
-						</form>
+                        <form  method="post" class="comment-form">
+                             {% csrf_token %}
+                            <h4 class="comment-title">Leave comment</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <textarea  type="text" placeholder="Your comment" name="comment" id="comment" maxlength="250"></textarea>
+                                </div>
+                                <div class="col-lg-12">
+                                  <input class="site-btn btn-sm" type="submit" value="leave">
+                                </div>
+                            </div>
+                        </form>
 					</div>
-				</div>
+                 {% else %}
+                    <div class="comment-form-warp">
+                        <h4 class="comment-title">You need  authenticated</h4>
+                        <a  class="site-btn btn-sm" href="{% url 'registration' %}">Registration</a> OR
+                        <a  class="site-btn btn-sm" href="{% url 'login' %}">Login</a>
+                        </div>
+                 {% endif %}
+                 </div>
 				<!-- sidebar -->
-				<div class="col-lg-4 col-md-7 sidebar pt-5 pt-lg-0">
+				 <div class="col-lg-4 col-md-7 sidebar pt-5 pt-lg-0">
 					<!-- widget -->
 					<div class="widget-item">
-						<form class="search-widget">
-							<input type="text" placeholder="Search">
-							<button><i class="fa fa-search"></i></button>
-						</form>
 					</div>
 					<!-- widget -->
 					<div class="widget-item">
@@ -228,12 +227,12 @@
 				</div>
 			</div>
 		</div>
-	</section>
-	<!-- Page section end -->
+    </section>
+    <!-- Page section end -->
 
 
-	<!-- Footer top section -->
-	<section class="footer-top-section">
+    <!-- Footer top section -->
+    <section class="footer-top-section">
 		<div class="container">
 			<div class="footer-top-bg">
 				<img src="/static/images/footer-top-bg.png" alt="">
@@ -313,12 +312,12 @@
 				</div>
 			</div>
 		</div>
-	</section>
-	<!-- Footer top section end -->
+    </section>
+    <!-- Footer top section end -->
 
-	
-	<!-- Footer section -->
-	<footer class="footer-section">
+    
+    <!-- Footer section -->
+    <footer class="footer-section">
 		<div class="container">
 			<ul class="footer-menu">
 				<li><a href="index.html">Home</a></li>
@@ -332,15 +331,15 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 </p>
 		</div>
-	</footer>
-	<!-- Footer section end -->
+    </footer>
+    <!-- Footer section end -->
 
 
-	<!--====== Javascripts & Jquery ======-->
-	<script src="/static/js/jquery-3.2.1.min.js"></script>
-	<script src="/static/js/bootstrap.min.js"></script>
-	<script src="/static/js/owl.carousel.min.js"></script>
-	<script src="/static/js/jquery.marquee.min.js"></script>
-	<script src="/static/js/main.js"></script>
+    <!--====== Javascripts & Jquery ======-->
+    <script src="/static/js/jquery-3.2.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/owl.carousel.min.js"></script>
+    <script src="/static/js/jquery.marquee.min.js"></script>
+    <script src="/static/js/main.js"></script>
     </body>
 </html>
