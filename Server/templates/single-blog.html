@@ -97,23 +97,23 @@
 					<div class="blog-content">
 						<h3>{{ article.title }}</h3>
 						<a href="" class="meta-comment">3 comment</a>
-                        <p>{{ article.text }}</p>
+                            <p>{{ article.text }}</p>
 					</div>
 					<div class="comment-warp">
 						<h4 class="comment-title">Top Coments</h4>
 						<ul class="comment-list">
-                            {% for comment in comments %}
-                                <li>
-								 <div class="comment">
-									<div class="comment-avator set-bg" data-setbg="/profile_images/{{ comment.user.profilemodel.img }}"></div>
-									<div class="comment-content">
-										<h5>{{ comment.user.username }} <span>{{ comment.comments_date }}</span></h5>
-										<p>{{ comment.text }} </p>
-										<a href="" class="reply">Reply</a>
-									</div>
-								 </div>
-                                </li>
-                                {% endfor %}
+                               {% for comment in comments %}
+                                    <li>
+								        <div class="comment">
+									       <div class="comment-avator set-bg" data-setbg="/profile_images/{{ comment.user.profilemodel.img }}"></div>
+									       <div class="comment-content">
+										   <h5>{{ comment.user.username }} <span>{{ comment.comments_date }}</span></h5>
+										   <p>{{ comment.text }} </p>
+										   <a href="" class="reply">Reply</a>
+									        </div>
+								        </div>
+                                     </li>
+                               {% endfor %}
 						</ul>
 					</div>
             {% if user.is_authenticated %}
