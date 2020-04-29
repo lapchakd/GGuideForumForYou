@@ -147,20 +147,6 @@ def log_in(request):
     return render(request, 'log_in.html', ctx)
 
 
-def article_image_form(request):
-    ctx = {}
-    if request.method == "POST":
-        form = ArticleForm(request.POST, request.FILES)
-        if form.is_valid():
-            img = form.cleaned_data.get("form_article_image")
-            form = Article(img=img)
-            form.save()
-    else:
-        form = ArticleForm()
-    ctx['form'] = form
-
-
-
 def profile_user(request):
     ctx = {
         'articles': Article.objects.all(),
