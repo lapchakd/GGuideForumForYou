@@ -54,7 +54,7 @@ class Userlogin(forms.Form):
 class ProfileModel(models.Model):
     img = models.ImageField()
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    friends = models.ManyToManyField(User, related_name='friend')
+    friends = models.ManyToManyField(User, related_name='friends')
 
     def __str__(self):
         return f'{self.user}'

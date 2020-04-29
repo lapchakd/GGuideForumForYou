@@ -48,9 +48,8 @@ class ArticleCreate(CreateView):
         self.object = form.save(commit=False)
         self.object.author = self.request.user
         self.object.save()
+
         return super(ModelFormMixin, self).form_valid(form)
-
-
 
 
 def article_detail(request, slug):
@@ -200,10 +199,9 @@ def change_info(request):
 
 def friend_list(request):
     ctx = {
-        'friends' : request.user.profilemodel.friends.all(),
+        'friends': request.user.profilemodel.friends.all(),
         'articles': Article.objects.all(),
     }
-
 
     return render(request, 'friend_list.html', ctx)
 
