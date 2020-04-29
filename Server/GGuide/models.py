@@ -7,8 +7,6 @@ from django.urls import reverse
 from django.template.defaultfilters import slugify
 from django.utils import timezone
 
-from pytils.translit import slugify
-
 
 class Article(models.Model):
     author = models.ForeignKey(get_user_model(), on_delete=models.SET_NULL, null=True)
