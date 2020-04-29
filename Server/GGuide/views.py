@@ -215,3 +215,15 @@ def remove_friend(request):
     else:
         form = PasswordChangeForm(request.user)
     return render(request, 'remove_friend.html', {})
+
+
+def article_likes(request, slug):
+        obj = get_object_or_404(Article, slug=slug)
+        url_ = obj.get_absolute_url()
+        user = request.user
+        if user.is_authenticated:
+            if user in obj.likes.all():
+                obj.likes.remove(user)
+            else:
+                obj.likes.add(user)
+        return redirect(url_)

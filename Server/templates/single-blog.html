@@ -97,7 +97,7 @@
                     <div class="blog-content">
                           <h3>{{ article.title }}</h3>
                           <a href="" class="meta-comment">Comments:{{ comments.count }}</a>
-                          <p>{{ article.text }}</p>
+                          <p>{{ article.text }} <a href='{{ article.get_like_url }}'>{{ article.likes.count }} Like</a></p>
                     </div>
 					<div class="comment-warp">
 						<h4 class="comment-title">Top Coments</h4>
