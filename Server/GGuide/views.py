@@ -39,7 +39,7 @@ class ArticleCreate(CreateView):
     success_url = "/"
     template_name = "articles/create_article.html"
     model = Article
-    fields = ['title', 'text']
+    fields = ['article_image', 'title', 'text']
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -130,6 +130,20 @@ def log_in(request):
     else:
         form = Userlogin()
     return render(request, 'log_in.html', {})
+
+
+def article_image_form(request):
+    ctx = {}
+    if request.method == "POST":
+        form = ArticleForm(request.POST, request.FILES)
+        if form.is_valid():
+            img = form.cleaned_data.get("form_article_image")
+            form = Article(img=img)
+            form.save()
+    else:
+        form = ArticleForm()
+    ctx['form'] = form
+    return render(request, 'articles/create_article.html', ctx)
 
 
 def profile_user(request):

@@ -7,6 +7,8 @@ from django.urls import reverse
 from django.template.defaultfilters import slugify
 from django.utils import timezone
 
+from pytils.translit import slugify
+
 
 class Article(models.Model):
     author = models.ForeignKey(get_user_model(), on_delete=models.SET_NULL, null=True)
@@ -14,6 +16,7 @@ class Article(models.Model):
     text = models.TextField()
     slug = models.SlugField(unique=True, blank=True, null=True)
     article_date = models.DateTimeField(default=timezone.now)
+    article_image = models.ImageField(upload_to='article_images', blank=True)
 
     def __str__(self):
         return self.title
@@ -27,6 +30,10 @@ class Article(models.Model):
     
     def get_absolute_url(self):
         return reverse('detail', args=[self.slug])
+
+
+class ArticleForm(forms.Form):
+    form_article_image = forms.ImageField()
 
 
 class SignUpForm(UserCreationForm):
