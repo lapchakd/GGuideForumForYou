@@ -37,7 +37,6 @@ class ArticleCreate(CreateView):
         }
     ctx = {
         'articles': Article.objects.all(),
-
     }
     success_url = "/"
     template_name = "articles/create_article.html"
