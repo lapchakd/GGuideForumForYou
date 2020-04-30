@@ -18,7 +18,7 @@ from GGuide.models import Article
 
 def index(request):
     ctx = {
-
+        'articles':Article.objects.all(),
     }
     return render(request, 'index.html', context=ctx)
 
@@ -35,7 +35,9 @@ class ArticleCreate(CreateView):
         widgets = {
             'author': HiddenInput(),
         }
-
+    ctx = {
+        'articles': Article.objects.all(),
+    }
     success_url = "/"
     template_name = "articles/create_article.html"
     model = Article
@@ -45,6 +47,7 @@ class ArticleCreate(CreateView):
         self.object = form.save(commit=False)
         self.object.author = self.request.user
         self.object.save()
+
         return super(ModelFormMixin, self).form_valid(form)
 
 
@@ -52,6 +55,7 @@ def article_detail(request, slug):
     article = get_object_or_404(Article, slug=slug)
     success_url = "/"
     ctx = {
+        'articles': Article.objects.all(),
         'article': article,
         'comments': article.comments.all(),
     }
@@ -67,7 +71,10 @@ def article_detail(request, slug):
 
 
 def game_views(request):
-    return render(request, 'game_index.html', {})
+    ctx ={
+        'articles': Article.objects.all(),
+    }
+    return render(request, 'game_index.html', ctx)
 
 
 def blog_views(request):
@@ -106,7 +113,11 @@ def registration(request):
             return redirect(success_url)
     else:
         form = SignUpForm()
-    return render(request, 'registration.html', {'form': form})
+    ctx = {
+        'articles': Article.objects.all(),
+        'form': form,
+    }
+    return render(request, 'registration.html',ctx)
 
 
 def logout(request, next_page='index'):
@@ -115,6 +126,9 @@ def logout(request, next_page='index'):
 
 
 def log_in(request):
+    ctx = {
+        'articles': Article.objects.all(),
+    }
     success_url = "/"
     if request.method == 'POST':
         form = Userlogin(request.POST)
@@ -129,25 +143,13 @@ def log_in(request):
                 return HttpResponse("Your account was inactive.")
     else:
         form = Userlogin()
-    return render(request, 'log_in.html', {})
-
-
-def article_image_form(request):
-    ctx = {}
-    if request.method == "POST":
-        form = ArticleForm(request.POST, request.FILES)
-        if form.is_valid():
-            img = form.cleaned_data.get("form_article_image")
-            form = Article(img=img)
-            form.save()
-    else:
-        form = ArticleForm()
-    ctx['form'] = form
-    return render(request, 'articles/create_article.html', ctx)
+    return render(request, 'log_in.html', ctx)
 
 
 def profile_user(request):
-    ctx = {}
+    ctx = {
+        'articles': Article.objects.all(),
+    }
     if request.method == "POST":
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
@@ -163,7 +165,9 @@ def profile_user(request):
 
 
 def change_info(request):
-    ctx ={}
+    ctx = {
+        'articles': Article.objects.all(),
+    }
     success_url = "/"
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
@@ -181,13 +185,17 @@ def change_info(request):
 
 
 def friend_list(request):
-    ctx = {}
-    ctx['friends']=request.user.profilemodel.friends.all()
+    ctx = {
+        'articles': Article.objects.all(),
+    }
 
     return render(request, 'friend_list.html', ctx)
 
 
 def add_friend(request):
+    ctx = {
+        'articles': Article.objects.all(),
+    }
     if request.method == 'POST':
         form = FriendForm(request.POST)
         if form.is_valid():
@@ -199,10 +207,13 @@ def add_friend(request):
             user.profilemodel.save()
     else:
         form = PasswordChangeForm(request.user)
-    return render(request, 'add_friend.html', {})
+    return render(request, 'add_friend.html', ctx)
 
 
 def remove_friend(request):
+    ctx = {
+        'articles': Article.objects.all(),
+    }
     if request.method == 'POST':
         form = FriendForm(request.POST)
         if form.is_valid():
@@ -214,4 +225,4 @@ def remove_friend(request):
             user.profilemodel.save()
     else:
         form = PasswordChangeForm(request.user)
-    return render(request, 'remove_friend.html', {})
+    return render(request, 'remove_friend.html', ctx)

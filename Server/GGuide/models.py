@@ -7,8 +7,6 @@ from django.urls import reverse
 from django.template.defaultfilters import slugify
 from django.utils import timezone
 
-from pytils.translit import slugify
-
 
 class Article(models.Model):
     author = models.ForeignKey(get_user_model(), on_delete=models.SET_NULL, null=True)
@@ -56,7 +54,7 @@ class Userlogin(forms.Form):
 class ProfileModel(models.Model):
     img = models.ImageField()
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    friends = models.ManyToManyField(User, related_name='friend')
+    friends = models.ManyToManyField(User, related_name='friends')
 
     def __str__(self):
         return f'{self.user}'
