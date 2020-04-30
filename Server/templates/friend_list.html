@@ -75,7 +75,7 @@
 
     <!-- Page section -->
     <section class="page-section recent-game-page spad">
-        {% for friend in friends %}
+        {% for friend in user.profilemodel.friends.all %}
         <div class="user">
             <img  src="/profile_images/{{ friend.profilemodel.img}}" alt="There must be photo" title="200x200" >
             <p>Nickname:<b>{{ friend.username }}</b></p>

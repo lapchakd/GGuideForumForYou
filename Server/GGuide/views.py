@@ -184,7 +184,6 @@ def change_info(request):
 
 def friend_list(request):
     ctx = {
-        'friends': request.user.profilemodel.friends.all(),
         'articles': Article.objects.all(),
     }
 
