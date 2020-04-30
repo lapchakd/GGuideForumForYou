@@ -165,7 +165,9 @@ def profile_user(request):
 
 
 def change_info(request):
-    ctx ={}
+    ctx = {
+        'articles': Article.objects.all(),
+    }
     success_url = "/"
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)

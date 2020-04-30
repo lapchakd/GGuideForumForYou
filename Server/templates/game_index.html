@@ -172,23 +172,7 @@
                         <p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="footer-widget mb-5 mb-md-0">
-                        <h4 class="fw-title">Latest Posts</h4>
-                        <div class="latest-blog">
-                            {% for article in articles %}
-                            <div class="lb-item">
-                                <div class="lb-thumb set-bg" data-setbg="/profile_images/{{ article.article_image }}"></div>
-                                <div class="lb-content">
-                                    <div class="lb-date">{{ article.article_date }}</div>
-                                     <p><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></p>
-                                    <a href="#" class="lb-author">By {{ article.author }}</a>
-                                </div>
-                            </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
+                {%  include 'base_templates/side_bar.html' %}
                 <div class="col-lg-4 col-md-6">
                     <div class="footer-widget">
                         <h4 class="fw-title">Top Comments</h4>
