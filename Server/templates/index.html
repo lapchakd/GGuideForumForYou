@@ -1,3 +1,4 @@
+{% load static  %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,18 +6,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Favicon -->   
-    <link href="/static/images/favicon.ico" rel="shortcut icon"/>
+    <link href="{% static 'images/favicon.ico' %} " rel="shortcut icon"/>
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="/static/assets/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/static/assets/font-awesome.min.css"/>
-    <link rel="stylesheet" href="/static/assets/owl.carousel.css"/>
-    <link rel="stylesheet" href="/static/assets/style.css"/>
-    <link rel="stylesheet" href="/static/assets/animate.css"/>
-    <link rel="stylesheet" href="/static/assets/articles.css"/>
+    <link rel="stylesheet" href="{% static 'assets/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'assets/font-awesome.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'assets/owl.carousel.css' %}"/>
+    <link rel="stylesheet" href="{% static 'assets/style.css' %}"/>
+    <link rel="stylesheet" href="{% static 'assets/animate.css' %}"/>
+    <link rel="stylesheet" href="{% static 'assets/articles.css' %}"/>
 
 
     <!--[if lt IE 9]>
@@ -32,44 +33,14 @@
     </div>
 
     <!-- Header section -->
-    <header class="header-section">
-        <div class="container">
-            <!-- logo -->
-            <a class="site-logo" href="{% url 'index' %}">
-                <img src="/static/images/logo.png" alt="">
-            </a>
-            {% if user.is_authenticated %}
-            <div class="user-panel">
-                <a href="{% url 'profile' %}">Profile</a>/<a href="{%  url 'logout' %}">Logout</a>
-            </div>
-            {% else %}
-            <div class="user-panel">
-                <a href="{% url 'login' %}">Login</a>  /  <a href="{%  url 'registration' %}">Register</a>
-            </div>
-            {% endif %}
-            <!-- responsive -->
-            <div class="nav-switch">
-                <i class="fa fa-bars"></i>
-            </div>
-            <!-- site menu -->
-            <nav class="main-menu">
-                <ul>
-                    <li><a href="{% url 'index' %}">Home</a></li>
-                    <li><a href="{% url 'game' %}">Games</a></li>
-                    <li><a href="{% url 'blog' %}">Blog</a></li>
-                    <li><a href="{% url 'articles' %}">Articles</a></li>
-                    <li><a href="#">Menu</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    {% include 'base_templates/header_menu.html' %}
     <!-- Header section end -->
 
 
     <!-- Hero section -->
     <section class="hero-section">
         <div class="hero-slider owl-carousel">
-            <div class="hs-item set-bg" data-setbg="/static/images/slider-1.jpg">
+            <div class="hs-item set-bg" data-setbg="{% static 'images/slider-1.jpg' %}">
                 <div class="hs-text">
                     <div class="container">
                         <h2>The Best <span>Games</span> Out There</h2>
@@ -78,7 +49,7 @@
                     </div>
                 </div>
             </div>
-            <div class="hs-item set-bg" data-setbg="/static/images/slider-2.jpg">
+            <div class="hs-item set-bg" data-setbg="{% static 'images/slider-2.jpg' %}">
                 <div class="hs-text">
                     <div class="container">
                         <h2>The Best <span>Games</span> Out There</h2>
@@ -93,16 +64,7 @@
 
 
     <!-- Latest news section -->
-    <div class="latest-news-section">
-        <div class="ln-title">Latest News</div>
-        <div class="news-ticker">
-            <div class="news-ticker-contant">
-                <div class="nt-item"><span class="new">new</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </div>
-                <div class="nt-item"><span class="strategy">strategy</span>Isum dolor sit amet, consectetur adipiscing elit. </div>
-                <div class="nt-item"><span class="racing">racing</span>Isum dolor sit amet, consectetur adipiscing elit. </div>
-            </div>
-        </div>
-    </div>
+    {% include 'base_templates/run_last_new_section.html' %}
     <!-- Latest news section end -->
 
 
@@ -111,7 +73,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-6 p-0">
-                    <div class="feature-item set-bg" data-setbg="/static/images/features/1.jpg">
+                    <div class="feature-item set-bg" data-setbg="{% static 'images/features/1.jpg' %}">
                         <span class="cata new">new</span>
                         <div class="fi-content text-white">
                             <h5><a href="#">Suspendisse ut justo tem por, rutrum</a></h5>
@@ -121,7 +83,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 p-0">
-                    <div class="feature-item set-bg" data-setbg="/static/images/features/2.jpg">
+                    <div class="feature-item set-bg" data-setbg="{% static 'images/features/2.jpg' %}">
                         <span class="cata strategy">strategy</span>
                         <div class="fi-content text-white">
                             <h5><a href="#">Justo tempor, rutrum erat id, molestie</a></h5>
@@ -131,7 +93,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 p-0">
-                    <div class="feature-item set-bg" data-setbg="/static/images/features/3.jpg">
+                    <div class="feature-item set-bg" data-setbg="{% static 'images/features/3.jpg' %}">
                         <span class="cata new">new</span>
                         <div class="fi-content text-white">
                             <h5><a href="#">Nullam lacinia ex eleifend orci porttitor</a></h5>
@@ -141,7 +103,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 p-0">
-                    <div class="feature-item set-bg" data-setbg="/static/images/features/4.jpg">
+                    <div class="feature-item set-bg" data-setbg="{% static 'images/features/4.jpg' %}">
                         <span class="cata racing">racing</span>
                         <div class="fi-content text-white">
                             <h5><a href="#">Lacinia ex eleifend orci suscipit</a></h5>
@@ -157,7 +119,7 @@
 
 
     <!-- Recent game section  -->
-    <section class="recent-game-section spad set-bg" data-setbg="/static/images/recent-game-bg.png">
+    <section class="recent-game-section spad set-bg" data-setbg="{% static 'images/recent-game-bg.png' %}">
         <div class="container">
             <div class="section-title">
                 <div class="cata new">new</div>
@@ -166,7 +128,7 @@
             <div class="row">
                 <div class="col-lg-4 col-md-6">
                     <div class="recent-game-item">
-                        <div class="rgi-thumb set-bg" data-setbg="/static/images/recent-game/1.jpg">
+                        <div class="rgi-thumb set-bg" data-setbg="{% static 'images/recent-game/1.jpg' %}">
                             <div class="cata new">new</div>
                         </div>
                         <div class="rgi-content">
@@ -174,15 +136,15 @@
                             <p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit amet, consectetur elit. </p>
                             <a href="#" class="comment">3 Comments</a>
                             <div class="rgi-extra">
-                                <div class="rgi-star"><img src="/static/images/icons/star.png" alt=""></div>
-                                <div class="rgi-heart"><img src="/static/images/icons/heart.png" alt=""></div>
+                                <div class="rgi-star"><img src="{% static 'images/icons/star.png' %}" alt=""></div>
+                                <div class="rgi-heart"><img src="{% static 'images/icons/heart.png' %}" alt=""></div>
                             </div>
                         </div>
                     </div>    
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="recent-game-item">
-                        <div class="rgi-thumb set-bg" data-setbg="/static/images/recent-game/2.jpg">
+                        <div class="rgi-thumb set-bg" data-setbg="{% static 'images/recent-game/2.jpg' %}">
                             <div class="cata racing">racing</div>
                         </div>
                         <div class="rgi-content">
@@ -190,15 +152,15 @@
                             <p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit amet, consectetur elit. </p>
                             <a href="#" class="comment">3 Comments</a>
                             <div class="rgi-extra">
-                                <div class="rgi-star"><img src="/static/images/icons/star.png" alt=""></div>
-                                <div class="rgi-heart"><img src="/static/images/icons/heart.png" alt=""></div>
+                                <div class="rgi-star"><img src="{% static 'images/icons/star.png' %}" alt=""></div>
+                                <div class="rgi-heart"><img src="{% static 'images/icons/heart.png' %}" alt=""></div>
                             </div>
                         </div>
                     </div>    
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="recent-game-item">
-                        <div class="rgi-thumb set-bg" data-setbg="/static/images/recent-game/3.jpg">
+                        <div class="rgi-thumb set-bg" data-setbg="{% static 'images/recent-game/3.jpg' %}">
                             <div class="cata adventure">Adventure</div>
                         </div>
                         <div class="rgi-content">
@@ -206,8 +168,8 @@
                             <p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit amet, consectetur elit. </p>
                             <a href="#" class="comment">3 Comments</a>
                             <div class="rgi-extra">
-                                <div class="rgi-star"><img src="/static/images/icons/star.png" alt=""></div>
-                                <div class="rgi-heart"><img src="/static/images/icons/heart.png" alt=""></div>
+                                <div class="rgi-star"><img src="{% static 'images/icons/star.png' %}" alt=""></div>
+                                <div class="rgi-heart"><img src="{% static 'images/icons/heart.png' %}" alt=""></div>
                             </div>
                         </div>
                     </div>    
@@ -227,7 +189,7 @@
                     <div class="tournament-item mb-4 mb-lg-0">
                         <div class="ti-notic">Premium Tournament</div>
                         <div class="ti-content">
-                            <div class="ti-thumb set-bg" data-setbg="/static/images/tournament/1.jpg"></div>
+                            <div class="ti-thumb set-bg" data-setbg="{% static 'images/tournament/1.jpg' %}"></div>
                             <div class="ti-text">
                                 <h4>World Of WarCraft</h4>
                                 <ul>
@@ -245,7 +207,7 @@
                     <div class="tournament-item">
                         <div class="ti-notic">Premium Tournament</div>
                         <div class="ti-content">
-                            <div class="ti-thumb set-bg" data-setbg="/static/images/tournament/2.jpg"></div>
+                            <div class="ti-thumb set-bg" data-setbg="{% static 'images/tournament/2.jpg' %}"></div>
                             <div class="ti-text">
                                 <h4>DOOM</h4>
                                 <ul>
@@ -266,7 +228,7 @@
 
 
     <!-- Review section -->
-    <section class="review-section spad set-bg" data-setbg="/static/images/review-bg.png">
+    <section class="review-section spad set-bg" data-setbg="{% static 'images/review-bg.png' %}">
         <div class="container">
             <div class="section-title">
                 <div class="cata new">new</div>
@@ -275,7 +237,7 @@
             <div class="row">
                 <div class="col-lg-3 col-md-6">
                     <div class="review-item">
-                        <div class="review-cover set-bg" data-setbg="/static/images/review/1.jpg">
+                        <div class="review-cover set-bg" data-setbg="{% static 'images/review/1.jpg' %}">
                             <div class="score yellow">9.3</div>
                         </div>
                         <div class="review-text">
@@ -286,7 +248,7 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="review-item">
-                        <div class="review-cover set-bg" data-setbg="/static/images/review/2.jpg">
+                        <div class="review-cover set-bg" data-setbg="{% static 'images/review/2.jpg' %}">
                             <div class="score purple">9.5</div>
                         </div>
                         <div class="review-text">
@@ -297,7 +259,7 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="review-item">
-                        <div class="review-cover set-bg" data-setbg="/static/images/review/3.jpg">
+                        <div class="review-cover set-bg" data-setbg="{% static 'images/review/3.jpg' %}">
                             <div class="score green">9.1</div>
                         </div>
                         <div class="review-text">
@@ -308,7 +270,7 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="review-item">
-                        <div class="review-cover set-bg" data-setbg="/static/images/review/4.jpg">
+                        <div class="review-cover set-bg" data-setbg="{% static 'images/review/4.jpg' %}">
                             <div class="score pink">9.7</div>
                         </div>
                         <div class="review-text">
@@ -324,84 +286,11 @@
 
 
     <!-- Footer top section -->
-    <section class="footer-top-section">
-        <div class="container">
-            <div class="footer-top-bg">
-                <img src="/static/images/footer-top-bg.png" alt="">
-            </div>
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="footer-logo text-white">
-                        <img src="/static/images/footer-logo.png" alt="">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
-                    </div>
-                </div>
-                {%  include 'base_templates/side_bar.html' %}
-                <div class="col-lg-4 col-md-6">
-                    <div class="footer-widget">
-                        <h4 class="fw-title">Top Comments</h4>
-                        <div class="top-comment">
-                            <div class="tc-item">
-                                <div class="tc-thumb set-bg" data-setbg="/static/images/authors/1.jpg"></div>
-                                <div class="tc-content">
-                                    <p><a href="#">James Smith</a> <span>on</span>  Lorem ipsum dolor sit amet, co</p>
-                                    <div class="tc-date">June 21, 2018</div>
-                                </div>
-                            </div>
-                            <div class="tc-item">
-                                <div class="tc-thumb set-bg" data-setbg="/static/images/authors/2.jpg"></div>
-                                <div class="tc-content">
-                                    <p><a href="#">James Smith</a> <span>on</span>  Lorem ipsum dolor sit amet, co</p>
-                                    <div class="tc-date">June 21, 2018</div>
-                                </div>
-                            </div>
-                            <div class="tc-item">
-                                <div class="tc-thumb set-bg" data-setbg="/static/images/authors/3.jpg"></div>
-                                <div class="tc-content">
-                                    <p><a href="#">James Smith</a> <span>on</span>  Lorem ipsum dolor sit amet, co</p>
-                                    <div class="tc-date">June 21, 2018</div>
-                                </div>
-                            </div>
-                            <div class="tc-item">
-                                <div class="tc-thumb set-bg" data-setbg="/static/images/authors/4.jpg"></div>
-                                <div class="tc-content">
-                                    <p><a href="#">James Smith</a> <span>on</span>  Lorem ipsum dolor sit amet, co</p>
-                                    <div class="tc-date">June 21, 2018</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Footer top section end -->
-
-    
-    <!-- Footer section -->
-    <footer class="footer-section">
-        <div class="container">
-            <ul class="footer-menu">
-                <li><a href="{%  url 'index' %}">Home</a></li>
-                <li><a href="/game">Games</a></li>
-                <li><a href="{% url 'blog' %}">Blog</a></li>
-                <li><a href="#">Menu</a></li>
-                <li><a href="#">Menu</a></li>
-            </ul>
-            <p class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | GGuide Team |This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-</p>
-        </div>
-    </footer>
+    {% include 'base_templates/footer.html' %}
     <!-- Footer section end -->
 
 
     <!--====== Javascripts & Jquery ======-->
-    <script src="/static/js/jquery-3.5.0.js"></script>
-    <script src="/static/js/bootstrap.min.js"></script>
-    <script src="/static/js/owl.carousel.min.js"></script>
-    <script src="/static/js/jquery.marquee.min.js"></script>
-    <script src="/static/js/main.js"></script>
+    {% include 'base_templates/connect_js_jQ.html' %}
     </body>
 </html>
