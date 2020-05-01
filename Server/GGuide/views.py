@@ -230,13 +230,13 @@ def remove_friend(request):
 
 
 def article_likes(request, slug):
-        obj = get_object_or_404(Article, slug=slug)
-        url_ = obj.get_absolute_url()
+        article = get_object_or_404(Article, slug=slug)
+        url = article.get_absolute_url()
         user = request.user
         if user.is_authenticated:
-            if user in obj.likes.all():
-                obj.likes.remove(user)
+            if user in article.likes.all():
+                article.likes.remove(user)
             else:
-                obj.likes.add(user)
-        return redirect(url_)
+                article.likes.add(user)
+        return redirect(url)
 
