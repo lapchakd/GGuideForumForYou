@@ -43,6 +43,7 @@ urlpatterns = [
     path('articles/<slug>/', views.article_detail, name='detail'),
     path('accounts/', include('allauth.urls')),
     path('', include('social_django.urls', namespace='social'))
+    path('<slug>/like/', views.article_likes, name='like-toggle'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += staticfiles_urlpatterns()

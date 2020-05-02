@@ -15,6 +15,10 @@ class Article(models.Model):
     slug = models.SlugField(unique=True, blank=True, null=True)
     article_date = models.DateTimeField(default=timezone.now)
     article_image = models.ImageField(upload_to='article_images', blank=True)
+    likes = models.ManyToManyField(User, blank=True, related_name='likes')
+
+    def get_like_url(self):
+        return reverse("like-toggle", args=[self.slug])
 
     def __str__(self):
         return self.title
