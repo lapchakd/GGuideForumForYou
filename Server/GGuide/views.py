@@ -179,7 +179,6 @@ def profile_user(request):
     else:
         form = ProfileForm()
     ctx['form'] = form
-    # ctx['image'] = image_url
     return render(request, 'profile.html', ctx)
 
 
