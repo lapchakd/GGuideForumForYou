@@ -34,12 +34,18 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
-    # 'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'GGuide'
+    'GGuide',
+    'social_django',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+
 ]
 
 MIDDLEWARE = [
@@ -129,3 +135,5 @@ STATICFILES_DIRS = [
 LOGOUT_REDIRECT_URL = '/'
 MEDIA_ROOT=os.path.join(BASE_DIR,'profile_images')
 MEDIA_URL = "/profile_images/"
+SITE_ID = 1
+LOGIN_REDIRECT_URL = "/"

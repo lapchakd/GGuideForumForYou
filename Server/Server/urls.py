@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.contrib.auth.views import LogoutView
-from django.urls import path
+from django.urls import path, include
 from GGuide import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
@@ -41,6 +41,8 @@ urlpatterns = [
     path('hexgl/', views.hexgl, name="hexgl"),
     path('gridgarden/', views.gridgarden, name="gridgarden"),
     path('articles/<slug>/', views.article_detail, name='detail'),
+    path('accounts/', include('allauth.urls')),
+    path('', include('social_django.urls', namespace='social'))
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += staticfiles_urlpatterns()
