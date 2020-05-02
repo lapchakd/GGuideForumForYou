@@ -225,4 +225,18 @@ def remove_friend(request):
             user.profilemodel.save()
     else:
         form = PasswordChangeForm(request.user)
-    return render(request, 'remove_friend.html', ctx)
+
+    return render(request, 'remove_friend.html', {})
+
+
+def article_likes(request, slug):
+        article = get_object_or_404(Article, slug=slug)
+        url = article.get_absolute_url()
+        user = request.user
+        if user.is_authenticated:
+            if user in article.likes.all():
+                article.likes.remove(user)
+            else:
+                article.likes.add(user)
+        return redirect(url)
+
