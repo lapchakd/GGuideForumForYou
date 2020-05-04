@@ -65,15 +65,16 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="recent-game-item">
-                                <div class="rgi-thumb set-bg" data-setbg="{% static 'images/recent-game/1.jpg' %}">
-                                    <div class="cata new">racing</div>
-                                </div>
+
                                 {% if articles %}
                                     {% for article in articles %}
+                                     <div class="rgi-thumb set-bg" data-setbg="/profile_images/{{ article.article_image }}">
+                                         <div class="cata new">racing</div>
+                                    </div>
                                     <div class="rgi-content">
                                         <h5><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h5>
                                         <p>{{ article.snippet }}</p>
-                                        <a href="#" class="comment">3 Comments</a>
+                                        <a href="#" class="comment">Comments: {{ article.comments.count }}</a>
                                         <div class="rgi-extra">
                                         <div class="rgi-star"><img src="{% static 'images/icons/star.png' %}" alt=""></div>
                                         <div class="rgi-heart"><img src="{% static 'images/icons/heart.png' %}" alt=""></div>
