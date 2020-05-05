@@ -10,9 +10,8 @@ from django.views.generic import CreateView
 from django.views.generic.edit import ModelFormMixin
 from django.forms.widgets import HiddenInput
 from django.shortcuts import get_object_or_404
-
-
-from GGuide.models import SignUpForm, Userlogin, ProfileForm, ProfileModel, FriendForm, CommentsForm, Comments
+from GGuide.forms import SignUpForm, Userlogin, ProfileForm, FriendForm, CommentsForm
+from GGuide.models import ProfileModel, Comments
 from GGuide.models import Article
 
 
