@@ -239,3 +239,13 @@ def article_likes(request, slug):
                 article.likes.add(user)
         return redirect(url)
 
+
+def profile_user_articles(request):
+    user = request.user
+    ctx = {
+        'articles': Article.objects.all(),
+        'user_articles': Article.objects.all().filter(author=user)
+    }
+    print(Article.objects.all().filter(author=user))
+    return render(request, 'profile_article.html', ctx)
+
