@@ -248,3 +248,13 @@ def profile_user_articles(request):
 
     return render(request, 'profile_articles.html', ctx)
 
+
+def article_remove(request, slug):
+    article = get_object_or_404(Article, slug=slug)
+    if article.author != request.user:
+        return HttpResponse("You are not author", status_code=403)
+
+    article.delete()
+    return redirect('/your_articles/')
+
+

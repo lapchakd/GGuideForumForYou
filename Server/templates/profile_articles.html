@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{% static 'assets/owl.carousel.css' %}"/>
     <link rel="stylesheet" href="{% static 'assets/style.css' %}"/>
     <link rel="stylesheet" href="{% static 'assets/animate.css' %}"/>
-    <link rel="stylesheet" href="{% static 'assets/articles.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/user_articles.css' %}">
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -44,27 +44,35 @@
     <!-- Form article section -->
     <div class="container">
         <div class="row">
+            <div class="recent-game-item">
                 {% if user_articles %}
                     <h2 class="stroke-transfer">Yours articles:</h2>
                         {% for user_article in user_articles %}
-                            <div class="article-gray">
-                                <div class="articles-content">
-                                    <div class="image-on-block" >
-                                        <img src="/profile_images/{{ user_article.author.profilemodel.img }}" class="image-size" alt="">
+                            <div class="article_content">
+                                    <div class="rgi-thumb set-bg" data-setbg="/profile_images/{{ user_article.article_image }}">
+                                         <div class="cata new">racing</div>
                                     </div>
-                                    <div class="article-title-block">
-                                        <h3>
-                                            <a href="{{ user_article.get_absolute_url }}" class="article-title">{{ user_article.title }}</a>
-                                        </h3>
+                                    <div class="rgi-content">
+                                        <h5>
+                                            <a href="{{ article.get_absolute_url }}">{{ user_article.title }}</a>
+                                        </h5>
+                                        <p>{{ user_article.snippet }}</p>
+                                        <a href="#" class="comment">Comments: {{ user_article.comments.count }}</a>
+                                        <p>Likes:{{ user_article.likes.count }}</p>
+                                        <div class="rgi-extra">
+                                        <div class="remove">
+                                            <a href="{% url 'remove_article' user_article.slug %}">Remove article</a>
+                                        </div>
+                                        </div>
                                     </div>
-                                    <div class="articles-comments">Comments:{{ user_article.comments.count }}</div>
-                                    <div class="article-date">{{ user_article.article_date }}</div>
-                                </div>
                             </div>
                         {% endfor %}
+
                 {% else%}
                     <h2 class="stroke-transfer">You don't write articles</h2>
                 {% endif %}
+
+        </div>
         </div>
     </div>
     <!-- Form article section end -->
