@@ -258,3 +258,4 @@ def article_remove(request, slug):
     return redirect('/your_articles/')
 
 
+
