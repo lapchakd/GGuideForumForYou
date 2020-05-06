@@ -244,7 +244,6 @@ def profile_user_articles(request):
     ctx = {
         'articles': Article.objects.all(),
         'user_articles': Article.objects.all().filter(author=request.user),
-
     }
 
     return render(request, 'profile_articles.html', ctx)
