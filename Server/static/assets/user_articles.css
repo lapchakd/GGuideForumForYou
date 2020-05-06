@@ -1,0 +1,16 @@
+.recent-game-item{
+    padding: 10px;
+}
+.remove{
+	text-align: center;
+	transition: all 0.5s ease;
+}
+.remove:hover{
+	background-color: rgba(255, 27, 50, 0.88);
+}
+.article_content{
+    float: right;
+	margin-left: 30px;
+	width: 300px;
+	margin-bottom: 10px;
+}
