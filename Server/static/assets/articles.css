@@ -4,7 +4,6 @@
 }
 .articles-content{
 	width: 100%;
-	overflow: hidden;
 	white-space: nowrap;
 }
 .image-on-block{
@@ -30,10 +29,11 @@
 	overflow: hidden;
 	white-space: nowrap;
 	width: 100%;
-	height: 94px;
+	height: 150px;
 	background: #c9c7c7;
-	padding: 10px;
-	margin-bottom: 15px;
+	padding: 20px;
+	margin-bottom: 20px;
+
 }
 .article-date{
  	margin-top: -38px;
