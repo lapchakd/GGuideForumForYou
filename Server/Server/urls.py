@@ -43,7 +43,7 @@ urlpatterns = [
     path('gridgarden/', views.gridgarden, name="gridgarden"),
     path('articles/<slug>/', views.article_detail, name='detail'),
     path('<slug>/like/', views.article_likes, name='like-toggle'),
-    path('<slug>/remove/', views.article_remove, name='remove_article'),
+    path('article/<slug>/remove/', views.article_remove, name='remove_article'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += staticfiles_urlpatterns()
