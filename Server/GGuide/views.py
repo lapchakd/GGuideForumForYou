@@ -17,7 +17,7 @@ from GGuide.models import Article
 
 def index(request):
     ctx = {
-        'articles':Article.objects.all(),
+        'footer_articles': Article.objects.all()[:3],
     }
     return render(request, 'index.html', context=ctx)
 
@@ -25,6 +25,7 @@ def index(request):
 def articles(request):
     ctx = {
         'articles': Article.objects.all(),
+        'footer_articles': Article.objects.all()[:3],
     }
     return render(request, 'articles/articles.html', context=ctx)
 
@@ -35,7 +36,7 @@ class ArticleCreate(CreateView):
             'author': HiddenInput(),
         }
     ctx = {
-        'articles': Article.objects.all(),
+        'footer_articles': Article.objects.all()[:3],
     }
     success_url = "/"
     template_name = "articles/create_article.html"
@@ -54,7 +55,8 @@ def article_detail(request, slug):
     article = get_object_or_404(Article, slug=slug)
     success_url = "/"
     ctx = {
-        'articles': Article.objects.all(),
+        'footer_articles': Article.objects.all()[:3],
+        'side_articles':Article.objects.all()[:3],
         'article': article,
         'comments': article.comments.all(),
     }
@@ -71,7 +73,7 @@ def article_detail(request, slug):
 
 def game_views(request):
     ctx ={
-        'articles': Article.objects.all(),
+        'footer_articles': Article.objects.all()[:3],
     }
     return render(request, 'game_index.html', ctx)
 
@@ -79,6 +81,7 @@ def game_views(request):
 def blog_views(request):
     ctx = {
         'articles': Article.objects.all(),
+        'footer_articles': Article.objects.all()[:3],
     }
     return render(request, 'blog.html', context=ctx)
 
@@ -113,7 +116,7 @@ def registration(request):
     else:
         form = SignUpForm()
     ctx = {
-        'articles': Article.objects.all(),
+        'footer_articles': Article.objects.all()[:3],
         'form': form,
     }
     return render(request, 'registration.html',ctx)
@@ -126,7 +129,7 @@ def logout(request, next_page='index'):
 
 def log_in(request):
     ctx = {
-        'articles': Article.objects.all(),
+        'footer_articles': Article.objects.all()[:3],
     }
     success_url = "/"
     if request.method == 'POST':
@@ -147,7 +150,7 @@ def log_in(request):
 
 def profile_user(request):
     ctx = {
-        'articles': Article.objects.all(),
+        'footer_articles': Article.objects.all()[:3],
     }
     if request.method == "POST":
         form = ProfileForm(request.POST, request.FILES)
@@ -165,7 +168,7 @@ def profile_user(request):
 
 def change_info(request):
     ctx = {
-        'articles': Article.objects.all(),
+        'footer_articles': Article.objects.all()[:3],
     }
     success_url = "/"
     if request.method == 'POST':
@@ -185,7 +188,7 @@ def change_info(request):
 
 def friend_list(request):
     ctx = {
-        'articles': Article.objects.all(),
+        'footer_articles': Article.objects.all()[:3],
     }
 
     return render(request, 'friend_list.html', ctx)
@@ -193,7 +196,7 @@ def friend_list(request):
 
 def add_friend(request):
     ctx = {
-        'articles': Article.objects.all(),
+        'footer_articles': Article.objects.all()[:3],
     }
     if request.method == 'POST':
         form = FriendForm(request.POST)
@@ -211,7 +214,7 @@ def add_friend(request):
 
 def remove_friend(request):
     ctx = {
-        'articles': Article.objects.all(),
+        'footer_articles': Article.objects.all()[:3],
     }
     if request.method == 'POST':
         form = FriendForm(request.POST)
@@ -242,7 +245,7 @@ def article_likes(request, slug):
 
 def profile_user_articles(request):
     ctx = {
-        'articles': Article.objects.all(),
+        'footer_articles': Article.objects.all()[:3],
         'user_articles': Article.objects.all().filter(author=request.user),
     }
 
