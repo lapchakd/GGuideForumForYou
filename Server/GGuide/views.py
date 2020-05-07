@@ -239,3 +239,23 @@ def article_likes(request, slug):
                 article.likes.add(user)
         return redirect(url)
 
+
+def profile_user_articles(request):
+    ctx = {
+        'articles': Article.objects.all(),
+        'user_articles': Article.objects.all().filter(author=request.user),
+    }
+
+    return render(request, 'profile_articles.html', ctx)
+
+
+def article_remove(request, slug):
+    article = get_object_or_404(Article, slug=slug)
+    if article.author != request.user:
+        return HttpResponse("You are not author", status_code=403)
+
+    article.delete()
+    return redirect('/your_articles/')
+
+
+
