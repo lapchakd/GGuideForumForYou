@@ -7,3 +7,6 @@ sqlparse==0.3.1
 whitenoise==5.0.1
 Pillow
 pytils==0.3
+django-allauth
+social-auth-app-django
+Pyrebase~=3.0.27
