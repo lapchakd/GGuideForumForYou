@@ -57,7 +57,7 @@
                     <div class="blog-content">
                           <h3>{{ article.title }}</h3>
                           <a href="" class="meta-comment">Comments:{{ comments.count }}</a>
-                          <p>{{ article.text }}</p>
+                          <p>{{ article.text }} <a href='{% url "like-toggle" article.slug %}'>{{ article.likes.count }} Like</a></p>
                     </div>
 					<div class="comment-warp">
 						<h4 class="comment-title">Top Coments</h4>
@@ -108,7 +108,7 @@
 					<div class="widget-item">
 						<h4 class="widget-title">Latest Posts</h4>
 						<div class="latest-blog">
-                            {% for article in articles %}
+                            {% for article in side_articles %}
                             <div class="lb-item">
                                 <div class="lb-thumb set-bg" data-setbg="/profile_images/{{ article.article_image }}"></div>
                                 <div class="lb-content">

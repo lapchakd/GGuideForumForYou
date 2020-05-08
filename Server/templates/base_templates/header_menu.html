@@ -1,5 +1,4 @@
  {% load static %}
-{% load socialaccount %}
   <header class="header-section">
         <div class="container">
             <!-- logo -->
@@ -13,8 +12,6 @@
             {% else %}
             <div class="user-panel">
                 <a href="{% url 'login' %}">Login</a>  /  <a href="{%  url 'registration' %}">Register</a>
-
-
             </div>
             {% endif %}
             <!-- responsive -->

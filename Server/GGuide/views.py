@@ -10,29 +10,25 @@ from django.views.generic import CreateView
 from django.views.generic.edit import ModelFormMixin
 from django.forms.widgets import HiddenInput
 from django.shortcuts import get_object_or_404
-
 from GGuide.firebase import create_connect_firebase, log_in_connect_firebase, upload_files_profilemodel, \
     load_to_server_profile_images, load_to_server_all_articles_images, upload_to_server_article_images
 from GGuide.models import SignUpForm, Userlogin, ProfileForm, ProfileModel, FriendForm, CommentsForm, Comments
+from GGuide.forms import SignUpForm, Userlogin, ProfileForm, FriendForm, CommentsForm
+from GGuide.models import ProfileModel, Commentsr
 from GGuide.models import Article
-
-
-load_to_server_all_articles_images(Article.objects.all())
-upload_to_server_article_images(Article.objects.all())
 
 
 def index(request):
     ctx = {
-        'articles': Article.objects.all(),
+        'footer_articles': Article.objects.all()[:3],
     }
-    load_to_server_all_articles_images(Article.objects.all())
-    upload_to_server_article_images(Article.objects.all())
     return render(request, 'index.html', context=ctx)
 
 
 def articles(request):
     ctx = {
         'articles': Article.objects.all(),
+        'footer_articles': Article.objects.all()[:3],
     }
     return render(request, 'articles/articles.html', context=ctx)
 
@@ -43,7 +39,7 @@ class ArticleCreate(CreateView):
             'author': HiddenInput(),
         }
     ctx = {
-        'articles': Article.objects.all(),
+        'footer_articles': Article.objects.all()[:3],
     }
     success_url = "/"
     template_name = "articles/create_article.html"
@@ -60,15 +56,12 @@ class ArticleCreate(CreateView):
         return super(ModelFormMixin, self).form_valid(form)
 
 
-
-
 def article_detail(request, slug):
-    load_to_server_all_articles_images(Article.objects.all())
-    upload_to_server_article_images(Article.objects.all())
     article = get_object_or_404(Article, slug=slug)
     success_url = "/"
     ctx = {
-        'articles': Article.objects.all(),
+        'footer_articles': Article.objects.all()[:3],
+        'side_articles':Article.objects.all()[:3],
         'article': article,
         'comments': article.comments.all(),
     }
@@ -85,7 +78,7 @@ def article_detail(request, slug):
 
 def game_views(request):
     ctx ={
-        'articles': Article.objects.all(),
+        'footer_articles': Article.objects.all()[:3],
     }
     return render(request, 'game_index.html', ctx)
 
@@ -93,6 +86,7 @@ def game_views(request):
 def blog_views(request):
     ctx = {
         'articles': Article.objects.all(),
+        'footer_articles': Article.objects.all()[:3],
     }
     return render(request, 'blog.html', context=ctx)
 
@@ -128,7 +122,7 @@ def registration(request):
     else:
         form = SignUpForm()
     ctx = {
-        'articles': Article.objects.all(),
+        'footer_articles': Article.objects.all()[:3],
         'form': form,
     }
     return render(request, 'registration.html',ctx)
@@ -141,7 +135,7 @@ def logout(request, next_page='index'):
 
 def log_in(request):
     ctx = {
-        'articles': Article.objects.all(),
+        'footer_articles': Article.objects.all()[:3],
     }
     success_url = "/"
     if request.method == 'POST':
@@ -162,12 +156,21 @@ def log_in(request):
 
 
 def profile_user(request):
+    articles_count = Article.objects.all().filter(author=request.user).count()
+    user_rank = 'noob'
+    if articles_count >= 20:
+        user_rank = 'advanced'
+    if articles_count >= 50:
+        user_rank = 'dominator'
     ctx = {
+        'footer_articles': Article.objects.all()[:3],
         'articles': Article.objects.all(),
+        'articles_count': articles_count,
+        'user_rank': user_rank,
     }
-    user = request.user
-    img = user.profilemodel.img
-    load_to_server_profile_images(user, img)
+    # user = request.user                        }
+    # img = user.profilemodel.img                }  test don't delete
+    #  load_to_server_profile_images(user, img)  }
     if request.method == "POST":
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
@@ -175,16 +178,17 @@ def profile_user(request):
             img = form.cleaned_data.get("Image") # user foto
             user.profilemodel.img = img
             user.profilemodel.save()
-            upload_files_profilemodel(user, img)
+#             upload_files_profilemodel(user, img) } test don't delete
     else:
         form = ProfileForm()
     ctx['form'] = form
     return render(request, 'profile.html', ctx)
 
 
+
 def change_info(request):
     ctx = {
-        'articles': Article.objects.all(),
+        'footer_articles': Article.objects.all()[:3],
     }
     success_url = "/"
     if request.method == 'POST':
@@ -204,7 +208,7 @@ def change_info(request):
 
 def friend_list(request):
     ctx = {
-        'articles': Article.objects.all(),
+        'footer_articles': Article.objects.all()[:3],
     }
 
     return render(request, 'friend_list.html', ctx)
@@ -212,7 +216,7 @@ def friend_list(request):
 
 def add_friend(request):
     ctx = {
-        'articles': Article.objects.all(),
+        'footer_articles': Article.objects.all()[:3],
     }
     if request.method == 'POST':
         form = FriendForm(request.POST)
@@ -230,7 +234,7 @@ def add_friend(request):
 
 def remove_friend(request):
     ctx = {
-        'articles': Article.objects.all(),
+        'footer_articles': Article.objects.all()[:3],
     }
     if request.method == 'POST':
         form = FriendForm(request.POST)
@@ -243,4 +247,38 @@ def remove_friend(request):
             user.profilemodel.save()
     else:
         form = PasswordChangeForm(request.user)
-    return render(request, 'remove_friend.html', ctx)
+
+    return render(request, 'remove_friend.html', {})
+
+
+def article_likes(request, slug):
+        article = get_object_or_404(Article, slug=slug)
+        url = article.get_absolute_url()
+        user = request.user
+        if user.is_authenticated:
+            if user in article.likes.all():
+                article.likes.remove(user)
+            else:
+                article.likes.add(user)
+        return redirect(url)
+
+
+def profile_user_articles(request):
+    ctx = {
+        'footer_articles': Article.objects.all()[:3],
+        'user_articles': Article.objects.all().filter(author=request.user),
+    }
+
+    return render(request, 'profile_articles.html', ctx)
+
+
+def article_remove(request, slug):
+    article = get_object_or_404(Article, slug=slug)
+    if article.author != request.user:
+        return HttpResponse("You are not author", status_code=403)
+
+    article.delete()
+    return redirect('/your_articles/')
+
+
+

@@ -1,0 +1,87 @@
+{% load static  %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>GGuide</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon -->
+    <link href="{% static 'images/favicon.ico' %} " rel="shortcut icon"/>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{% static 'assets/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'assets/font-awesome.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'assets/owl.carousel.css' %}"/>
+    <link rel="stylesheet" href="{% static 'assets/style.css' %}"/>
+    <link rel="stylesheet" href="{% static 'assets/animate.css' %}"/>
+    <link rel="stylesheet" href="{% static 'assets/user_articles.css' %}">
+
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Toolbar -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header section -->
+    {% include 'base_templates/header_menu.html' %}
+    <!-- Header section end -->
+
+    <!-- Latest news section -->
+    {%  include 'base_templates/run_last_new_section.html' %}
+    <!-- Latest news section end -->
+
+    <!-- Form article section -->
+    <div class="container">
+        <div class="row">
+            <div class="recent-game-item">
+                {% if user_articles %}
+                    <h2 class="stroke-transfer">Yours articles:</h2>
+                        {% for user_article in user_articles %}
+                            <div class="article_content">
+                                    <div class="rgi-thumb set-bg" data-setbg="/profile_images/{{ user_article.article_image }}">
+                                         <div class="cata new">racing</div>
+                                    </div>
+                                    <div class="rgi-content">
+                                        <h5>
+                                            <a href="{{ article.get_absolute_url }}">{{ user_article.title }}</a>
+                                        </h5>
+                                        <p>{{ user_article.snippet }}</p>
+                                        <a href="#" class="comment">Comments: {{ user_article.comments.count }}</a>
+                                        <p>Likes:{{ user_article.likes.count }}</p>
+                                        <div class="rgi-extra">
+                                        <div class="remove">
+                                            <a href="{% url 'remove_article' user_article.slug %}">Remove article</a>
+                                        </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        {% endfor %}
+
+                {% else%}
+                    <h2 class="stroke-transfer">You don't write articles</h2>
+                {% endif %}
+        </div>
+        </div>
+    </div>
+    <!-- Form article section end -->
+
+    <!-- Footer top section -->
+    {%  include 'base_templates/footer.html' %}
+    <!-- Footer section end -->
+
+    <!--====== Javascripts & Jquery ======-->
+    {% include 'base_templates/connect_js.html' %}
+</body>
+</html>
