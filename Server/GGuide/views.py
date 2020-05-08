@@ -10,8 +10,11 @@ from django.views.generic import CreateView
 from django.views.generic.edit import ModelFormMixin
 from django.forms.widgets import HiddenInput
 from django.shortcuts import get_object_or_404
+from GGuide.firebase import create_connect_firebase, log_in_connect_firebase, upload_files_profilemodel, \
+    load_to_server_profile_images, load_to_server_all_articles_images, upload_to_server_article_images
+from GGuide.models import SignUpForm, Userlogin, ProfileForm, ProfileModel, FriendForm, CommentsForm, Comments
 from GGuide.forms import SignUpForm, Userlogin, ProfileForm, FriendForm, CommentsForm
-from GGuide.models import ProfileModel, Comments
+from GGuide.models import ProfileModel, Commentsr
 from GGuide.models import Article
 
 
@@ -42,6 +45,8 @@ class ArticleCreate(CreateView):
     template_name = "articles/create_article.html"
     model = Article
     fields = ['article_image', 'title', 'text']
+    load_to_server_all_articles_images(Article.objects.all())
+    upload_to_server_article_images(Article.objects.all())
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -109,6 +114,7 @@ def registration(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password, email=email)
             login(request, user)
+            create_connect_firebase(user)
             p = ProfileModel(img='default.jpg', user=user)
             p.save()
 
@@ -139,6 +145,7 @@ def log_in(request):
             password = form.cleaned_data['password']
             user = authenticate(username=username, password=password)
             if user:
+                log_in_connect_firebase(user)
                 login(request, user)
                 return redirect(success_url)
             else:
@@ -161,6 +168,9 @@ def profile_user(request):
         'articles_count': articles_count,
         'user_rank': user_rank,
     }
+    # user = request.user                        }
+    # img = user.profilemodel.img                }  test don't delete
+    #  load_to_server_profile_images(user, img)  }
     if request.method == "POST":
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
@@ -168,7 +178,7 @@ def profile_user(request):
             img = form.cleaned_data.get("Image") # user foto
             user.profilemodel.img = img
             user.profilemodel.save()
-            print(user.profilemodel.img) # test
+#             upload_files_profilemodel(user, img) } test don't delete
     else:
         form = ProfileForm()
     ctx['form'] = form

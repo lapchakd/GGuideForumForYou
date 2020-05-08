@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.contrib.auth.views import LogoutView
-from django.urls import path
+from django.urls import path, include
 from GGuide import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
