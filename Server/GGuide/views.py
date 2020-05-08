@@ -12,10 +12,8 @@ from django.forms.widgets import HiddenInput
 from django.shortcuts import get_object_or_404
 from GGuide.firebase import create_connect_firebase, log_in_connect_firebase, upload_files_profilemodel, \
     load_to_server_profile_images, load_to_server_all_articles_images, upload_to_server_article_images
-from GGuide.models import SignUpForm, Userlogin, ProfileForm, ProfileModel, FriendForm, CommentsForm, Comments
+from GGuide.models import ProfileModel, Comments, Article
 from GGuide.forms import SignUpForm, Userlogin, ProfileForm, FriendForm, CommentsForm
-from GGuide.models import ProfileModel, Commentsr
-from GGuide.models import Article
 
 
 def index(request):
