@@ -146,8 +146,16 @@ def log_in(request):
 
 
 def profile_user(request):
+    articles_count = Article.objects.all().filter(author=request.user).count()
+    user_rank = 'noob'
+    if articles_count >= 20:
+        user_rank = 'advanced'
+    if articles_count >= 50:
+        user_rank = 'dominator'
     ctx = {
         'articles': Article.objects.all(),
+        'articles_count': articles_count,
+        'user_rank': user_rank,
     }
     if request.method == "POST":
         form = ProfileForm(request.POST, request.FILES)
@@ -161,6 +169,7 @@ def profile_user(request):
         form = ProfileForm()
     ctx['form'] = form
     return render(request, 'profile.html', ctx)
+
 
 
 def change_info(request):
