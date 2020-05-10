@@ -42,8 +42,6 @@ class ArticleCreate(CreateView):
     template_name = "articles/create_article.html"
     model = Article
     fields = ['article_image', 'title', 'text']
-    load_to_server_all_articles_images(Article.objects.all())
-    upload_to_server_article_images(Article.objects.all())
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
