@@ -18,6 +18,7 @@ from GGuide.forms import SignUpForm, Userlogin, ProfileForm, FriendForm, Comment
 def index(request):
     ctx = {
         'footer_articles': Article.objects.all()[:3],
+        'run_articles': Article.objects.all()[:5],
     }
     return render(request, 'index.html', context=ctx)
 
@@ -26,6 +27,7 @@ def articles(request):
     ctx = {
         'articles': Article.objects.all(),
         'footer_articles': Article.objects.all()[:3],
+        'run_articles': Article.objects.all()[:5],
     }
     return render(request, 'articles/articles.html', context=ctx)
 
@@ -59,6 +61,7 @@ def article_detail(request, slug):
         'side_articles':Article.objects.all()[:3],
         'article': article,
         'comments': article.comments.all(),
+        'run_articles': Article.objects.all()[:5],
     }
     user = request.user
     if request.method == 'POST':
@@ -74,6 +77,7 @@ def article_detail(request, slug):
 def game_views(request):
     ctx ={
         'footer_articles': Article.objects.all()[:3],
+        'run_articles': Article.objects.all()[:5],
     }
     return render(request, 'game_index.html', ctx)
 
@@ -82,6 +86,7 @@ def blog_views(request):
     ctx = {
         'articles': Article.objects.all(),
         'footer_articles': Article.objects.all()[:3],
+        'run_articles': Article.objects.all()[:5],
     }
     return render(request, 'blog.html', context=ctx)
 
@@ -262,6 +267,7 @@ def profile_user_articles(request):
     ctx = {
         'footer_articles': Article.objects.all()[:3],
         'user_articles': Article.objects.all().filter(author=request.user),
+        'run_articles': Article.objects.all()[:5],
     }
 
     return render(request, 'profile_articles.html', ctx)
