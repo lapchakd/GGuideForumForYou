@@ -215,7 +215,7 @@
                     <div class="widget-item">
                         <h4 class="widget-title">Latest Posts</h4>
                         <div class="latest-blog">
-                            {% for article in articles %}
+                            {% for article in articles|slice:":3" %}
                             <div class="lb-item">
                                 <div class="lb-thumb set-bg" data-setbg="/profile_images/{{ article.article_image }}"></div>
                                 <div class="lb-content">
