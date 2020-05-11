@@ -3,7 +3,10 @@
         <div class="news-ticker">
             <div class="news-ticker-contant">
                 {% for article in run_articles %}
-                <div class="nt-item"><span class="new_run">new</span><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></div>
+                    <div class="nt-item">
+                        <span class="new_run">new</span>
+                        <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+                    </div>
                 {% endfor %}
             </div>
         </div>
