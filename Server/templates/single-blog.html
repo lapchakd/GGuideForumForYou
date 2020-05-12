@@ -67,8 +67,12 @@
                                      <div class="comment">
                                              <div class="comment-avator set-bg" data-setbg="/profile_images/{{ comment.user.profilemodel.img }}"></div>
                                                     <div class="comment-content">
-                                                    <h5>{{ comment.user.username }} <span>{{ comment.comments_date }}</span></h5>
-                                                    <p>{{ comment.text }} </p>
+                                                    <h5>{{ comment.user.username }}
+                                                        <span>{{ comment.comments_date }}</span>
+                                                    </h5>
+                                                    <p>{{ comment.text }}
+                                                        <a class="comment_likes" href='{% url "comment_likes" comment.id %}'>{{ comment.likes.count }} Like</a>
+                                                    </p>
                                                     <a href="" class="reply">Reply</a>
                                              </div>
                                      </div>
