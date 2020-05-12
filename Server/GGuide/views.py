@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, update_session_auth_hash
 from django.contrib.auth.models import User
+from django.db.models import Count
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django import forms
@@ -56,6 +57,7 @@ def article_detail(request, slug):
     ctx = {
         'article': article,
         'comments': article.comments.all(),
+        'top_comments': Comments.objects.all().annotate(like_count=Count("likes")).order_by("-like_count")[:5],
         'articles': Article.objects.all(),
     }
     user = request.user
@@ -79,6 +81,7 @@ def game_views(request):
 def blog_views(request):
     ctx = {
         'articles': Article.objects.all(),
+        'top_comments': Comments.objects.all().annotate(like_count=Count("likes")).order_by("-like_count")[:5],
     }
     return render(request, 'blog.html', context=ctx)
 

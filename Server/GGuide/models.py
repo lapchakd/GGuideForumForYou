@@ -50,3 +50,6 @@ class Comments(models.Model):
 
     def __str__(self):
         return f'{self.user}/{self.article}'
+
+    def snippet(self):
+        return self.text[:10] + '...'
