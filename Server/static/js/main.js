@@ -7,7 +7,16 @@
 
 
 'use strict';
+//   Last_New Run
+var bgc = ['red','blue','yellow','#ff205f','green','#694eae','#4eae60'];
+setInterval(function(){
+	for(let i =0;i<document.getElementsByClassName('new_run').length;i++){
+	    let obj = document.getElementsByClassName('new_run')[i];
+        obj.style.backgroundColor = bgc[Math.floor(Math.random()*bgc.length)];
+}
+},500);
 
+//   Last_New Run
 $(window).on('load', function() {
 	/*------------------
 		Preloder
