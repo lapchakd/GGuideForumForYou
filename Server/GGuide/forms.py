@@ -9,7 +9,7 @@ class ArticleForm(forms.Form):
 
 class SignUpForm(UserCreationForm):
     username = forms.CharField(max_length=10)
-    email = forms.CharField(max_length=30)
+    email = forms.CharField(max_length=23)
 
     class Meta:
         model = User
