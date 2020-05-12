@@ -8,3 +8,7 @@
 .col-md-6{
     width: 100%;
 }
+.comment_likes{
+    float: right;
+    font-weight: bold;
+}

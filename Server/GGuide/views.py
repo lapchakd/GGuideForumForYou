@@ -176,7 +176,6 @@ def profile_user(request):
     return render(request, 'profile.html', ctx)
 
 
-
 def change_info(request):
     ctx = {
         'articles': Article.objects.all(),
@@ -271,5 +270,16 @@ def article_remove(request, slug):
     article.delete()
     return redirect('/your_articles/')
 
+
+def comment_likes(request, id):
+    comment = get_object_or_404(Comments, id=id)
+    url = comment.article.get_absolute_url()
+    user = request.user
+    if user.is_authenticated:
+        if user in comment.likes.all():
+            comment.likes.remove(user)
+        else:
+            comment.likes.add(user)
+    return redirect(url)
 
 

@@ -46,6 +46,7 @@ class Comments(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments')
     text = models.CharField(max_length=250)
     comments_date = models.DateTimeField(default=timezone.now)
+    likes = models.ManyToManyField(User, blank=True, related_name='liked_comments')
 
     def __str__(self):
         return f'{self.user}/{self.article}'
