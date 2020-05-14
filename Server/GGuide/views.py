@@ -288,6 +288,7 @@ def comment_likes(request, id):
             comment.likes.add(user)
     else:
         return redirect('login')
+
     return redirect(url)
 
 
