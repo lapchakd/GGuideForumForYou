@@ -5,10 +5,9 @@
                 <div class="tc-content">
                     <a  href="{{ top_comment.article.get_absolute_url }}">{{ top_comment.article.title }}</a>
                     <p>
-
                         <a href="#">{{ top_comment.user.username }}</a>
-                        <span>On:  </span>{{ top_comment.text|slice:':20' }}
-                        ....
+                        <span><b>On: </b></span>
+                        {{ top_comment.text|slice:':20' }}....
                     </p>
                     <div class="tc-date">{{ top_comment.comments_date}}</div>
                 </div>

@@ -16,7 +16,7 @@ from GGuide.models import ProfileModel, Comments, Article
 from GGuide.forms import SignUpForm, Userlogin, ProfileForm, FriendForm, CommentsForm
 
 
-def side_bar_ctx_update():
+def sidebar_ctx():
     return {
         'articles': Article.objects.all(),
         'top_comments': Comments.objects.all().annotate(like_count=Count("likes")).order_by("-like_count")[:5],
@@ -65,7 +65,7 @@ def article_detail(request, slug):
         'article': article,
         'comments': article.comments.all(),
     }
-    ctx.update(side_bar_ctx_update())
+    ctx.update(sidebar_ctx())
     user = request.user
     if request.method == 'POST':
         form = CommentsForm(request.POST)
@@ -85,8 +85,8 @@ def game_views(request):
 
 
 def blog_views(request):
-    ctx = {}
-    ctx.update(side_bar_ctx_update())
+    ctx = sidebar_ctx()
+
     return render(request, 'blog.html', context=ctx)
 
 
@@ -253,6 +253,9 @@ def article_likes(request, slug):
                 article.likes.remove(user)
             else:
                 article.likes.add(user)
+        else:
+            return redirect('registration')
+
         return redirect(url)
 
 
@@ -283,6 +286,8 @@ def comment_likes(request, id):
             comment.likes.remove(user)
         else:
             comment.likes.add(user)
+    else:
+        return redirect('registration')
     return redirect(url)
 
 
