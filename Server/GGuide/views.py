@@ -254,7 +254,7 @@ def article_likes(request, slug):
             else:
                 article.likes.add(user)
         else:
-            return redirect('registration')
+            return redirect('login')
 
         return redirect(url)
 
@@ -287,7 +287,7 @@ def comment_likes(request, id):
         else:
             comment.likes.add(user)
     else:
-        return redirect('registration')
+        return redirect('login')
     return redirect(url)
 
 
