@@ -16,6 +16,13 @@ from GGuide.models import ProfileModel, Comments, Article
 from GGuide.forms import SignUpForm, Userlogin, ProfileForm, FriendForm, CommentsForm
 
 
+def side_bar_ctx_update():
+    return {
+        'articles': Article.objects.all(),
+        'top_comments': Comments.objects.all().annotate(like_count=Count("likes")).order_by("-like_count")[:5],
+    }
+
+
 def index(request):
     ctx = {
         'articles': Article.objects.all()
@@ -57,9 +64,8 @@ def article_detail(request, slug):
     ctx = {
         'article': article,
         'comments': article.comments.all(),
-        'top_comments': Comments.objects.all().annotate(like_count=Count("likes")).order_by("-like_count")[:5],
-        'articles': Article.objects.all(),
     }
+    ctx.update(side_bar_ctx_update())
     user = request.user
     if request.method == 'POST':
         form = CommentsForm(request.POST)
@@ -79,10 +85,8 @@ def game_views(request):
 
 
 def blog_views(request):
-    ctx = {
-        'articles': Article.objects.all(),
-        'top_comments': Comments.objects.all().annotate(like_count=Count("likes")).order_by("-like_count")[:5],
-    }
+    ctx = {}
+    ctx.update(side_bar_ctx_update())
     return render(request, 'blog.html', context=ctx)
 
 
@@ -162,9 +166,6 @@ def profile_user(request):
         'articles_count': articles_count,
         'user_rank': user_rank,
     }
-    # user = request.user                        }
-    # img = user.profilemodel.img                }  test don't delete
-    #  load_to_server_profile_images(user, img)  }
     if request.method == "POST":
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
@@ -172,7 +173,6 @@ def profile_user(request):
             img = form.cleaned_data.get("Image") # user foto
             user.profilemodel.img = img
             user.profilemodel.save()
-#             upload_files_profilemodel(user, img) } test don't delete
     else:
         form = ProfileForm()
     ctx['form'] = form
