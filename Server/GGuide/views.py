@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, update_session_auth_hash
 from django.contrib.auth.models import User
+from django.db.models import Count
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django import forms
@@ -13,6 +14,13 @@ from django.shortcuts import get_object_or_404
 from GGuide.firebase import create_connect_firebase, log_in_connect_firebase
 from GGuide.models import ProfileModel, Comments, Article
 from GGuide.forms import SignUpForm, Userlogin, ProfileForm, FriendForm, CommentsForm
+
+
+def sidebar_ctx():
+    return {
+        'articles': Article.objects.all(),
+        'top_comments': Comments.objects.all().annotate(like_count=Count("likes")).order_by("-like_count")[:5],
+    }
 
 
 def index(request):
@@ -56,8 +64,8 @@ def article_detail(request, slug):
     ctx = {
         'article': article,
         'comments': article.comments.all(),
-        'articles': Article.objects.all(),
     }
+    ctx.update(sidebar_ctx())
     user = request.user
     if request.method == 'POST':
         form = CommentsForm(request.POST)
@@ -77,9 +85,8 @@ def game_views(request):
 
 
 def blog_views(request):
-    ctx = {
-        'articles': Article.objects.all(),
-    }
+    ctx = sidebar_ctx()
+
     return render(request, 'blog.html', context=ctx)
 
 
@@ -159,9 +166,6 @@ def profile_user(request):
         'articles_count': articles_count,
         'user_rank': user_rank,
     }
-    # user = request.user                        }
-    # img = user.profilemodel.img                }  test don't delete
-    #  load_to_server_profile_images(user, img)  }
     if request.method == "POST":
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
@@ -169,7 +173,6 @@ def profile_user(request):
             img = form.cleaned_data.get("Image") # user foto
             user.profilemodel.img = img
             user.profilemodel.save()
-#             upload_files_profilemodel(user, img) } test don't delete
     else:
         form = ProfileForm()
     ctx['form'] = form
@@ -250,6 +253,9 @@ def article_likes(request, slug):
                 article.likes.remove(user)
             else:
                 article.likes.add(user)
+        else:
+            return redirect('login')
+
         return redirect(url)
 
 
@@ -280,6 +286,9 @@ def comment_likes(request, id):
             comment.likes.remove(user)
         else:
             comment.likes.add(user)
+    else:
+        return redirect('login')
+
     return redirect(url)
 
 
