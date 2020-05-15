@@ -10,7 +10,7 @@ from django.views.generic import CreateView
 from django.views.generic.edit import ModelFormMixin
 from django.forms.widgets import HiddenInput
 from django.shortcuts import get_object_or_404
-from GGuide.firebase import create_connect_firebase, log_in_connect_firebase
+#from GGuide.firebase import create_connect_firebase, log_in_connect_firebase
 from GGuide.models import ProfileModel, Comments, Article
 from GGuide.forms import SignUpForm, Userlogin, ProfileForm, FriendForm, CommentsForm
 
@@ -109,7 +109,7 @@ def registration(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password, email=email)
             login(request, user)
-            create_connect_firebase(user)
+            #create_connect_firebase(user)
             p = ProfileModel(img='default.jpg', user=user)
             p.save()
 
@@ -140,7 +140,7 @@ def log_in(request):
             password = form.cleaned_data['password']
             user = authenticate(username=username, password=password)
             if user:
-                log_in_connect_firebase(user)
+                #log_in_connect_firebase(user)
                 login(request, user)
                 return redirect(success_url)
             else:
