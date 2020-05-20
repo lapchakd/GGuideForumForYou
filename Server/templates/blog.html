@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Favicon -->   
-    <link href="/static/images/favicon.ico" rel="shortcut icon"/>
+    <link href="{% static 'images/favicon.ico' %}" rel="shortcut icon"/>
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
@@ -224,7 +224,7 @@
                     </div>
                     <!-- widget -->
                     <div class="widget-item">
-                        <div class="feature-item set-bg" data-setbg="/static/images/features/1.jpg">
+                       <div class="review-cover set-bg" data-setbg='{% static 'images/review/1.jpg' %}'>
                             <span class="cata new">new</span>
                             <div class="fi-content text-white">
                                 <h5><a href="#">Suspendisse ut justo tem por, rutrum</a></h5>
@@ -236,7 +236,7 @@
                     <!-- widget -->
                     <div class="widget-item">
                         <div class="review-item">
-                            <div class="review-cover set-bg" data-setbg="/static/images/review/1.jpg">
+                            <div class="review-cover set-bg" data-setbg='{% static 'images/review/1.jpg' %}'>
                                 <div class="score yellow">9.3</div>
                             </div>
                             <div class="review-text">
@@ -263,10 +263,6 @@
 
 
     <!--====== Javascripts & Jquery ======-->
-    <script src="/static/js/jquery-3.5.0.js"></script>
-    <script src="/static/js/bootstrap.min.js"></script>
-    <script src="/static/js/owl.carousel.min.js"></script>
-    <script src="/static/js/jquery.marquee.min.js"></script>
-    <script src="/static/js/main.js"></script>
+    {% include 'base_templates/connect_js.html' %}
     </body>
 </html>
