@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, update_session_auth_hash
 from django.contrib.auth.models import User
+from django.db.models import Count
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django import forms
@@ -10,23 +11,26 @@ from django.views.generic import CreateView
 from django.views.generic.edit import ModelFormMixin
 from django.forms.widgets import HiddenInput
 from django.shortcuts import get_object_or_404
+from GGuide.firebase import create_connect_firebase, log_in_connect_firebase, load_to_server_profile_images, \
+    upload_files_profilemodel, upload_to_server_article_image, load_to_server_all_articles_images
+from GGuide.models import ProfileModel, Comments, Article
+from GGuide.forms import SignUpForm, Userlogin, ProfileForm, FriendForm, CommentsForm
+from django.template.defaulttags import register
 
-from GGuide.firebase import create_connect_firebase, log_in_connect_firebase, upload_files_profilemodel, \
-    load_to_server_profile_images, load_to_server_all_articles_images, upload_to_server_article_images
-from GGuide.models import SignUpForm, Userlogin, ProfileForm, ProfileModel, FriendForm, CommentsForm, Comments
-from GGuide.models import Article
 
-
-load_to_server_all_articles_images(Article.objects.all())
-upload_to_server_article_images(Article.objects.all())
+def sidebar_ctx():
+    return {
+        'articles_images': load_to_server_all_articles_images(Article.objects.all()),
+        'articles': Article.objects.all(),
+        'top_comments': Comments.objects.all().annotate(like_count=Count("likes")).order_by("-like_count")[:5],
+    }
 
 
 def index(request):
     ctx = {
-        'articles': Article.objects.all(),
+        'articles': Article.objects.all()
     }
-    load_to_server_all_articles_images(Article.objects.all())
-    upload_to_server_article_images(Article.objects.all())
+    ctx.update(sidebar_ctx())
     return render(request, 'index.html', context=ctx)
 
 
@@ -34,6 +38,7 @@ def articles(request):
     ctx = {
         'articles': Article.objects.all(),
     }
+    ctx.update(sidebar_ctx())
     return render(request, 'articles/articles.html', context=ctx)
 
 
@@ -49,8 +54,7 @@ class ArticleCreate(CreateView):
     template_name = "articles/create_article.html"
     model = Article
     fields = ['article_image', 'title', 'text']
-    load_to_server_all_articles_images(Article.objects.all())
-    upload_to_server_article_images(Article.objects.all())
+    upload_to_server_article_image(Article.objects.all())
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -60,18 +64,17 @@ class ArticleCreate(CreateView):
         return super(ModelFormMixin, self).form_valid(form)
 
 
-
-
 def article_detail(request, slug):
-    load_to_server_all_articles_images(Article.objects.all())
-    upload_to_server_article_images(Article.objects.all())
     article = get_object_or_404(Article, slug=slug)
     success_url = "/"
     ctx = {
-        'articles': Article.objects.all(),
         'article': article,
         'comments': article.comments.all(),
     }
+    articles_images = load_to_server_all_articles_images(Article.objects.all())
+    for article in Article.objects.all():
+        ctx['article_image'] = articles_images[article.id]
+    ctx.update(sidebar_ctx())
     user = request.user
     if request.method == 'POST':
         form = CommentsForm(request.POST)
@@ -84,16 +87,13 @@ def article_detail(request, slug):
 
 
 def game_views(request):
-    ctx ={
-        'articles': Article.objects.all(),
-    }
+    ctx = sidebar_ctx()
     return render(request, 'game_index.html', ctx)
 
 
 def blog_views(request):
-    ctx = {
-        'articles': Article.objects.all(),
-    }
+    ctx = sidebar_ctx()
+
     return render(request, 'blog.html', context=ctx)
 
 
@@ -131,6 +131,7 @@ def registration(request):
         'articles': Article.objects.all(),
         'form': form,
     }
+    ctx.update(sidebar_ctx())
     return render(request, 'registration.html',ctx)
 
 
@@ -143,6 +144,7 @@ def log_in(request):
     ctx = {
         'articles': Article.objects.all(),
     }
+    ctx.update(sidebar_ctx())
     success_url = "/"
     if request.method == 'POST':
         form = Userlogin(request.POST)
@@ -162,12 +164,21 @@ def log_in(request):
 
 
 def profile_user(request):
+    articles_count = Article.objects.all().filter(author=request.user).count()
+    user_rank = 'noob'
+    if articles_count >= 20:
+        user_rank = 'advanced'
+    if articles_count >= 50:
+        user_rank = 'dominator'
     ctx = {
         'articles': Article.objects.all(),
+        'articles_count': articles_count,
+        'user_rank': user_rank,
     }
+    ctx.update(sidebar_ctx())
     user = request.user
     img = user.profilemodel.img
-    load_to_server_profile_images(user, img)
+    user_url_img = load_to_server_profile_images(user, img)
     if request.method == "POST":
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
@@ -179,6 +190,7 @@ def profile_user(request):
     else:
         form = ProfileForm()
     ctx['form'] = form
+    ctx['user_image'] = user_url_img
     return render(request, 'profile.html', ctx)
 
 
@@ -186,6 +198,7 @@ def change_info(request):
     ctx = {
         'articles': Article.objects.all(),
     }
+    ctx.update(sidebar_ctx())
     success_url = "/"
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
@@ -206,7 +219,7 @@ def friend_list(request):
     ctx = {
         'articles': Article.objects.all(),
     }
-
+    ctx.update(sidebar_ctx())
     return render(request, 'friend_list.html', ctx)
 
 
@@ -214,6 +227,7 @@ def add_friend(request):
     ctx = {
         'articles': Article.objects.all(),
     }
+    ctx.update(sidebar_ctx())
     if request.method == 'POST':
         form = FriendForm(request.POST)
         if form.is_valid():
@@ -232,6 +246,7 @@ def remove_friend(request):
     ctx = {
         'articles': Article.objects.all(),
     }
+    ctx.update(sidebar_ctx())
     if request.method == 'POST':
         form = FriendForm(request.POST)
         if form.is_valid():
@@ -243,4 +258,59 @@ def remove_friend(request):
             user.profilemodel.save()
     else:
         form = PasswordChangeForm(request.user)
+
     return render(request, 'remove_friend.html', ctx)
+
+
+def article_likes(request, slug):
+        article = get_object_or_404(Article, slug=slug)
+        url = article.get_absolute_url()
+        user = request.user
+        if user.is_authenticated:
+            if user in article.likes.all():
+                article.likes.remove(user)
+            else:
+                article.likes.add(user)
+        else:
+            return redirect('login')
+
+        return redirect(url)
+
+
+def profile_user_articles(request):
+    ctx = {
+        'articles': Article.objects.all(),
+        'user_articles': Article.objects.all().filter(author=request.user),
+    }
+    ctx.update(sidebar_ctx())
+
+    return render(request, 'profile_articles.html', ctx)
+
+
+def article_remove(request, slug):
+    article = get_object_or_404(Article, slug=slug)
+    if article.author != request.user:
+        return HttpResponse("You are not author", status_code=403)
+
+    article.delete()
+    return redirect('/your_articles/')
+
+
+def comment_likes(request, id):
+    comment = get_object_or_404(Comments, id=id)
+    url = comment.article.get_absolute_url()
+    user = request.user
+    if user.is_authenticated:
+        if user in comment.likes.all():
+            comment.likes.remove(user)
+        else:
+            comment.likes.add(user)
+    else:
+        return redirect('login')
+
+    return redirect(url)
+
+
+@register.filter(name='lookup')
+def lookup(value, arg):
+    return value[arg]

@@ -38,7 +38,7 @@
                <nav class="main-menu">
                 <ul>
                     <li><a href="{% url 'friend' %}">Friends</a></li>
-                    <li><a href="#">Article</a></li>
+                    <li><a href="{% url 'profile_articles' %}">Articles</a></li>
                     <li><a href="#">Help</a></li>
                     <li><a href="#">Menu</a></li>
                 </ul>
@@ -54,7 +54,7 @@
          <div class="container" >
              <h3 align="left">Your profile</h3>
          <div id="foto">
-            <img  src="/profile_images/{{ user.profilemodel.img }}" alt="There must be photo" title="200x200" >
+            <img  src="{{ user_image }}" alt="There must be photo" title="200x200" >
          </div>
          <div id="fotoText">
             {{ form.as_p }}
@@ -68,8 +68,8 @@
          </div>
          <div id="status">
             <h2>Status</h2>
-            <p align="left">Rang:noob</p>
-            <p align="left">Article created:0</p>
+            <p align="left">Rank:{{ user_rank }}</p>
+            <p align="left">Article created:{{ articles_count }}</p>
             <p align="left">Points:0</p>
          </div>
          </div>
@@ -85,6 +85,5 @@
 
     <!--====== Javascripts & Jquery ======-->
     {% include 'base_templates/connect_js.html' %}
-
 </body>
 </html>

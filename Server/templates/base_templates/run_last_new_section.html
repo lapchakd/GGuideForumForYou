@@ -2,9 +2,12 @@
         <div class="ln-title">Latest News</div>
         <div class="news-ticker">
             <div class="news-ticker-contant">
-                <div class="nt-item"><span class="new">new</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </div>
-                <div class="nt-item"><span class="strategy">strategy</span>Isum dolor sit amet, consectetur adipiscing elit. </div>
-                <div class="nt-item"><span class="racing">racing</span>Isum dolor sit amet, consectetur adipiscing elit. </div>
+                {% for article in articles|slice:":5" %}
+                    <div class="nt-item">
+                        <span class="new_run">new</span>
+                        <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>
