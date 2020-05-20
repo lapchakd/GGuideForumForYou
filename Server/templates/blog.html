@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{% static 'assets/owl.carousel.css' %}"/>
     <link rel="stylesheet" href="{% static 'assets/style.css' %}"/>
     <link rel="stylesheet" href="{% static 'assets/animate.css' %}"/>
+    <link rel="stylesheet" href="{% static 'assets/blog.css' %}"/>
 
 
     <!--[if lt IE 9]>
@@ -75,8 +76,17 @@
                                         <p>{{ article.snippet }}</p>
                                         <a href="#" class="comment">Comments: {{ article.comments.count }}</a>
                                         <div class="rgi-extra">
-                                        <div class="rgi-star"><img src="{% static 'images/icons/star.png' %}" alt=""></div>
-                                        <div class="rgi-heart"><img src="{% static 'images/icons/heart.png' %}" alt=""></div>
+                                        <div class="container-likes">
+                                            <a href="{% url "like-toggle" article.slug %}" class="likes">
+                                                <div class="rgi-heart">
+                                                    {% if request.user in article.likes.all %}
+                                                        <img src="{% static 'images/icons/heart_white.png' %}" alt="">
+                                                    {% else  %}
+                                                        <img src="{% static 'images/icons/heart.png' %}" alt="">
+                                                    {% endif %}
+                                                </div>
+                                            </a>
+                                        </div>
                                     </div>
                                     </div>
                                     {% endfor %}
