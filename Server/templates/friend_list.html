@@ -1,4 +1,5 @@
 {% load static  %}
+{% load get_key %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,9 +47,9 @@
 
     <!-- Page section -->
     <section class="page-section recent-game-page spad">
-        {% for friend in user.profilemodel.friends.all %}
+        {% for friend in user.profile.friends.all %}
         <div class="user">
-            <img  src="/profile_images/{{ friend.profilemodel.img}}" alt="There must be photo" title="200x200" >
+            <img  src="{{ users_images|lookup:friend.id}}" alt="There must be photo" title="200x200" >
             <p>Nickname:<b>{{ friend.username }}</b></p>
             <p>Rang:<b>noob</b></p>
             <p>Articles:<b>0</b></p>

@@ -21,6 +21,7 @@ class Article(models.Model):
     def __str__(self):
         return self.title
 
+
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super(Article, self).save(*args, **kwargs)
@@ -34,7 +35,7 @@ class Article(models.Model):
 
 class ProfileModel(models.Model):
     img = models.ImageField()
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     friends = models.ManyToManyField(User, related_name='friends')
 
     def __str__(self):

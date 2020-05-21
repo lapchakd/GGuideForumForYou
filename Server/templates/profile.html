@@ -1,3 +1,4 @@
+{% load get_key %}
 {% load static  %}
 <!DOCTYPE html>
 <html lang="en">
@@ -54,7 +55,7 @@
          <div class="container" >
              <h3 align="left">Your profile</h3>
          <div id="foto">
-            <img  src="/profile_images/{{ user.profilemodel.img }}" alt="There must be photo" title="200x200" >
+            <img  src="{{ users_images|lookup:request.user.id }}" alt="There must be photo" title="200x200" >
          </div>
          <div id="fotoText">
             {{ form.as_p }}

@@ -50,12 +50,12 @@
                     <h2 class="stroke-transfer">Yours articles:</h2>
                         {% for user_article in user_articles %}
                             <div class="article_content">
-                                    <div class="rgi-thumb set-bg" data-setbg="/profile_images/{{ user_article.article_image }}">
+                                    <div class="rgi-thumb set-bg" data-setbg="{{ articles_images|lookup:user_article.id}}">
                                          <div class="cata new">racing</div>
                                     </div>
                                     <div class="rgi-content">
                                         <h5>
-                                            <a href="{{ article.get_absolute_url }}">{{ user_article.title }}</a>
+                                            <a href="{{ user_article.get_absolute_url }}">{{ user_article.title }}</a>
                                         </h5>
                                         <p>{{ user_article.snippet }}</p>
                                         <a href="#" class="comment">Comments: {{ user_article.comments.count }}</a>
