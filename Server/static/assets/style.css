@@ -15,6 +15,18 @@ body {
 	-webkit-font-smoothing: antialiased;
 	font-smoothing: antialiased;
 }
+.off-on{
+	color: red;
+}
+#bold:hover {
+	transform: scale(1.5);
+}
+#bold {
+	transition: all 0.5s ease;
+	border: 1px solid #878787;
+	width: 100px;
+	text-align: center;
+}
 .site-btn:hover{
 	background-color: #ff9900;
 }
