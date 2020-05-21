@@ -39,7 +39,7 @@ def load_to_server_profile_images(users):
     firebase = pyrebase.initialize_app(config)
     storage = firebase.storage()
     auth = firebase.auth()
-    firebase_user = auth.sign_in_with_email_and_password("admin@gmail.com", os.environ.get("ADMIN_PASSWORD"))
+    firebase_user = auth.sign_in_with_email_and_password("admin@gmail.com", os.environ.get("FIREBASE_ADMIN_PASSWORD"))
     users_image_urls = {}
     for user in users:
         img = user.profile.img
@@ -62,7 +62,7 @@ def load_to_server_all_articles_images(articles):
     firebase = pyrebase.initialize_app(config)
     storage = firebase.storage()
     auth = firebase.auth()
-    firebase_user = auth.sign_in_with_email_and_password("admin@gmail.com", os.environ.get("ADMIN_PASSWORD"))
+    firebase_user = auth.sign_in_with_email_and_password("admin@gmail.com", os.environ.get("FIREBASE_ADMIN_PASSWORD"))
     articles_image_urls = {}
     for article in articles:
         img = article.article_image
