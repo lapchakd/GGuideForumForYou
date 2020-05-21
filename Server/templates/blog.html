@@ -69,7 +69,7 @@
                             <div class="recent-game-item">
                                 {% if articles %}
                                     {% for article in articles %}
-                                     <div class="rgi-thumb set-bg" data-setbg='{{ articles_images|lookup:'article.id' }}' >
+                                     <div class="rgi-thumb set-bg" data-setbg='{{ articles_images|lookup:article.id }}' >
                                          <div class="cata new">racing</div>
                                     </div>
                                     <div class="rgi-content">
