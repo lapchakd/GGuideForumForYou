@@ -1,4 +1,5 @@
 {% load static  %}
+{% load get_key %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,7 +48,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8">
-					<div class="blog-thumb set-bg" data-setbg="{{ article_image }}">
+					<div class="blog-thumb set-bg" data-setbg="{{ articles_images|lookup:article.id }}">
 						<div class="cata new">new</div>
 						<div class="rgi-extra">
 							<div class="rgi-star"><img src="{% static 'images/icons/star.png' %}" alt=""></div>
@@ -119,16 +120,7 @@
                         {% include 'base_templates/top_comments_side_bar.html' %}
 					</div>
 					<!-- widget -->
-					<div class="widget-item">
-						<div class="feature-item set-bg" data-setbg="{% static 'images/features/1.jpg' %}">
-							<span class="cata new">new</span>
-							<div class="fi-content text-white">
-								<h5><a href="#">Suspendisse ut justo tem por, rutrum</a></h5>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-								<a href="#" class="fi-comment">3 Comments</a>
-							</div>
-						</div>
-					</div>
+
 					<!-- widget -->
 					<div class="widget-item">
 						<div class="review-item">

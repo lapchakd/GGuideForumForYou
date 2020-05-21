@@ -28,23 +28,26 @@ def log_in_connect_firebase(user):
 
 
 def upload_files_profilemodel(user, img):
-    print(img)
     firebase = pyrebase.initialize_app(config)
     auth = firebase.auth()
     firebase_user = auth.sign_in_with_email_and_password(user.email, user.password)
     storage = firebase.storage()
     storage.child("profile_images/" + str(img)).put(img, firebase_user['idToken'])
-    print(storage.child("profile_images/" + str(img)).get_url(firebase_user['idToken']))
 
 
-def load_to_server_profile_images(user, img):
-    print(img)
+def load_to_server_profile_images(users):
     firebase = pyrebase.initialize_app(config)
-    auth = firebase.auth()
-    firebase_user = auth.sign_in_with_email_and_password(user.email, user.password)
     storage = firebase.storage()
-    url_img = storage.child("profile_images/" + str(img)).get_url(firebase_user['idToken'])
-    return url_img
+    auth = firebase.auth()
+    firebase_user = auth.sign_in_with_email_and_password("admin@gmail.com", os.environ.get("ADMIN_PASSWORD"))
+    users_image_urls = {}
+    for user in users:
+        img = user.profile.img
+        users_image_urls[user.id] = storage \
+            .child("profile_images/" + str(img)) \
+            .get_url(firebase_user['idToken'])
+
+    return users_image_urls
 
 
 def upload_to_server_article_image(articles):
@@ -64,6 +67,6 @@ def load_to_server_all_articles_images(articles):
     for article in articles:
         img = article.article_image
         articles_image_urls[article.id] = storage\
-            .child(str(img))\
+            .child('/'+str(img))\
             .get_url(firebase_user['idToken'])
     return articles_image_urls

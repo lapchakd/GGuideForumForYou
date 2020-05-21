@@ -1,4 +1,5 @@
 {% load static %}
+{% load get_key %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,7 +69,7 @@
                             <div class="recent-game-item">
                                 {% if articles %}
                                     {% for article in articles %}
-                                     <div class="rgi-thumb set-bg" data-setbg='{{ articles_images|lookup:article.id }}' >
+                                     <div class="rgi-thumb set-bg" data-setbg='{{ articles_images|lookup:'article.id' }}' >
                                          <div class="cata new">racing</div>
                                     </div>
                                     <div class="rgi-content">
@@ -223,16 +224,7 @@
                         {%  include 'base_templates/top_comments_side_bar.html' %}
                     </div>
                     <!-- widget -->
-                    <div class="widget-item">
-                       <div class="review-cover set-bg" data-setbg='{% static 'images/review/1.jpg' %}'>
-                            <span class="cata new">new</span>
-                            <div class="fi-content text-white">
-                                <h5><a href="#">Suspendisse ut justo tem por, rutrum</a></h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-                                <a href="#" class="fi-comment">3 Comments</a>
-                            </div>
-                        </div>
-                    </div>
+
                     <!-- widget -->
                     <div class="widget-item">
                         <div class="review-item">

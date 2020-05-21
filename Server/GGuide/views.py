@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, update_session_auth_hash
+from django.contrib.auth import authenticate, login, update_session_auth_hash, get_user_model
 from django.contrib.auth.models import User
 from django.db.models import Count
 from django.http import HttpResponse
@@ -15,11 +15,12 @@ from GGuide.firebase import create_connect_firebase, log_in_connect_firebase, lo
     upload_files_profilemodel, upload_to_server_article_image, load_to_server_all_articles_images
 from GGuide.models import ProfileModel, Comments, Article
 from GGuide.forms import SignUpForm, Userlogin, ProfileForm, FriendForm, CommentsForm
-from django.template.defaulttags import register
+
 
 
 def sidebar_ctx():
     return {
+        'users_images': load_to_server_profile_images(get_user_model().objects.all()),
         'articles_images': load_to_server_all_articles_images(Article.objects.all()),
         'articles': Article.objects.all(),
         'top_comments': Comments.objects.all().annotate(like_count=Count("likes")).order_by("-like_count")[:5],
@@ -72,8 +73,6 @@ def article_detail(request, slug):
         'comments': article.comments.all(),
     }
     articles_images = load_to_server_all_articles_images(Article.objects.all())
-    for article in Article.objects.all():
-        ctx['article_image'] = articles_images[article.id]
     ctx.update(sidebar_ctx())
     user = request.user
     if request.method == 'POST':
@@ -176,21 +175,17 @@ def profile_user(request):
         'user_rank': user_rank,
     }
     ctx.update(sidebar_ctx())
-    user = request.user
-    img = user.profilemodel.img
-    user_url_img = load_to_server_profile_images(user, img)
     if request.method == "POST":
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
             user = request.user  # user
             img = form.cleaned_data.get("Image") # user foto
-            user.profilemodel.img = img
-            user.profilemodel.save()
+            user.profile.img = img
+            user.profile.save()
             upload_files_profilemodel(user, img)
     else:
         form = ProfileForm()
     ctx['form'] = form
-    ctx['user_image'] = user_url_img
     return render(request, 'profile.html', ctx)
 
 
@@ -235,8 +230,8 @@ def add_friend(request):
             username = form.cleaned_data['username']
             email = form.cleaned_data['email']
             new_friend = User.objects.get(username=username, email=email)
-            user.profilemodel.friends.add(new_friend)
-            user.profilemodel.save()
+            user.profile.friends.add(new_friend)
+            user.profile.save()
     else:
         form = PasswordChangeForm(request.user)
     return render(request, 'add_friend.html', ctx)
@@ -254,8 +249,8 @@ def remove_friend(request):
             username = form.cleaned_data['username']
             email = form.cleaned_data['email']
             friend = User.objects.get(username=username, email=email)
-            user.profilemodel.friends.remove(friend)
-            user.profilemodel.save()
+            user.profile.friends.remove(friend)
+            user.profile.save()
     else:
         form = PasswordChangeForm(request.user)
 
@@ -311,6 +306,3 @@ def comment_likes(request, id):
     return redirect(url)
 
 
-@register.filter(name='lookup')
-def lookup(value, arg):
-    return value[arg]
