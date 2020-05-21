@@ -17,7 +17,6 @@ from GGuide.models import ProfileModel, Comments, Article
 from GGuide.forms import SignUpForm, Userlogin, ProfileForm, FriendForm, CommentsForm
 
 
-
 def sidebar_ctx():
     return {
         'users_images': load_to_server_profile_images(get_user_model().objects.all()),

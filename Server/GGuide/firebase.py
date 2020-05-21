@@ -46,16 +46,17 @@ def load_to_server_profile_images(users):
         users_image_urls[user.id] = storage \
             .child("profile_images/" + str(img)) \
             .get_url(firebase_user['idToken'])
-
     return users_image_urls
 
 
 def upload_to_server_article_image(articles):
     firebase = pyrebase.initialize_app(config)
+    auth = firebase.auth()
+    firebase_user = auth.sign_in_with_email_and_password("admin@gmail.com", os.environ.get("FIREBASE_ADMIN_PASSWORD"))
     storage = firebase.storage()
     for article in articles:
         img = article.article_image
-        storage.child(str(img)).put(img)
+        storage.child(str(img)).put(img, firebase_user['idToken'])
 
 
 def load_to_server_all_articles_images(articles):
