@@ -1,5 +1,4 @@
 {% load static  %}
-{% load get_key %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,7 +50,7 @@
                     <h2 class="stroke-transfer">Yours articles:</h2>
                         {% for user_article in user_articles %}
                             <div class="article_content">
-{#                                    <div class="rgi-thumb set-bg" data-setbg="{{ articles_images|lookup:user_article.id}}">#}
+                                    <div class="rgi-thumb set-bg" data-setbg="{{ articles_images|lookup:user_article.id}}">
                                          <div class="cata new">racing</div>
                                     </div>
                                     <div class="rgi-content">
@@ -79,7 +78,7 @@
     <!-- Form article section end -->
 
     <!-- Footer top section -->
-{#    {%  include 'base_templates/footer.html' %}#}
+    {%  include 'base_templates/footer.html' %}
     <!-- Footer section end -->
 
     <!--====== Javascripts & Jquery ======-->
