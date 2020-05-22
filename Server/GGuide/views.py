@@ -54,12 +54,12 @@ class ArticleCreate(CreateView):
     template_name = "articles/create_article.html"
     model = Article
     fields = ['article_image', 'title', 'text']
-    upload_to_server_article_image(Article.objects.all())
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.author = self.request.user
         self.object.save()
+        upload_to_server_article_image(Article.objects.all())
 
         return super(ModelFormMixin, self).form_valid(form)
 
