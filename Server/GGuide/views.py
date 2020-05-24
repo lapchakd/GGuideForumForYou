@@ -14,7 +14,7 @@ from django.shortcuts import get_object_or_404
 from GGuide.firebase import create_connect_firebase, log_in_connect_firebase, load_to_server_profile_images, \
     upload_files_profilemodel, upload_to_server_article_image, load_to_server_all_articles_images
 from GGuide.models import ProfileModel, Comments, Article
-from GGuide.forms import SignUpForm, Userlogin, ProfileForm, FriendForm, CommentsForm
+from GGuide.forms import SignUpForm, Userlogin, ProfileForm, FriendForm, CommentsForm, ArticleForm
 
 
 def sidebar_ctx():
@@ -42,26 +42,26 @@ def articles(request):
     return render(request, 'articles/articles.html', context=ctx)
 
 
-class ArticleCreate(CreateView):
-    class Meta:
-        widgets = {
-            'author': HiddenInput(),
-        }
+def article_create(request):
     ctx = {
         'articles': Article.objects.all(),
     }
-    success_url = "/"
-    template_name = "articles/create_article.html"
-    model = Article
-    fields = ['article_image', 'title', 'text']
+    ctx.update(sidebar_ctx())
 
-    def form_valid(self, form):
-        self.object = form.save(commit=False)
-        self.object.author = self.request.user
-        self.object.save()
-        upload_to_server_article_image(Article.objects.all())
-
-        return super(ModelFormMixin, self).form_valid(form)
+    if request.method == "POST":
+        form = ArticleForm(request.POST, request.FILES)
+        if form.is_valid():
+            img = form.cleaned_data.get("article_image")
+            title = form.cleaned_data.get("header")
+            text = form.cleaned_data.get("text")
+            article_model = Article(article_image=img, text=text, title=title, author=request.user)
+            article_model.save()
+            upload_to_server_article_image(img, request.user)
+            return redirect(article_model.get_absolute_url())
+    else:
+        form = ArticleForm()
+    ctx['form'] = form
+    return render(request, 'articles/create_article.html', ctx)
 
 
 def article_detail(request, slug):
