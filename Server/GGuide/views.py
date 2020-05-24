@@ -305,3 +305,12 @@ def comment_likes(request, id):
     return redirect(url)
 
 
+def comment_remove(request, id):
+    comment = get_object_or_404(Comments, id=id)
+    if comment.user != request.user:
+        return HttpResponse("You are not author", status_code=403)
+
+    comment.delete()
+    return redirect(comment.article.get_absolute_url())
+
+
