@@ -49,14 +49,12 @@ def load_to_server_profile_images(users):
     return users_image_urls
 
 
-def upload_to_server_article_image(articles):
+def upload_to_server_article_image(image, user):
     firebase = pyrebase.initialize_app(config)
     auth = firebase.auth()
-    firebase_user = auth.sign_in_with_email_and_password("admin@gmail.com", os.environ.get("FIREBASE_ADMIN_PASSWORD"))
+    firebase_user = auth.sign_in_with_email_and_password(user.email, user.password)
     storage = firebase.storage()
-    for article in articles:
-        img = article.article_image
-        storage.child(str(img)).put(img, firebase_user['idToken'])
+    storage.child('/article_images/' + str(image)).put(image, firebase_user['idToken'])
 
 
 def load_to_server_all_articles_images(articles):
