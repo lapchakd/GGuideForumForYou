@@ -36,14 +36,16 @@ urlpatterns = [
          {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
     path('changeinfo/', views.change_info, name='changeinfo'),
     path('articles/', views.articles, name="articles"),
-    path('articles/create/', views.ArticleCreate.as_view(), name="create_article"),
+    path('articles/create/', views.article_create, name="create_article"),
     path('cube_slam/', views.cube_slam, name="cube_slam"),
     path('hexgl/', views.hexgl, name="hexgl"),
     path('your_articles/', views.profile_user_articles, name="profile_articles"),
     path('gridgarden/', views.gridgarden, name="gridgarden"),
     path('articles/<slug>/', views.article_detail, name='detail'),
     path('<slug>/like/', views.article_likes, name='like-toggle'),
+    path('comments/<id>/likes/', views.comment_likes, name='comment_likes'),
     path('article/<slug>/remove/', views.article_remove, name='remove_article'),
+    path('comments/<id>/remove/', views.comment_remove, name='comment_remove'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += staticfiles_urlpatterns()

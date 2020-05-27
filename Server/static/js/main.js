@@ -7,6 +7,31 @@
 
 
 'use strict';
+//   Last_New Run
+var bgc = ['red','blue','yellow','#ff205f','green','#694eae','#4eae60'];
+setInterval(function(){
+	for(let i =0;i<document.getElementsByClassName('new_run').length;i++){
+	    let obj = document.getElementsByClassName('new_run')[i];
+        obj.style.backgroundColor = bgc[Math.floor(Math.random()*bgc.length)];
+}
+},500);
+//   Last_New Run
+// Change Color
+$('.cata').click(function(){
+	$(this).css('background',bgc[Math.floor(Math.random()*bgc.length)]);
+})
+// Change Color
+//  Change Text Bold
+ $('#bold').click(function(){
+ 	if($('.off-on').text() === 'off') {
+		$('body').css('font-weight', 'bold');
+		$('.off-on').text('on').css('color', 'green');
+	}else {
+ 		$('body').css('font-weight', 'normal');
+		$('.off-on').text('off').css('color', 'red');
+	}
+ })
+// Change Text Bold
 
 $(window).on('load', function() {
 	/*------------------

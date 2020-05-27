@@ -1,0 +1,17 @@
+{% load get_key %}
+{% for top_comment in top_comments|slice:':3' %}
+    <div class="top-comment">
+        <div class="tc-item">
+            <div class="tc-thumb set-bg" data-setbg="{{ users_images|lookup:top_comment.user.id }}"></div>
+                <div class="tc-content">
+                    <a  href="{{ top_comment.article.get_absolute_url }}">{{ top_comment.article.title }}</a>
+                    <p>
+                        <a href="#">{{ top_comment.user.username }}</a>
+                        <span><b>On: </b></span>
+                        {{ top_comment.text|slice:':20' }}....
+                    </p>
+                    <div class="tc-date">{{ top_comment.comments_date}}</div>
+                </div>
+        </div>
+    </div>
+{% endfor %}

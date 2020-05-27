@@ -1,4 +1,5 @@
 {% load static  %}
+{% load get_key %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,7 +48,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8">
-					<div class="blog-thumb set-bg" data-setbg="/profile_images/{{ article.article_image }}">
+					<div class="blog-thumb set-bg" data-setbg="{{ articles_images|lookup:article.id }}">
 						<div class="cata new">new</div>
 						<div class="rgi-extra">
 							<li class="like-btn" class="btn-text"><a class="btn-text" href='{% url "like-toggle" article.slug %}'><img class="rgi-like" src="/static/images/icons/like.png" > Like</a></li>
@@ -65,12 +66,20 @@
                              {% for comment in comments %}
                                  <li>
                                      <div class="comment">
-                                             <div class="comment-avator set-bg" data-setbg="/profile_images/{{ comment.user.profilemodel.img }}"></div>
-                                                    <div class="comment-content">
-                                                    <h5>{{ comment.user.username }} <span>{{ comment.comments_date }}</span></h5>
-                                                    <p>{{ comment.text }} </p>
-                                                    <a href="" class="reply">Reply</a>
-                                             </div>
+                                             <div class="comment-avator set-bg" data-setbg="{{ users_images|lookup:comment.user.id}}"></div>
+                                                 <div class="comment-content">
+
+                                                     <h5>{{ comment.user.username }}
+                                                         <span>{{ comment.comments_date }}</span>
+                                                         <a href="{% url 'comment_remove' comment.id %}" class='delete'>
+                                                             <img  src="https://img.icons8.com/metro/26/000000/delete-sign.png"/>
+                                                         </a>
+                                                     </h5>
+                                                     <p>{{ comment.text }}
+                                                         <a class="comment_likes" href='{% url "comment_likes" comment.id %}'>{{ comment.likes.count }} Like</a>
+                                                     </p>
+                                                     <a href="" class="reply">Reply</a>
+                                                 </div>
                                      </div>
                                  </li>
                              {% endfor %}
@@ -107,58 +116,14 @@
 					<!-- widget -->
 					<div class="widget-item">
 						<h4 class="widget-title">Latest Posts</h4>
-						<div class="latest-blog">
-                            {% for article in side_articles %}
-                            <div class="lb-item">
-                                <div class="lb-thumb set-bg" data-setbg="/profile_images/{{ article.article_image }}"></div>
-                                <div class="lb-content">
-                                    <div class="lb-date">{{ article.article_date }}</div>
-                                     <p><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></p>
-                                    <a href="#" class="lb-author">By {{ article.author }}</a>
-                                </div>
-                            </div>
-                            {% endfor %}
-                        </div>
+                        {% include 'base_templates/side_bar_last_new.html' %}
 					</div>
 					<!-- widget -->
 					<div class="widget-item">
-						<h4 class="widget-title">Top Comments</h4>
-						<div class="top-comment">
-							<div class="tc-item">
-								<div class="tc-thumb set-bg" data-setbg="{% static 'images/authors/1.jpg' %}"></div>
-								<div class="tc-content">
-									<p><a href="#">James Smith</a> <span>on</span> Lorem consec ipsum dolor sit amet, co</p>
-									<div class="tc-date">June 21, 2018</div>
-								</div>
-							</div>
-							<div class="tc-item">
-								<div class="tc-thumb set-bg" data-setbg="{% static 'images/authors/2.jpg' %}"></div>
-								<div class="tc-content">
-									<p><a href="#">Michael James</a> <span>on</span>Cras sit amet sapien aliquam</p>
-									<div class="tc-date">June 21, 2018</div>
-								</div>
-							</div>
-							<div class="tc-item">
-								<div class="tc-thumb set-bg" data-setbg="{% static 'images/authors/3.jpg' %}"></div>
-								<div class="tc-content">
-									<p><a href="#">Justin More</a> <span>on</span> Lorem ipsum dolor consecsit amet, co</p>
-									<div class="tc-date">June 21, 2018</div>
-								</div>
-							</div>
-						</div>
+                        <h4 class="widget-title">Top Comments</h4>
+                        {% include 'base_templates/top_comments_side_bar.html' %}
 					</div>
-					<!-- widget -->
-					<div class="widget-item">
-						<div class="feature-item set-bg" data-setbg="{% static 'images/features/1.jpg' %}">
-							<span class="cata new">new</span>
-							<div class="fi-content text-white">
-								<h5><a href="#">Suspendisse ut justo tem por, rutrum</a></h5>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-								<a href="#" class="fi-comment">3 Comments</a>
-							</div>
-						</div>
-					</div>
-					<!-- widget -->
+                    <!-- widget -->
 					<div class="widget-item">
 						<div class="review-item">
 							<div class="review-cover set-bg" data-setbg="{% static 'images/review/1.jpg' %}">
@@ -170,10 +135,12 @@
 							</div>
 						</div>
 					</div>
+                    <!-- widget -->
 				</div>
 			</div>
 		</div>
     </section>
+
     <!-- Page section end -->
 
 

@@ -4,12 +4,14 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 class ArticleForm(forms.Form):
-    form_article_image = forms.ImageField()
+    article_image = forms.ImageField(label='article_image')
+    header = forms.CharField(label='header', max_length=100)
+    text = forms.CharField(label='text', max_length=350)
 
 
 class SignUpForm(UserCreationForm):
     username = forms.CharField(max_length=10)
-    email = forms.CharField(max_length=22)
+    email = forms.CharField(max_length=30)
 
     class Meta:
         model = User

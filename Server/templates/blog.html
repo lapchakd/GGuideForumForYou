@@ -1,12 +1,13 @@
-{% load static  %}
+{% load static %}
+{% load get_key %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>GGuide</title>
+    <title>Blog</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Favicon -->
-    <link href="{% static 'images/favicon.ico' %} " rel="shortcut icon"/>
+    <!-- Favicon -->   
+    <link href="{% static 'images/favicon.ico' %}" rel="shortcut icon"/>
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
@@ -17,6 +18,7 @@
     <link rel="stylesheet" href="{% static 'assets/owl.carousel.css' %}"/>
     <link rel="stylesheet" href="{% static 'assets/style.css' %}"/>
     <link rel="stylesheet" href="{% static 'assets/animate.css' %}"/>
+    <link rel="stylesheet" href="{% static 'assets/blog.css' %}"/>
 
 
     <!--[if lt IE 9]>
@@ -67,7 +69,7 @@
                             <div class="recent-game-item">
                                 {% if articles %}
                                     {% for article in articles %}
-                                     <div class="rgi-thumb set-bg" data-setbg="/profile_images/{{ article.article_image }}">
+                                     <div class="rgi-thumb set-bg" data-setbg='{{ articles_images|lookup:article.id }}' >
                                          <div class="cata new">racing</div>
                                     </div>
                                     <div class="rgi-content">
@@ -75,8 +77,17 @@
                                         <p>{{ article.snippet }}</p>
                                         <a href="#" class="comment">Comments: {{ article.comments.count }}</a>
                                         <div class="rgi-extra">
-                                        <div class="rgi-star"><img src="{% static 'images/icons/star.png' %}" alt=""></div>
-                                        <div class="rgi-heart"><img src="{% static 'images/icons/heart.png' %}" alt=""></div>
+                                        <div class="container-likes">
+                                            <a href="{% url "like-toggle" article.slug %}" class="likes">
+                                                <div class="rgi-heart">
+                                                    {% if request.user in article.likes.all %}
+                                                        <img src="{% static 'images/icons/heart_white.png' %}" alt="">
+                                                    {% else  %}
+                                                        <img src="{% static 'images/icons/heart.png' %}" alt="">
+                                                    {% endif %}
+                                                </div>
+                                            </a>
+                                        </div>
                                     </div>
                                     </div>
                                     {% endfor %}
@@ -214,57 +225,15 @@
                     <!-- widget -->
                     <div class="widget-item">
                         <h4 class="widget-title">Latest Posts</h4>
-                        <div class="latest-blog">
-                            {% for article in articles %}
-                            <div class="lb-item">
-                                <div class="lb-thumb set-bg" data-setbg="/profile_images/{{ article.article_image }}"></div>
-                                <div class="lb-content">
-                                    <div class="lb-date">{{ article.article_date }}</div>
-                                     <p><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></p>
-                                    <a href="#" class="lb-author">By {{ article.author }}</a>
-                                </div>
-                            </div>
-                            {% endfor %}
-                        </div>
+                        {% include 'base_templates/side_bar_last_new.html' %}
                     </div>
                     <!-- widget -->
                     <div class="widget-item">
                         <h4 class="widget-title">Top Comments</h4>
-                        <div class="top-comment">
-                            <div class="tc-item">
-                                <div class="tc-thumb set-bg" data-setbg="{% static 'images/authors/1.jpg' %}"></div>
-                                <div class="tc-content">
-                                    <p><a href="#">James Smith</a> <span>on</span> Lorem consec ipsum dolor sit amet, co</p>
-                                    <div class="tc-date">June 21, 2018</div>
-                                </div>
-                            </div>
-                            <div class="tc-item">
-                                <div class="tc-thumb set-bg" data-setbg="{% static 'images/authors/1.jpg' %}"></div>
-                                <div class="tc-content">
-                                    <p><a href="#">Michael James</a> <span>on</span>Cras sit amet sapien aliquam</p>
-                                    <div class="tc-date">June 21, 2018</div>
-                                </div>
-                            </div>
-                            <div class="tc-item">
-                                <div class="tc-thumb set-bg" data-setbg="{% static 'images/authors/3.jpg' %}"></div>
-                                <div class="tc-content">
-                                    <p><a href="#">Justin More</a> <span>on</span> Lorem ipsum dolor consecsit amet, co</p>
-                                    <div class="tc-date">June 21, 2018</div>
-                                </div>
-                            </div>
-                        </div>
+                        {%  include 'base_templates/top_comments_side_bar.html' %}
                     </div>
                     <!-- widget -->
-                    <div class="widget-item">
-                        <div class="feature-item set-bg" data-setbg="{% static 'images/features/1.jpg' %}">
-                            <span class="cata new">new</span>
-                            <div class="fi-content text-white">
-                                <h5><a href="#">Suspendisse ut justo tem por, rutrum</a></h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-                                <a href="#" class="fi-comment">3 Comments</a>
-                            </div>
-                        </div>
-                    </div>
+
                     <!-- widget -->
                     <div class="widget-item">
                         <div class="review-item">
@@ -285,6 +254,11 @@
 
 
     <!-- Footer top section -->
+
+    <!-- Footer top section end -->
+
+    
+    <!-- Footer section -->
     {% include 'base_templates/footer.html' %}
     <!-- Footer section end -->
 

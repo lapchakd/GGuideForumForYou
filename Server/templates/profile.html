@@ -1,3 +1,4 @@
+{% load get_key %}
 {% load static  %}
 <!DOCTYPE html>
 <html lang="en">
@@ -54,7 +55,7 @@
          <div class="container" >
              <h3 align="left">Your profile</h3>
          <div id="foto">
-            <img  src="/profile_images/{{ user.profilemodel.img }}" alt="There must be photo" title="200x200" >
+            <img  src="{{ users_images|lookup:request.user.id }}" alt="There must be photo" title="200x200" >
          </div>
          <div id="fotoText">
             {{ form.as_p }}
@@ -69,8 +70,25 @@
          <div id="status">
             <h2>Status</h2>
             <p align="left">Rank:{{ user_rank }}</p>
-            <p align="left">Article created:{{ articles_count }}</p>
+            <p align="left" >Article created: <b id ='articles_count'>{{ articles_count  }}</b></p>
             <p align="left">Points:0</p>
+            <p>
+                <b>To new rank</b>
+                <a href="{% url 'create_article' %}">
+                    <svg  class="creat-redirect"  xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 172 172" style=" fill:#000000;">
+                        <g fill="none" fill-rule="none" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+                            <path d="M0,172v-172h172v172z" fill="none" fill-rule="nonzero"></path>
+                            <g fill="#28a745" fill-rule="evenodd">
+                               <path d="M78.83333,14.33333v64.5h-64.5v14.33333h64.5v64.5h14.33333v-64.5h64.5v-14.33333h-64.5v-64.5z"></path>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                <br>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 55%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+             </p>
          </div>
          </div>
      </form>
@@ -85,5 +103,7 @@
 
     <!--====== Javascripts & Jquery ======-->
     {% include 'base_templates/connect_js.html' %}
+    <script src="{% static 'js/profile.js' %}"></script>
+
 </body>
 </html>

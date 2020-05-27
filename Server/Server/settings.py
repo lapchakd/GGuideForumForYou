@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY =os.environ.get('SECRET_KEY')
-SECRET_KEY =('v7w9i5b96mv-l#vj*#$0r@&3gb7f9t@-c$9@th&wo^r*o!rb0@')
+SECRET_KEY =('v7w9i5b96mv-l#vj*#$0r@&3gb7f9t@-c$9@th&wo^r*o!rb0@') # Don't show for hacker :)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -40,12 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'GGuide',
-    'social_django',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
-
 ]
 
 MIDDLEWARE = [
@@ -72,6 +66,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            # 'libraries': {
+            #     'lookup': 'GGuide.templatetags.get_key',
+            # }
         },
     },
 ]
