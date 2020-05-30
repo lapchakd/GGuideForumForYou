@@ -12,3 +12,10 @@
     float: right;
     font-weight: bold;
 }
+button{
+    outline: none;
+    border: 0;
+    background-color: white;
+    display: block;
+    margin-left: -5px;
+}

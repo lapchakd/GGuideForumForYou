@@ -63,7 +63,7 @@ def article_detail(request, slug):
     success_url = "/"
     ctx = {
         'article': article,
-        'comments': article.comments.all(),
+        'comments': article.comments.all().filter(reply=None).order_by('-id'),
     }
     ctx.update(sidebar_ctx())
     user = request.user
@@ -71,14 +71,19 @@ def article_detail(request, slug):
         form = CommentsForm(request.POST)
         if form.is_valid():
             text = form.cleaned_data.get('comment')
-            comment_model = Comments(user=user, article=article, text=text)
+            reply = form.cleaned_data.get('reply')
+            reply_id = request.POST.get('comment_id')
+            comment_qs = None
+            if reply_id:
+                comment_qs = Comments.objects.get(id=reply_id)
+            comment_model = Comments(user=user, article=article, text=text, reply=comment_qs)
             comment_model.save()
 
     return render(request, 'single-blog.html', ctx)
 
 
 def game_views(request):
-    ctx ={
+    ctx = {
         'articles': Article.objects.all(),
     }
     return render(request, 'game_index.html', ctx)

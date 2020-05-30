@@ -36,3 +36,6 @@ class FriendForm(forms.Form):
 class CommentsForm(forms.Form):
     comment = forms.CharField(label='comment', max_length=250)
 
+
+class ReplyForm(forms.Form):
+    reply = forms.CharField(label='reply', max_length=250)
