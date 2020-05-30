@@ -52,10 +52,20 @@
 						<div class="cata new">new</div>
 						<div class="rgi-extra">
                             {% if request.user in article.likes.all %}
-                                <li class="like-btn" class="btn-text"><a class="btn-text" href='{% url "like-toggle" article.slug %}'><img class="rgi-like" src="/static/images/icons/like1.png" > Liked</a></li>
+                                <li class="like-btn" class="btn-text">
+                                    <a class="btn-text" href='{% url "like-toggle" article.slug %}'>
+                                        <img class="rgi-like" src="/static/images/icons/like1.png" >
+                                        Liked
+                                    </a>
+                                </li>
                                 <li class="like-count" >{{ article.likes.count }}</li>
                             {% else %}
-                                <li class="like-btn" class="btn-text"><a class="btn-text" href='{% url "like-toggle" article.slug %}'><img class="rgi-like" src="/static/images/icons/like1.png" > Like</a></li>
+                                <li class="like-btn" class="btn-text">
+                                    <a class="btn-text" href='{% url "like-toggle" article.slug %}'>
+                                        <img class="rgi-like" src="/static/images/icons/like1.png" >
+                                        Like
+                                    </a>
+                                </li>
                                 <li class="like-count" >{{ article.likes.count }}</li>
                             {% endif %}
 						</div>
