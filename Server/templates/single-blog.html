@@ -51,19 +51,19 @@
 					<div class="blog-thumb set-bg" data-setbg="{{ articles_images|lookup:article.id }}">
 						<div class="cata new">new</div>
 						<div class="rgi-extra">
-                            {% if request.user in article.likes.all %}
-                                <li class="like-btn" class="btn-text"><a class="btn-text" href='{% url "like-toggle" article.slug %}'><img class="rgi-like" src="/static/images/icons/like1.png" > Liked</a></li>
-                                <li class="like-count" >{{ article.likes.count }}</li>
-                            {% else %}
-                                <li class="like-btn" class="btn-text"><a class="btn-text" href='{% url "like-toggle" article.slug %}'><img class="rgi-like" src="/static/images/icons/like1.png" > Like</a></li>
-                                <li class="like-count" >{{ article.likes.count }}</li>
-                            {% endif %}
+                            <div class="rgi-star"><img src="{% static 'images/icons/star.png' %}" alt=""></div>
+							<div class="rgi-heart"><img src="{% static 'images/icons/heart.png' %}" alt=""></div>
 						</div>
 					</div>
                     <div class="blog-content">
                           <h3>{{ article.title }}</h3>
                           <a href="" class="meta-comment">Comments:{{ comments.count }}</a>
-
+                          <p>{{ article.text }}
+                              <a href='{% url "like-toggle" article.slug %}'>
+                                  {{ article.likes.count }}
+                                  Like
+                              </a>
+                          </p>
                     </div>
 					<div class="comment-warp">
 						<h4 class="comment-title">Top Coments</h4>
