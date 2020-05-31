@@ -1,0 +1,10 @@
+.container-likes{
+    float: right;
+}
+.rgi-heart{
+    transition: all 0.5s ease;
+}
+ .likes:hover>.rgi-heart {
+    background: silver;
+    transform: rotate(400grad) scale(1.5);
+}
