@@ -118,7 +118,7 @@ def registration(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password, email=email)
             login(request, user)
-            create_connect_firebase(user)
+            # create_connect_firebase(user)
             p = ProfileModel(img='default.jpg', user=user)
             p.save()
 

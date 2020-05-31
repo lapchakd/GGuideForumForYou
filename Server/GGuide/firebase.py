@@ -1,7 +1,7 @@
 import os
 from urllib.parse import urlparse
 
-import pyrebase
+# import pyrebase
 
 
 config_storage = urlparse(os.environ.get("FIREBASE_URL"))
