@@ -73,7 +73,6 @@
                     <div class="blog-content">
                           <h3>{{ article.title }}</h3>
                           <a href="" class="meta-comment">Comments:{{ comments.count }}</a>
-
                     </div>
 					<div class="comment-warp">
 						<h4 class="comment-title">Top Coments</h4>
@@ -86,9 +85,11 @@
 
                                                      <h5>{{ comment.user.username }}
                                                          <span>{{ comment.comments_date }}</span>
-                                                         <a href="{% url 'comment_remove' comment.id %}" class='delete'>
-                                                             <img  src="https://img.icons8.com/metro/26/000000/delete-sign.png"/>
-                                                         </a>
+                                                         {% if comment.user == request.user %}
+                                                             <a href="{% url 'comment_remove' comment.id %}" class='delete'>
+                                                                 <img  src="https://img.icons8.com/metro/26/000000/delete-sign.png"/>
+                                                             </a>
+                                                         {% endif %}
                                                      </h5>
                                                      <p>{{ comment.text }}
                                                          <a class="comment_likes" href='{% url "comment_likes" comment.id %}'>{{ comment.likes.count }} Like</a>
