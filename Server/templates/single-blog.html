@@ -1,5 +1,4 @@
 {% load static  %}
-{% load get_key %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,7 +47,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8">
-					<div class="blog-thumb set-bg" data-setbg="{{ articles_images|lookup:article.id }}">
+					<div class="blog-thumb set-bg" data-setbg="/profile_images/{{ article.article_image }}">
 						<div class="cata new">new</div>
 						<div class="rgi-extra">
                                 <li class="like-btn" class="btn-text">
@@ -88,8 +87,43 @@
                                                      <p>{{ comment.text }}
                                                          <a class="comment_likes" href='{% url "comment_likes" comment.id %}'>{{ comment.likes.count }} Like</a>
                                                      </p>
-                                                     <a href="" class="reply">Reply</a>
+                                                 <button class="reply reply-button" id="buttonId">Reply</button>
+                                                 <form  method="post" class="reply-form1">{% csrf_token %}
+                                                 <input type="hidden" name="comment_id" value="{{ comment.id }}">
+                                                 <h4 class="comment-title">Leave comment</h4>
+                                                 <div class="row">
+                                                     <div class="col-md-6">
+                                                         <textarea  type="text" placeholder="Your comment" name="comment" id="comment" maxlength="250"></textarea>
+                                                     </div>
+                                                     <div class="col-lg-12">
+                                                         <input class="site-btn btn-sm" type="submit" value="leave">
+                                                     </div>
                                                  </div>
+                                                 </form>
+                                                 {% for reply in comment.replies.all %}
+                                                 <div class="comment-avator set-bg" data-setbg="/profile_images/{{ reply.user.profilemodel.img }}"></div>
+                                                 <h5>{{ reply.user.username }}
+                                                     <span>{{ reply.comments_date }}</span>
+                                                 </h5>
+                                                 <p>{{ reply.text }}
+                                                     <a class="comment_likes" href='{% url "comment_likes" reply.id %}'>{{ reply.likes.count }} Like</a>
+                                                 </p>
+                                                 <button class="reply reply-button" id="buttonId">Reply</button>
+                                                 <form  method="post" class="reply-form" id="formId">
+                                                 {% csrf_token %}
+                                                 <input type="hidden" name="comment_id" value="{{ comment.id }}">
+                                                 <h4 class="comment-title">Leave comment</h4>
+                                                 <div class="row">
+                                                     <div class="col-md-6">
+                                                         <textarea  type="text" placeholder="Your comment" name="comment" id="comment" maxlength="250"></textarea>
+                                                     </div>
+                                                     <div class="col-lg-12">
+                                                         <input class="site-btn btn-sm" type="submit" value="leave">
+                                                     </div>
+                                                 </div>
+                                                 </form>
+                                                 {% endfor %}
+                                             </div>
                                      </div>
                                  </li>
                              {% endfor %}
@@ -126,14 +160,36 @@
 					<!-- widget -->
 					<div class="widget-item">
 						<h4 class="widget-title">Latest Posts</h4>
-                        {% include 'base_templates/side_bar_last_new.html' %}
+						<div class="latest-blog">
+                            {% for article in articles|slice:':3' %}
+                            <div class="lb-item">
+                                <div class="lb-thumb set-bg" data-setbg="/profile_images/{{ article.article_image }}"></div>
+                                <div class="lb-content">
+                                    <div class="lb-date">{{ article.article_date }}</div>
+                                     <p><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></p>
+                                    <a href="#" class="lb-author">By {{ article.author }}</a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
 					</div>
 					<!-- widget -->
 					<div class="widget-item">
                         <h4 class="widget-title">Top Comments</h4>
-                        {% include 'base_templates/top_comments_side_bar.html' %}
+                       {% include 'base_templates/top_comments_side_bar.html' %}
 					</div>
-                    <!-- widget -->
+					<!-- widget -->
+					<div class="widget-item">
+						<div class="feature-item set-bg" data-setbg="{% static 'images/features/1.jpg' %}">
+							<span class="cata new">new</span>
+							<div class="fi-content text-white">
+								<h5><a href="#">Suspendisse ut justo tem por, rutrum</a></h5>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+								<a href="#" class="fi-comment">3 Comments</a>
+							</div>
+						</div>
+					</div>
+					<!-- widget -->
 					<div class="widget-item">
 						<div class="review-item">
 							<div class="review-cover set-bg" data-setbg="{% static 'images/review/1.jpg' %}">
@@ -145,12 +201,10 @@
 							</div>
 						</div>
 					</div>
-                    <!-- widget -->
 				</div>
 			</div>
 		</div>
     </section>
-
     <!-- Page section end -->
 
 

@@ -2,7 +2,9 @@ import os
 from urllib.parse import urlparse
 
 import pyrebase
+
 from django.contrib.auth import get_user_model
+
 
 config_storage = urlparse(os.environ.get("FIREBASE_URL"))
 

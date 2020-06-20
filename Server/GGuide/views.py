@@ -69,7 +69,7 @@ def article_detail(request, slug):
     success_url = "/"
     ctx = {
         'article': article,
-        'comments': article.comments.all(),
+        'comments': article.comments.all().filter(reply=None).order_by('-id'),
     }
     articles_images = load_to_server_all_articles_images(Article.objects.all())
     ctx.update(sidebar_ctx())
@@ -78,7 +78,12 @@ def article_detail(request, slug):
         form = CommentsForm(request.POST)
         if form.is_valid():
             text = form.cleaned_data.get('comment')
-            comment_model = Comments(user=user, article=article, text=text)
+            reply = form.cleaned_data.get('reply')
+            reply_id = request.POST.get('comment_id')
+            comment_qs = None
+            if reply_id:
+                comment_qs = Comments.objects.get(id=reply_id)
+            comment_model = Comments(user=user, article=article, text=text, reply=comment_qs)
             comment_model.save()
 
     return render(request, 'single-blog.html', ctx)
